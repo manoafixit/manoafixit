@@ -1,5 +1,9 @@
 import { _ } from 'meteor/underscore';
-import { ManoaFixIt } from '../../api/ManoaFixIt/ManoaFixIt';
+import { Issues } from '../../api/IssuesCollection/IssuesCollection.js';
+
+const collections = [
+  Issues,
+];
 
 // Publish all ManoaFixIt Collections.
-_.forEach(ManoaFixIt.collections, collection => collection.publish());
+_.forEach(collections, collection => collection.publish());
