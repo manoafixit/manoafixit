@@ -3,14 +3,19 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 import { BaseCollection } from '../../BaseCollection/BaseCollection';
 
-class IssuesCollection extends BaseCollection {
-  constructor() {
-    super('Issues', new SimpleSchema({
+export const IssuesSchema = new SimpleSchema(
+    {
       title: {
         type: String,
         label: 'Issue Title',
         min: 5, // Minimum 5 characters to prevent spam
         max: 100,
+      },
+      description: {
+        type: String,
+        label: 'Issue Description',
+        max: 1000,
+        optional: true,
       },
       tags: {
         type: [String],
@@ -22,6 +27,7 @@ class IssuesCollection extends BaseCollection {
       likes: {
         type: Number,
         label: 'Issue Likes',
+        defaultValue: 0,
       },
       status: {
         type: String,
@@ -41,7 +47,12 @@ class IssuesCollection extends BaseCollection {
         type: String,
         label: 'Creation date of the Issue',
       },
-    }), { tracker: Tracker });
+    }, { tracker: Tracker },
+);
+
+class IssuesCollection extends BaseCollection {
+  constructor() {
+    super('Issues', IssuesSchema);
   }
 }
 
