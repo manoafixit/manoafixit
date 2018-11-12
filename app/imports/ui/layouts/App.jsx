@@ -4,17 +4,18 @@ import { Meteor } from 'meteor/meteor';
 import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import NavBar from '../components/global/NavBar';
+import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
-import ListStuff from '../pages/ListStuff';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+import ListStuff from '../pages/meteor-template/ListStuff';
+import AddStuff from '../pages/meteor-template/AddStuff';
+import EditStuff from '../pages/meteor-template/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+
+import giantestpage from '../pages/test/giantestpage'; /* TODO: Remove in production */
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -27,10 +28,10 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <ProtectedRoute path="/list" component={ListStuff}/>
-              <ProtectedRoute path="/add" component={AddStuff}/>
+              <Route path="/giantestpage" component={giantestpage}/> {/* TODO: Remove in production */}
+              <ProtectedRoute path="/submit" component={ListStuff}/>
+              <ProtectedRoute path="/suggestions" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
