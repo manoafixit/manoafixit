@@ -68,8 +68,7 @@ class IssuesCollection extends BaseCollection {
    * @returns { docID } The _id of the document we inserted.
    */
   insert(data, callback) {
-    const { title, description, tags, likes, status = 'Open', lat, long, createdAt } = data;
-    const owner = Meteor.user().username;
+    const { title, description, tags, likes, status = 'Open', lat, long, owner, createdAt } = data;
     const issueID = this.collection.insert({
       title,
       description,

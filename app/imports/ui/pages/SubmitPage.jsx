@@ -1,18 +1,21 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {
   AutoForm,
   TextField,
+  ListField,
   LongTextField,
-  NumField,
   SubmitField,
   ErrorsField,
   HiddenField,
 } from 'uniforms-semantic/';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
-// const locations = Locations.find({});
+const options = [];
+
 class SubmitPage extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
@@ -20,6 +23,7 @@ class SubmitPage extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    // this.onAddItem = this.onAddItem.bind(this);
     this.formRef = null;
   }
 
@@ -35,12 +39,19 @@ class SubmitPage extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, street, city, state, zip_code } = data;
-    Issues.insert({ name, street, city, state, zip_code }, this.insertCallback);
+    const { title, description, tags, likes, status, lat, long, createdAt } = data;
+    const owner = Meteor.user().username;
+    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner }, this.insertCallback);
   }
+
+  // onAddItem(event, tag) {
+  //   options.push({ key: tag.toString(), text: `${tag}`, value: `${tag}` });
+  // }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+// eslint-disable-next-line no-console
+    console.log(options);
     return (
         <Grid container centered>
           <Grid.Column>
@@ -51,15 +62,17 @@ class SubmitPage extends React.Component {
               <Segment>
                 <TextField name='title'/>
                 <LongTextField name='description'/>
-                <TextField name='tags'/>
+                <ListField name='tags'>
+                </ListField>
+                {/* <Dropdown search selection allowAdditions onAddItem={this.onAddItem} options={options}/> */}
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='likes'/>
                 <HiddenField name='status'/>
-                <HiddenField name='lat'/>
-                <HiddenField name='long'/>
+                <HiddenField name='lat' value={2}/>
+                <HiddenField name='long' value={3}/>
                 <HiddenField name='createdAt' value={new Date()}/>
-                <HiddenField name='owner' value='john@foo.com'/>
+                <HiddenField name='owner' value='fakevalue'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -68,4 +81,10 @@ class SubmitPage extends React.Component {
   }
 }
 
-export default SubmitPage;
+export default withTracker(() => {
+  const sub = Meteor.subscribe('IssuesCollection');
+  return {
+    issues: Issues.getCollectionDocuments(),
+    ready: sub.ready(),
+  };
+})(SubmitPage);
