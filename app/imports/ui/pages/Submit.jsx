@@ -1,15 +1,14 @@
 import React from 'react';
-import { Dropdown, Grid, Header, Segment } from 'semantic-ui-react';
+import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import NumField from 'uniforms-semantic/NumField';
 import SubmitField from 'uniforms-semantic/SubmitField';
-import DateField from 'uniforms-semantic/DateField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SelectField from 'uniforms-semantic/SelectField';
 import PropTypes from 'prop-types';
-import { Locations, LocationsSchema } from '../../api/Locations/Locations';
+import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
 // const locations = Locations.find({});
 class AdminPageAdd extends React.Component {
@@ -35,7 +34,7 @@ class AdminPageAdd extends React.Component {
   /** On submit, insert the data. */
   submitLocation(data) {
     const { name, street, city, state, zip_code } = data;
-    Locations.insert({ name, street, city, state, zip_code }, this.insertCallback);
+    Issues.insert({ name, street, city, state, zip_code }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -44,7 +43,7 @@ class AdminPageAdd extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Submit Issue</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={LocationsSchema} onSubmit={this.submitLocation}>
+            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={IssuesSchema} onSubmit={this.submitLocation}>
               <Segment>
                 <TextField name='name'/>
                 <TextField name='street'/>
