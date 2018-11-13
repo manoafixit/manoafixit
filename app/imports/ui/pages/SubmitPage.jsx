@@ -1,22 +1,24 @@
 import React from 'react';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
-import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
-import NumField from 'uniforms-semantic/NumField';
-import SubmitField from 'uniforms-semantic/SubmitField';
-import ErrorsField from 'uniforms-semantic/ErrorsField';
-import SelectField from 'uniforms-semantic/SelectField';
-import PropTypes from 'prop-types';
+import {
+  AutoForm,
+  TextField,
+  LongTextField,
+  NumField,
+  SubmitField,
+  ErrorsField,
+  HiddenField,
+} from 'uniforms-semantic/';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
 // const locations = Locations.find({});
-class AdminPageAdd extends React.Component {
+class SubmitPage extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
     super(props);
-    this.submitEvent = this.submitEvent.bind(this);
+    this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
   }
@@ -32,7 +34,7 @@ class AdminPageAdd extends React.Component {
   }
 
   /** On submit, insert the data. */
-  submitLocation(data) {
+  submit(data) {
     const { name, street, city, state, zip_code } = data;
     Issues.insert({ name, street, city, state, zip_code }, this.insertCallback);
   }
@@ -43,15 +45,21 @@ class AdminPageAdd extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Submit Issue</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={IssuesSchema} onSubmit={this.submitLocation}>
+            <AutoForm ref={(ref) => {
+              this.formRef = ref;
+            }} schema={IssuesSchema} onSubmit={this.submit}>
               <Segment>
-                <TextField name='name'/>
-                <TextField name='street'/>
-                <TextField name='city'/>
-                <SelectField name='state'/>
-                <NumField name='zip_code'/>
+                <TextField name='title'/>
+                <LongTextField name='description'/>
+                <TextField name='tags'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
+                <HiddenField name='likes'/>
+                <HiddenField name='status'/>
+                <HiddenField name='lat'/>
+                <HiddenField name='long'/>
+                <HiddenField name='createdAt' value={new Date()}/>
+                <HiddenField name='owner' value='john@foo.com'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -60,8 +68,4 @@ class AdminPageAdd extends React.Component {
   }
 }
 
-
-AdminPageAdd.propTypes = {
-  location: PropTypes.string.isRequired,
-};
-export default AdminPageAdd;
+export default SubmitPage;

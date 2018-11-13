@@ -2,7 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Meteor from 'meteor/meteor';
 import _ from 'meteor/underscore';
 import { Tracker } from 'meteor/tracker';
-import { BaseCollection } from '../../BaseCollection/BaseCollection';
+import BaseCollection from '../BaseCollection/BaseCollection';
 
 export const IssuesSchema = new SimpleSchema(
     {
@@ -19,12 +19,13 @@ export const IssuesSchema = new SimpleSchema(
         optional: true,
       },
       tags: {
-        type: [String],
+        type: Array,
         label: 'Issue Tags',
         optional: true,
         minCount: 1,
         maxCount: 10, // Maximum of 10 tags
       },
+      'tags.$': String,
       likes: {
         type: Number,
         label: 'Issue Likes',
