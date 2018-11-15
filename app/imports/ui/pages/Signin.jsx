@@ -44,6 +44,13 @@ export default class Signin extends React.Component {
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
     }
+
+    const headerStyle = {
+      fontSize: '40px',
+      color: 'black',
+      paddingTop: '20px',
+      paddingBottom: '30px',
+    };
     // Otherwise return the Login form.
     return (
         <Container>
@@ -88,8 +95,14 @@ export default class Signin extends React.Component {
                   />
               )}
             </Grid.Column>
+            <Grid.Row>
+            <Header as="h3" textAlign="center" style={headerStyle}>
+              Why Manoafixit?
+            </Header>
+            </Grid.Row>
           </Grid>
         </Container>
+
     );
   }
 }
