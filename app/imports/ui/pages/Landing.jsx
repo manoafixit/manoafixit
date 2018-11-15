@@ -5,7 +5,7 @@ import { Grid, Image, Header, Icon } from 'semantic-ui-react';
 class Landing extends React.Component {
   render() {
     return (
-        <Grid verticalAlign='middle' textAlign='center' verticalAlign='center' container stackable>
+        <Grid textAlign='center' verticalAlign='center' container stackable>
           <Grid.Row>
             <Grid.Column width={4}>
               <Image size='small' circular src="/images/wrench.jpg"/>
@@ -13,7 +13,10 @@ class Landing extends React.Component {
 
             <Grid.Column width={8}>
               <Header as='h1' size='huge'>Manoa Fix It!</Header>
-              <Header as='h2' size='small' textAlign='left'>Ever faced some staggering issues around campus? Ever wanted to help solve such issues but hesistate at the last moment because it's bothersome to contact the higher-ups about it? Well fear no longer! ManoaFixIt is an application that makes it easier to report problems around campus. It includes...</Header>
+              <Header as='h2' size='small' textAlign='left'>Ever faced some staggering issues around campus? Ever wanted
+                to help solve such issues but hesistate at the last moment because it is bothersome to contact the
+                higher-ups about it? Well fear no longer! ManoaFixIt is an application that makes it easier to report
+                problems around campus. It includes...</Header>
             </Grid.Column>
           </Grid.Row>
 
