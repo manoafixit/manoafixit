@@ -17,7 +17,9 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 
-import giantestpage from '../pages/test/giantestpage'; /* TODO: Remove in production */
+import giantestpage from '../pages/test/giantestpage';
+
+/* TODO: Remove in production */
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -31,10 +33,10 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/giantestpage" component={giantestpage}/> {/* TODO: Remove in production */}
-              <Route path="/map" component={MapPage}/>
+              <ProtectedRoute path="/map" component={MapPage}/>
               <ProtectedRoute path="/submit" component={Submit}/>
-              <ProtectedRoute path="/feed" component={Feed}/>
-              <ProtectedRoute path="/suggestions" component={AddStuff}/>
+              {/* <ProtectedRoute path="/feed" component={Feed}/> */}
+               <ProtectedRoute path="/suggestions" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
@@ -52,16 +54,16 @@ class App extends React.Component {
  * @param {any} { component: Component, ...rest }
  */
 const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) => {
-      const isLogged = Meteor.userId() !== null;
-      return isLogged ?
-          (<Component {...props} />) :
-          (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
-      );
-    }}
-  />
+    <Route
+        {...rest}
+        render={(props) => {
+          const isLogged = Meteor.userId() !== null;
+          return isLogged ?
+              (<Component {...props} />) :
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              );
+        }}
+    />
 );
 
 /**

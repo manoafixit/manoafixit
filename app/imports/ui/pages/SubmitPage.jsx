@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import fetch from 'node-fetch';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {
@@ -14,10 +15,7 @@ import {
 } from 'uniforms-semantic/';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
-const options = [];
-
 class SubmitPage extends React.Component {
-
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
     super(props);
@@ -25,6 +23,39 @@ class SubmitPage extends React.Component {
     this.insertCallback = this.insertCallback.bind(this);
     // this.onAddItem = this.onAddItem.bind(this);
     this.formRef = null;
+  }
+
+  state = {
+    location: {
+      lat: 21.2969,
+      long: -157.8171,
+    },
+    haveUserLocation: false,
+  };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      this.setState({
+        location: {
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        },
+        haveUserLocation: true,
+      });
+    }, () => {
+      fetch('https://ipapi.co/json')
+          .then(res => res.json())
+          .then(location => {
+            this.setState({
+              location: {
+                lat: location.latitude,
+                long: location.longitude,
+              },
+              haveUserLocation: true,
+            });
+          });
+    });
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -51,7 +82,6 @@ class SubmitPage extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
 // eslint-disable-next-line no-console
-    console.log(options);
     return (
         <Grid container centered>
           <Grid.Column>
@@ -69,8 +99,8 @@ class SubmitPage extends React.Component {
                 <ErrorsField/>
                 <HiddenField name='likes'/>
                 <HiddenField name='status'/>
-                <HiddenField name='lat' value={2}/>
-                <HiddenField name='long' value={3}/>
+                <HiddenField name='lat' value={this.state.location.lat}/>
+                <HiddenField name='long' value={this.state.location.long}/>
                 <HiddenField name='createdAt' value={new Date()}/>
                 <HiddenField name='owner' value='fakevalue'/>
               </Segment>
