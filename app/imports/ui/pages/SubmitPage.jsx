@@ -27,15 +27,15 @@ class SubmitPage extends React.Component {
 
   state = {
     location: {
-      lat: 21.2969,
-      long: -157.8171,
+      lat: undefined,
+      long: undefined,
     },
     haveUserLocation: false,
   };
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
+// eslint-disable-next-line no-undef
+    navigator.geolocation.getCurrentPosition((position) => { // TODO: Fix this undefined ESLint error.
       this.setState({
         location: {
           lat: position.coords.latitude,
@@ -61,9 +61,9 @@ class SubmitPage extends React.Component {
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
     if (error) {
-      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+      Bert.alert({ type: 'danger', message: `Issue failed to submit: ${error.message}` });
     } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      Bert.alert({ type: 'success', message: 'Issue has been submitted' });
       this.formRef.reset();
     }
   }
