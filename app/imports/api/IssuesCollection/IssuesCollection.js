@@ -118,10 +118,6 @@ class IssuesCollection extends BaseCollection {
       return true;
     }
   }
-
-  // getCoordinates() {
-  //
-  // }
 }
 
 export const Issues = new IssuesCollection();

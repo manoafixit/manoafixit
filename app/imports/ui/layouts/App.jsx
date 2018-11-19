@@ -8,7 +8,7 @@ import NavBar from '../components/global/NavBar';
 import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
 import Submit from '../pages/SubmitPage';
-import MapPage from '../pages/Map';
+import MapPage from '../pages/MapPage';
 // import Feed from '../pages/Feed';
 import AddStuff from '../pages/meteor-template/AddStuff';
 import EditStuff from '../pages/meteor-template/EditStuff';

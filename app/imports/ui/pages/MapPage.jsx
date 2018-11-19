@@ -1,22 +1,12 @@
 import React from 'react';
-// import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer } from 'react-leaflet';
+import { Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-// import { _ } from 'meteor/underscore';
+import PropTypes from 'prop-types';
 import { Issues } from '../../api/IssuesCollection/IssuesCollection';
-
-// const icon = L.icon({
-//   iconUrl: 'leaf-green.png',
-//   shadowUrl: 'leaf-shadow.png',
-//
-//   iconSize: [38, 95], // size of the icon
-//   shadowSize: [50, 64], // size of the shadow
-//   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-//   shadowAnchor: [4, 62], // the same for the shadow
-//   popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-// });
+import MapMarker from '../components/map/MapMarker';
 
 class MapPage extends React.Component {
   state = {
@@ -31,6 +21,12 @@ class MapPage extends React.Component {
   }
 
   render() {
+// eslint-disable-next-line no-console
+//     console.log(this.props.issues);
+    return (this.props.ready) ? this.renderMap() : <Loader active>Fetching Map Data</Loader>;
+  }
+
+  renderMap() {
     const style = {
       height: '600px',
     };
@@ -42,15 +38,18 @@ class MapPage extends React.Component {
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={centerPos}>
-            <Popup>
-              A pretty CSS3 popup. <br/> Easily customizable.
-            </Popup>
-          </Marker>
+          {
+            this.props.issues.map((issue, index) => <MapMarker key={index} issue={issue}/>)
+          }
         </Map>
     );
   }
 }
+
+MapPage.propTypes = {
+  issues: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
 
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
