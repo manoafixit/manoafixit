@@ -5,7 +5,7 @@ import { Grid, Image, Header, Icon } from 'semantic-ui-react';
 class Landing extends React.Component {
   render() {
     return (
-        <Grid textAlign='center' verticalAlign='center' container stackable>
+        <Grid textAlign='center' verticalAlign='middle' container stackable>
           <Grid.Row>
             <Grid.Column width={4}>
               <Image size='small' circular src="/images/wrench.jpg"/>

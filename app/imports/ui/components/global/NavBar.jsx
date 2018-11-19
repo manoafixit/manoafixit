@@ -1,8 +1,8 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
+// import { Meteor } from 'meteor/meteor';
+// import { withTracker } from 'meteor/react-meteor-data';
 import { Responsive } from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
+// import { Roles } from 'meteor/alanning:roles';
 import NavBarDesktop from '../../components/global/responsive/NavBarDesktop';
 import NavBarMobile from '../../components/global/responsive/NavBarMobile';
 

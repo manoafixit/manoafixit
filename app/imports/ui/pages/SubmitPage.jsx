@@ -14,8 +14,6 @@ import {
 } from 'uniforms-semantic/';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
-const options = [];
-
 class SubmitPage extends React.Component {
 
   /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
@@ -50,8 +48,6 @@ class SubmitPage extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
-// eslint-disable-next-line no-console
-    console.log(options);
     return (
         <Grid container centered>
           <Grid.Column>
