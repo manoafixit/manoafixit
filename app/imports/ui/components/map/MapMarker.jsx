@@ -7,6 +7,24 @@ import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
+
+  /**
+   * Checks to see if the Map Marker is valid to be displayed. Non-valid Markers are: Resolved, Declined, and Duplicate.
+   * @returns {boolean} true if valid, otherwise false.
+   */
+  isValid() {
+    switch (this.props.issue.status) {
+      case 'Resolved':
+        return false;
+      case 'Declined':
+        return false;
+      case 'Duplicate':
+        return false;
+      default:
+        return true;
+    }
+  }
+
   render() {
     const pos = [this.props.issue.lat, this.props.issue.long];
 
@@ -30,13 +48,16 @@ class MapMarker extends React.Component {
     });
 
     return (
-        <Marker position={pos} icon={issueIcon}>
-          <Popup>
-            {this.props.issue.title}
-            <br/>
-            {this.props.issue.createdAt}
-          </Popup>
-        </Marker>
+        this.isValid() ?
+            (<Marker position={pos} icon={issueIcon}>
+              <Popup>
+                {this.props.issue.title}
+                <br/>
+                {this.props.issue.createdAt}
+                {/* TODO: Format the date to be prettier, ideally this should be done server-side. */}
+              </Popup>
+            </Marker>)
+            : ''
     );
   }
 }
