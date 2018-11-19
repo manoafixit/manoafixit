@@ -12,6 +12,7 @@ class NavBarMobile extends React.Component {
 
   /** handleHideClick = () => this.setState({ visible: false }) */
   handleShowClick = () => this.setState({ visible: true, margin: '100px' })
+
   handleSidebarHide = () => this.setState({ visible: false, margin: '10px' })
 
   render() {
@@ -31,7 +32,7 @@ class NavBarMobile extends React.Component {
           >
             {this.props.currentUser ? (
                 [<Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='add'>Submit</Menu.Item>,
+                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
                   <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
