@@ -1,9 +1,11 @@
 import React from 'react';
+import Meteor from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import { withRouter } from 'react-router-dom';
+import { Card, Label } from 'semantic-ui-react';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
@@ -40,21 +42,28 @@ class MapMarker extends React.Component {
       case 'Resolved':
         break;
       default:
-        break;
+        throw Meteor.Error('Invalid status.');
     }
     const issueIcon = L.icon({
       iconUrl: iconUrl,
-      iconSize: [50, 82],
+      iconSize: [50, 82], // size of the icon
+      popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
     });
 
     return (
         this.isValid() ?
             (<Marker position={pos} icon={issueIcon}>
               <Popup>
-                {this.props.issue.title}
-                <br/>
-                {this.props.issue.createdAt}
-                {/* TODO: Format the date to be prettier, ideally this should be done server-side. */}
+                <Card>
+                  <Card.Content>
+                    <Card.Header> {this.props.issue.title} </Card.Header>
+                    <Card.Meta> {this.props.issue.createdAt} </Card.Meta>
+                    <Card.Description> Go to Issue. </Card.Description> {/* TODO: Link to this Issue page */}
+                  </Card.Content>
+                  <Card.Content extra>
+                    {this.props.issue.tags.map((tag, index) => <Label key={index} basic> {tag} </Label>)}
+                  </Card.Content>
+                </Card>
               </Popup>
             </Marker>)
             : ''

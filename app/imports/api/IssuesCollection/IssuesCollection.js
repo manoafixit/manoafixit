@@ -22,8 +22,7 @@ export const IssuesSchema = new SimpleSchema(
         type: Array,
         label: 'Issue Tags',
         optional: true,
-        minCount: 1,
-        maxCount: 10, // Maximum of 10 tags
+        maxCount: 3, // Maximum of 3 tags
       },
       'tags.$': String,
       likes: {
