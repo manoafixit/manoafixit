@@ -9,7 +9,7 @@ import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
 import Submit from '../pages/SubmitPage';
 import MapPage from '../pages/MapPage';
-// import Feed from '../pages/Feed';
+import FeedPage from '../pages/FeedPage';
 import AddStuff from '../pages/meteor-template/AddStuff';
 import EditStuff from '../pages/meteor-template/EditStuff';
 import NotFound from '../pages/NotFound';
@@ -18,8 +18,6 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 
 import giantestpage from '../pages/test/giantestpage';
-
-/* TODO: Remove in production */
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -35,8 +33,7 @@ class App extends React.Component {
               <Route path="/giantestpage" component={giantestpage}/> {/* TODO: Remove in production */}
               <ProtectedRoute path="/map" component={MapPage}/>
               <ProtectedRoute path="/submit" component={Submit}/>
-              {/* <ProtectedRoute path="/feed" component={Feed}/> */}
-              { /* This is commented out as it is giving errors when the Feed page is still empty */ }
+              <ProtectedRoute path="/feed" component={FeedPage}/>
               <ProtectedRoute path="/suggestions" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <ProtectedRoute path="/signout" component={Signout}/>
