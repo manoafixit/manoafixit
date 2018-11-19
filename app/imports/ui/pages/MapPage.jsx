@@ -24,8 +24,6 @@ class MapPage extends React.Component {
   }
 
   render() {
-// eslint-disable-next-line no-console
-//     console.log(this.props.issues);
     return (this.props.ready) ? this.renderMap() : <Loader active>Fetching Map Data</Loader>;
   }
 

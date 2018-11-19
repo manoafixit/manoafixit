@@ -9,31 +9,35 @@ import { withRouter } from 'react-router-dom';
 class MapMarker extends React.Component {
   render() {
     const pos = [this.props.issue.lat, this.props.issue.long];
-    const openIssueIcon = L.icon({
-      iconUrl: 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg',
+
+    let iconUrl;
+    switch (this.props.issue.status) {
+      case 'Open':
+        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
+        break;
+      case 'Acknowledged':
+        break;
+      case 'In Progress':
+        break;
+      case 'Resolved':
+        break;
+      default:
+        break;
+    }
+    const issueIcon = L.icon({
+      iconUrl: iconUrl,
       iconSize: [50, 82],
     });
 
-    switch (this.props.issue.status) {
-      case 'Open':
-        return (
-            <Marker position={pos} icon={openIssueIcon}>
-              <Popup>
-                {this.props.issue.title}
-                <br/>
-                {this.props.issue.createdAt}
-              </Popup>
-            </Marker>
-        );
-      default:
-        return (
-            <Marker position={pos} icon={openIssueIcon}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-        );
-    }
+    return (
+        <Marker position={pos} icon={issueIcon}>
+          <Popup>
+            {this.props.issue.title}
+            <br/>
+            {this.props.issue.createdAt}
+          </Popup>
+        </Marker>
+    );
   }
 }
 
