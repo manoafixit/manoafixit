@@ -6,9 +6,9 @@ class Landing extends React.Component {
   render() {
     return (
         <div className="landing-background">
-          <Grid textAlign='center' verticalAlign='center' container stackable>
+          <Grid textAlign='center' verticalalign='middle' container stackable>
             <Grid.Row>
-              <Grid.Column width={5} veritcalAlign='center' textAlign='center'>
+              <Grid.Column width={5} veritcalalign='middle' textAlign='center'>
                 <Image size='large' src="/images/mfi-logo.png"/>
               </Grid.Column>
             </Grid.Row>
