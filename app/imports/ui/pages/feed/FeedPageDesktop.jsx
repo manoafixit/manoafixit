@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Menu } from 'semantic-ui-react';
+import { Container, Menu, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssueDesktop from '../../components/feed/responsive/IssueDesktop';
@@ -26,7 +26,11 @@ class FeedPageDesktop extends React.Component {
                 <SubmitButton/>
               </Menu.Item>
             </Menu>
-            {this.props.issues.map((issue, index) => <IssueDesktop key={index} issue={issue}/>)}
+            <Table striped>
+              <Table.Body>
+                  {this.props.issues.map((issue, index) => <IssueDesktop key={index} issue={issue}/>)}
+              </Table.Body>
+            </Table>
           </Container>
         </div>
     );
