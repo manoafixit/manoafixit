@@ -3,7 +3,12 @@ import { Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-/** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
+const colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink'];
+
+function randomColor() {
+  return colors[Math.floor(Math.random() * colors.length)]
+}
+
 class Tags extends React.Component {
   render() {
     const tagStyle = {
@@ -12,7 +17,7 @@ class Tags extends React.Component {
 
     return (
         <div style={tagStyle}>
-          {this.props.issue.tags.map((tag, index) => <Label key={index} basic> {tag} </Label>)}
+          {this.props.issue.tags.map((tag, index) => <Label key={index} color={randomColor()}> {tag} </Label>)}
         </div>
     );
   }

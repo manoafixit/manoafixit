@@ -3,22 +3,21 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Grid, Container, Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Issues } from '../../api/IssuesCollection/IssuesCollection';
-import IssueDesktop from '../components/feed/responsive/IssueDesktop';
+import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
+import FeedPageDesktop from './FeedPageDesktop';
 
 class FeedPage extends React.Component {
   render() {
     return (
         <Container>
-          <Grid stackable celled padded>
+          <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              {this.props.issues.map((issue, index) => <IssueDesktop key={index} issue={issue}/>)}
+              <FeedPageDesktop />
             </Responsive>
           </Grid>
         </Container>
-
     );
   }
 }

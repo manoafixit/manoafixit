@@ -7,9 +7,9 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/global/NavBar';
 import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
-import Submit from '../pages/SubmitPage';
+import SubmitPage from '../pages/SubmitPage';
 import MapPage from '../pages/MapPage';
-import FeedPage from '../pages/FeedPage';
+import FeedPage from '../pages/feed/FeedPage';
 import AddStuff from '../pages/meteor-template/AddStuff';
 import EditStuff from '../pages/meteor-template/EditStuff';
 import NotFound from '../pages/NotFound';
@@ -32,7 +32,7 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <Route path="/giantestpage" component={giantestpage}/> {/* TODO: Remove in production */}
               <ProtectedRoute path="/map" component={MapPage}/>
-              <ProtectedRoute path="/submit" component={Submit}/>
+              <ProtectedRoute path="/submit" component={SubmitPage}/>
               <ProtectedRoute path="/feed" component={FeedPage}/>
               <ProtectedRoute path="/suggestions" component={AddStuff}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
