@@ -9,8 +9,8 @@ export const IssuesSchema = new SimpleSchema(
       title: {
         type: String,
         label: 'Issue Title',
-        min: 5, // Minimum 5 characters to prevent spam
-        max: 100,
+        min: 4, // Minimum 4 characters to prevent spam
+        max: 65,
       },
       description: {
         type: String,
@@ -22,10 +22,12 @@ export const IssuesSchema = new SimpleSchema(
         type: Array,
         label: 'Issue Tags',
         optional: true,
-        minCount: 1,
-        maxCount: 10, // Maximum of 10 tags
+        maxCount: 4, // Maximum of 4 tags
       },
-      'tags.$': String,
+      'tags.$': {
+        type: String,
+        max: 20, // Each tag String can only contain 20 max characters
+      },
       likes: {
         type: Number,
         label: 'Issue Likes',
@@ -34,7 +36,7 @@ export const IssuesSchema = new SimpleSchema(
       status: {
         type: String,
         label: 'Issue Status',
-        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Declined', 'Duplicate'],
+        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Removed', 'Duplicate'],
         defaultValue: 'Open',
       },
       lat: {
