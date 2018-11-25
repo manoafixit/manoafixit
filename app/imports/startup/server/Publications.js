@@ -1,9 +1,15 @@
-import { _ } from 'meteor/underscore';
+import _ from 'lodash';
 import { Issues } from '../../api/IssuesCollection/IssuesCollection.js';
 
 const collections = [
   Issues,
 ];
 
-// Publish all ManoaFixIt Collections.
+// Default Publishing
 _.forEach(collections, collection => collection.publish());
+
+// Publishing Issues by filter
+// Issues.publishNewest();
+// Issues.publishOldest();
+// Issues.publishMostLiked();
+// Issues.publishLeastLiked();

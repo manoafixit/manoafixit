@@ -9,15 +9,18 @@ import { Issues } from '../../api/IssuesCollection/IssuesCollection';
 import MapMarker from '../components/map/MapMarker';
 
 class MapPage extends React.Component {
-  state = {
-    issues: {
-      location: {
-        lat: 21.2969,
-        long: -157.8171,
+  constructor(props) {
+    super(props);
+    this.state = {
+      issues: {
+        location: {
+          lat: 21.2969,
+          long: -157.8171,
+        },
+        title: '',
       },
-      title: '',
-    },
-    zoom: 18,
+      zoom: 18,
+    };
   }
 
   render() {
