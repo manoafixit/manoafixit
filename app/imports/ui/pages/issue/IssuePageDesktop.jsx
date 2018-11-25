@@ -1,28 +1,28 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
+import OriginalPost from '../../components/issue/OriginalPost';
 
 class IssuePageDesktop extends React.Component {
   render() {
+    const wrapperStyle = {
+      paddingTop: '30px',
+      paddingBottom: '30px',
+    };
+
     return (
-        <Container>
-          Test
-        </Container>
+        <div style={wrapperStyle}>
+          <Container>
+            <OriginalPost issue={this.props.issue}/>
+          </Container>
+        </div>
     );
   }
 }
 
 IssuePageDesktop.propTypes = {
-  issues: PropTypes.array.isRequired,
+  issue: PropTypes.object.isRequired,
 };
 
-export default withTracker(() => {
-  const sub = Meteor.subscribe('IssuesCollection');
-  return {
-    issues: Issues.getCollectionDocuments({}),
-    ready: sub.ready(),
-  };
-})(IssuePageDesktop);
+export default withRouter(IssuePageDesktop);

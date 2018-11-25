@@ -1,22 +1,26 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Grid, Container, Responsive } from 'semantic-ui-react';
+import { Grid, Container, Responsive, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssuePageDesktop from './IssuePageDesktop';
 
 class IssuePage extends React.Component {
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  }
+
+  renderPage() {
     return (
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
               <div>Mobile version of Issue page has not yet been implemented. Currently using the Desktop version</div>
-              <IssuePageDesktop/>
+              {/* <IssuePageDesktop/> */}
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              <IssuePageDesktop/>
+              <IssuePageDesktop issue={this.props.issue}/>
             </Responsive>
           </Grid>
         </Container>
@@ -24,15 +28,17 @@ class IssuePage extends React.Component {
   }
 }
 
+// See Note #1 in the #notes channel on Discord
 IssuePage.propTypes = {
-  issues: PropTypes.array.isRequired,
+  issue: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
-export default withTracker(() => {
+export default withTracker(({ match }) => {
   const sub = Meteor.subscribe('IssuesCollection');
+  const docId = match.params._id;
   return {
-    issues: Issues.getCollectionDocuments({}),
+    issue: Issues.findOne({ _id: docId }),
     ready: sub.ready(),
   };
 })(IssuePage);

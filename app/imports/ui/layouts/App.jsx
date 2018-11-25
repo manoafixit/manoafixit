@@ -17,8 +17,6 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 
-import giantestpage from '../pages/test/giantestpage';
-
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
@@ -30,7 +28,6 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/giantestpage" component={giantestpage}/> {/* TODO: Remove in production */}
               <ProtectedRoute path="/map" component={MapPage}/>
               <ProtectedRoute path="/submit" component={SubmitPage}/>
               <ProtectedRoute path="/feed" component={FeedPage}/>
