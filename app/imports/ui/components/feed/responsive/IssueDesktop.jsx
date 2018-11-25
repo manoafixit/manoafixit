@@ -9,7 +9,6 @@ import Owner from '../issue/Owner';
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class IssueDesktop extends React.Component {
   render() {
-
     return (
         <Table.Row>
           <TitleTags issue={this.props.issue}/>

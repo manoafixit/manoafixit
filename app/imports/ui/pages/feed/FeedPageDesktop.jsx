@@ -112,7 +112,6 @@ class FeedPageDesktop extends React.Component {
             <Table
                 striped
                 stackable
-                sortable
             >
               <Table.Header>
                 <Table.Row>
@@ -142,8 +141,8 @@ FeedPageDesktop.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
   return {
-    issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
-    issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
+    issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
+    issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
     issuesMostLiked: Issues.getCollectionDocuments({}, { sort: { likes: -1 } }),
     issuesLeastLiked: Issues.getCollectionDocuments({}, { sort: { likes: 1 } }),
     ready: sub.ready(),

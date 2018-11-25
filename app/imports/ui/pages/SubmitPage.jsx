@@ -16,12 +16,10 @@ import {
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 
 class SubmitPage extends React.Component {
-  /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
-    // this.onAddItem = this.onAddItem.bind(this);
     this.formRef = null;
   }
 
@@ -75,10 +73,6 @@ class SubmitPage extends React.Component {
     Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner }, this.insertCallback);
   }
 
-  // onAddItem(event, tag) {
-  //   options.push({ key: tag.toString(), text: `${tag}`, value: `${tag}` });
-  // }
-
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
@@ -93,7 +87,6 @@ class SubmitPage extends React.Component {
                 <LongTextField name='description'/>
                 <ListField name='tags'>
                 </ListField>
-                {/* <Dropdown search selection allowAdditions onAddItem={this.onAddItem} options={options}/> */}
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='likes'/>

@@ -8,7 +8,7 @@ class Owner extends React.Component {
   render() {
 
     return (
-        <Table.Cell> {this.props.issue.owner}
+        <Table.Cell textAlign='center'> {this.props.issue.owner}
         </Table.Cell>
     );
   }

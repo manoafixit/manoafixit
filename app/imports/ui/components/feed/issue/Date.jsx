@@ -2,13 +2,14 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { format } from 'date-fns';
 
-/** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class Date extends React.Component {
   render() {
+    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY hh:mm:ss aa');
 
     return (
-        <Table.Cell> {this.props.issue.createdAt}
+        <Table.Cell textAlign='center'> {date}
         </Table.Cell>
     );
   }
