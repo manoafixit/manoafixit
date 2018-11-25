@@ -45,7 +45,7 @@ FeedPageDesktop.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
   return {
-    issues: Issues.getCollectionDocuments(),
+    issues: Issues.getCollectionDocuments({}),
     ready: sub.ready(),
   };
 })(FeedPageDesktop);

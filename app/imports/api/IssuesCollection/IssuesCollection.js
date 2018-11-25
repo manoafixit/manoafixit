@@ -118,6 +118,25 @@ class IssuesCollection extends BaseCollection {
       return true;
     }
   }
+
+  // publishNewest() {
+  //   Meteor.publish(`${this.collectionName}-Newest`, () => this.collection.find({}, { sort: { createdAt: -1 } }));
+  // }
+  //
+  // publishOldest() {
+  //   Meteor.publish(`${this.collectionName}-Oldest`, () => this.collection.find({}, { sort: { createdAt: 1 } }));
+  //
+  // }
+  //
+  // publishMostLiked() {
+  //   Meteor.publish(`${this.collectionName}-MostLiked`, () => this.collection.find({}, { sort: { likes: -1 } }));
+  //
+  // }
+  //
+  // publishLeastLiked() {
+  //   Meteor.publish(`${this.collectionName}-LeastLiked`, () => this.collection.find({}, { sort: { likes: 1 } }));
+  // }
+
 }
 
 export const Issues = new IssuesCollection();

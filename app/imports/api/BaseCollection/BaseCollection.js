@@ -110,8 +110,9 @@ class BaseCollection {
    * Returns an array of all the documents in this collection.
    * @returns { Array }
    */
-  getCollectionDocuments() {
-    return this.collection.find().fetch();
+  getCollectionDocuments(selector, options) {
+    const query = (typeof selector === 'undefined') ? {} : selector;
+    return this.collection.find(query, options).fetch();
   }
 }
 

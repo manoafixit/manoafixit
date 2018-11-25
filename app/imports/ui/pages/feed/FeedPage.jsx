@@ -12,9 +12,11 @@ class FeedPage extends React.Component {
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
+              <div>Mobile version of Feed page has not yet been implemented. Currently using the Desktop version</div>
+              <FeedPageDesktop/>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              <FeedPageDesktop />
+              <FeedPageDesktop/>
             </Responsive>
           </Grid>
         </Container>
@@ -30,7 +32,7 @@ FeedPage.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
   return {
-    issues: Issues.getCollectionDocuments(),
+    issues: Issues.getCollectionDocuments({}),
     ready: sub.ready(),
   };
 })(FeedPage);
