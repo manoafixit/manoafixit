@@ -26,7 +26,7 @@ class SubmitPage extends React.Component {
         lat: undefined,
         long: undefined,
       },
-      haveUserLocation: true,
+      haveUserLocation: false,
     };
   }
 
@@ -79,26 +79,28 @@ class SubmitPage extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Submit Issue</Header>
             {this.state.haveUserLocation ?
-                <AutoForm ref={(ref) => {
-                  this.formRef = ref;
-                }} schema={IssuesSchema} onSubmit={this.submit}>
-                  <Segment>
-                    <TextField name='title'/>
-                    <LongTextField name='description'/>
-                    <ListField name='tags'>
-                    </ListField>
-                    <SubmitField value='Submit'/>
-                    <ErrorsField/>
-                    <HiddenField name='likes'/>
-                    <HiddenField name='status'/>
-                    <HiddenField name='lat' value={this.state.location.lat}/>
-                    <HiddenField name='long' value={this.state.location.long}/>
-                    <HiddenField name='createdAt' value={new Date()}/>
-                    <HiddenField name='owner' value='fakevalue'/>
-                  </Segment>
-                </AutoForm>
+                <div>
+                  <Header as="h2" textAlign="center">Submit Issue</Header>
+                  <AutoForm ref={(ref) => {
+                    this.formRef = ref;
+                  }} schema={IssuesSchema} onSubmit={this.submit}>
+                    <Segment>
+                      <TextField name='title'/>
+                      <LongTextField name='description'/>
+                      <ListField name='tags'>
+                      </ListField>
+                      <SubmitField value='Submit'/>
+                      <ErrorsField/>
+                      <HiddenField name='likes'/>
+                      <HiddenField name='status'/>
+                      <HiddenField name='lat' value={this.state.location.lat}/>
+                      <HiddenField name='long' value={this.state.location.long}/>
+                      <HiddenField name='createdAt' value={new Date()}/>
+                      <HiddenField name='owner' value='fakevalue'/>
+                    </Segment>
+                  </AutoForm>
+                </div>
                 : <WarningModal/>}
           </Grid.Column>
         </Grid>
