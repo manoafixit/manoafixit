@@ -1,4 +1,4 @@
-import { _ } from 'meteor/underscore';
+import _ from 'lodash';
 import { Issues } from '../../api/IssuesCollection/IssuesCollection.js';
 
 const collections = [

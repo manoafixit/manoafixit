@@ -8,16 +8,22 @@ import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssueDesktop from '../../components/feed/responsive/IssueDesktop';
 import SubmitButton from '../../components/feed/SubmitButton';
 
-const fakeData = ['test', 'a'];
+const fakeData = [];
+const sortOptions = [
+  { key: 1, text: 'Newest', value: 1 },
+  { key: 2, text: 'Oldest', value: 2 },
+  { key: 3, text: 'Most Liked', value: 3 },
+  { key: 4, text: 'Least Liked', value: 4 },
+];
 
 class FeedPageDesktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sort: 1,
       search: {
         isLoading: false,
       },
+      sort: 1,
     };
   }
 
@@ -43,6 +49,29 @@ class FeedPageDesktop extends React.Component {
   }
 
   // ---Search Bar End--- //
+
+  handleSortChange = (e, { value }) => this.setState({ sort: value });
+
+  switch() {
+    let result = [];
+    switch (this.state.sort) {
+      case 1:
+        result = this.props.issuesNewest.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        break;
+      case 2:
+        result = this.props.issuesOldest.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        break;
+      case 3:
+        result = this.props.issuesMostLiked.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        break;
+      case 4:
+        result = this.props.issuesLeastLiked.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        break;
+      default:
+        throw new Meteor.Error('Error in switch() somehow');
+    }
+    return result;
+  }
 
   render() {
     const { isLoading } = this.state;
@@ -74,13 +103,26 @@ class FeedPageDesktop extends React.Component {
               <Menu.Item position='right'>
                 <Dropdown
                     placeholder='Sort By'
+                    options={sortOptions}
+                    onChange={this.handleSortChange}
                 />
               </Menu.Item>
             </Menu>
 
-            <Table striped>
+            <Table
+                striped
+                stackable
+                sortable
+            >
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Issue</Table.HeaderCell>
+                  <Table.HeaderCell>Date</Table.HeaderCell>
+                  <Table.HeaderCell>Poster</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
               <Table.Body>
-                {this.props.issuesNewest.map((issue, index) => <IssueDesktop key={index} issue={issue}/>)}
+                {this.switch()}
               </Table.Body>
             </Table>
           </Container>
@@ -100,8 +142,8 @@ FeedPageDesktop.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
   return {
-    issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
-    issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
+    issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
+    issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
     issuesMostLiked: Issues.getCollectionDocuments({}, { sort: { likes: -1 } }),
     issuesLeastLiked: Issues.getCollectionDocuments({}, { sort: { likes: 1 } }),
     ready: sub.ready(),
