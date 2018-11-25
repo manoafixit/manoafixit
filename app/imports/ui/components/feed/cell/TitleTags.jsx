@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Table, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Tags from '../Tags';
 
 class TitleTags extends React.Component {
@@ -39,7 +39,8 @@ class TitleTags extends React.Component {
           <Label
               color={labelColor()}
               content={this.props.issue.status}/>
-          {this.props.issue.title} <Tags issue={this.props.issue}/>
+          <Link to={`/issue/${this.props.issue._id}`}> {this.props.issue.title} </Link>
+          <Tags issue={this.props.issue}/>
         </Table.Cell>
     );
   }

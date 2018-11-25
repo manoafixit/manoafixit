@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Menu, Table, Dropdown, Search } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
-import IssueDesktop from '../../components/feed/responsive/IssueDesktop';
+import FeedRow from '../../components/feed/FeedRow';
 import SubmitButton from '../../components/feed/SubmitButton';
 
 const fakeData = [];
@@ -56,16 +56,16 @@ class FeedPageDesktop extends React.Component {
     let result = [];
     switch (this.state.sort) {
       case 1:
-        result = this.props.issuesNewest.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        result = this.props.issuesNewest.map((issue, index) => <FeedRow key={index} issue={issue}/>);
         break;
       case 2:
-        result = this.props.issuesOldest.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        result = this.props.issuesOldest.map((issue, index) => <FeedRow key={index} issue={issue}/>);
         break;
       case 3:
-        result = this.props.issuesMostLiked.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        result = this.props.issuesMostLiked.map((issue, index) => <FeedRow key={index} issue={issue}/>);
         break;
       case 4:
-        result = this.props.issuesLeastLiked.map((issue, index) => <IssueDesktop key={index} issue={issue}/>);
+        result = this.props.issuesLeastLiked.map((issue, index) => <FeedRow key={index} issue={issue}/>);
         break;
       default:
         throw new Meteor.Error('Error in switch() somehow');
