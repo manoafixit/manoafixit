@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 const colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink'];
 
 function randomColor() {
-  return colors[Math.floor(Math.random() * colors.length)]
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
 class Tags extends React.Component {
