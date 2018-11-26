@@ -32,7 +32,7 @@ class SubmitPage extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    navigator.geolocation.getCurrentPosition((position) => { // TODO: Fix this undefined ESLint error.
+    navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         location: {
           lat: position.coords.latitude,
