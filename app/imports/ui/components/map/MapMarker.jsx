@@ -63,7 +63,8 @@ class MapMarker extends React.Component {
                     </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
-                    {this.props.issue.tags.map((tag, index) => <Label key={index} basic> {tag} </Label>)}
+                    {this.props.issue.tags ? this.props.issue.tags.map((tag, index) => <Label key={index}
+                               basic> {tag} </Label>) : ''}
                   </Card.Content>
                 </Card>
               </Popup>

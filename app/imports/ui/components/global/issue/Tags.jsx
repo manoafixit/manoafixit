@@ -17,7 +17,8 @@ class Tags extends React.Component {
 
     return (
         <div style={tagStyle}>
-          {this.props.issue.tags.map((tag, index) => <Label key={index} color={randomColor()}> {tag} </Label>)}
+          {this.props.issue.tags ? this.props.issue.tags.map((tag, index) => <Label key={index}
+                     color={randomColor()}> {tag} </Label>) : ''}
         </div>
     );
   }
