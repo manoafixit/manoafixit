@@ -1,11 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Table, Label } from 'semantic-ui-react';
+import { Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import Tags from '../Tags';
 
-class TitleTags extends React.Component {
+class Status extends React.Component {
   render() {
     const labelColor = () => {
       let result;
@@ -35,18 +34,15 @@ class TitleTags extends React.Component {
     };
 
     return (
-        <Table.Cell>
           <Label
               color={labelColor()}
               content={this.props.issue.status}/>
-          {this.props.issue.title} <Tags issue={this.props.issue}/>
-        </Table.Cell>
     );
   }
 }
 
-TitleTags.propTypes = {
+Status.propTypes = {
   issue: PropTypes.object.isRequired,
 };
 
-export default withRouter(TitleTags);
+export default withRouter(Status);

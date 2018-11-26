@@ -1,18 +1,18 @@
 import React from 'react';
 import { Responsive } from 'semantic-ui-react';
-import NavBarDesktop from '../../components/global/responsive/NavBarDesktop';
-import NavBarMobile from '../../components/global/responsive/NavBarMobile';
+import WarningModalDesktop from './WarningModalDesktop';
+import WarningModalMobile from './WarningModalMobile';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
-export default class NavBar extends React.Component {
+export default class WarningModal extends React.Component {
   render() {
     return (
         <div>
           <Responsive {...Responsive.onlyMobile}>
-            <NavBarMobile/>
+            <WarningModalMobile/>
           </Responsive>
-          <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-            <NavBarDesktop/>
+          <Responsive minWidth={Responsive.onlyComputer.minWidth}>
+            <WarningModalDesktop/>
           </Responsive>
         </div>
     );

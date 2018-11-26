@@ -2,12 +2,12 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import TitleTags from '../issue/TitleTags';
-import Date from '../issue/Date';
-import Owner from '../issue/Owner';
+import TitleTags from './cell/TitleTags';
+import Date from './cell/Date';
+import Owner from './cell/Owner';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
-class IssueDesktop extends React.Component {
+class FeedRow extends React.Component {
   render() {
     return (
         <Table.Row>
@@ -19,8 +19,8 @@ class IssueDesktop extends React.Component {
   }
 }
 
-IssueDesktop.propTypes = {
+FeedRow.propTypes = {
   issue: PropTypes.object.isRequired,
 };
 
-export default withRouter(IssueDesktop);
+export default withRouter(FeedRow);

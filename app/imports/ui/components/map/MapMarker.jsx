@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Card, Label } from 'semantic-ui-react';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
@@ -58,7 +58,9 @@ class MapMarker extends React.Component {
                   <Card.Content>
                     <Card.Header> {this.props.issue.title} </Card.Header>
                     <Card.Meta> {this.props.issue.createdAt} </Card.Meta>
-                    <Card.Description> Go to Issue. </Card.Description> {/* TODO: Link to this Issue page */}
+                    <Card.Description>
+                      <Link to={`/issue/${this.props.issue._id}`}> Go to this Issues page </Link>
+                    </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
                     {this.props.issue.tags.map((tag, index) => <Label key={index} basic> {tag} </Label>)}
