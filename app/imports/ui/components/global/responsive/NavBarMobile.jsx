@@ -23,30 +23,24 @@ class NavBarMobile extends React.Component {
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
               <Header inverted as='h1'>ManoaFixIt</Header>
             </Menu.Item>
-            <Menu.Item onClick={this.handleShowClick}>
-              <Icon name="sidebar"/>
-            </Menu.Item>
-            <Menu.Item position="right">
-              {this.props.currentUser === '' ? (
+            {this.props.currentUser === '' ? (
+                <Menu.Item position="right">
                   <Dropdown text="Login" pointing="top right" icon={'user'}>
                     <Dropdown.Menu>
                       <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
                       <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
                     </Dropdown.Menu>
                   </Dropdown>
-              ) : (
-                  <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
-                    <Dropdown.Menu>
-                      <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
-                    </Dropdown.Menu>
-                  </Dropdown>
-              )}
-            </Menu.Item>
+                </Menu.Item>
+            ) : (<Menu.Item onClick={this.handleShowClick} position="right">
+              <Icon name="sidebar"/>
+            </Menu.Item>)}
           </Menu>
 
           <Sidebar
               as={Menu}
               animation='overlay'
+              direction='top'
               icon='labeled'
               inverted
               onHide={this.handleSidebarHide}
@@ -55,9 +49,15 @@ class NavBarMobile extends React.Component {
               width='thin'
           >
             {this.props.currentUser ? (
-                [<Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
+                [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/feed"
+                            key='add'>Feed</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/submit"
+                             key='submit'>Submit</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/map"
+                             key='list'>Map</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/signout"
+                             key='signout'>Sign
+                    Out</Menu.Item>]
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
