@@ -9,8 +9,8 @@ export const IssuesSchema = new SimpleSchema(
       title: {
         type: String,
         label: 'Issue Title',
-        min: 5, // Minimum 5 characters to prevent spam
-        max: 100,
+        min: 4, // Minimum 4 characters to prevent spam
+        max: 65,
       },
       description: {
         type: String,
@@ -22,10 +22,12 @@ export const IssuesSchema = new SimpleSchema(
         type: Array,
         label: 'Issue Tags',
         optional: true,
-        minCount: 1,
-        maxCount: 10, // Maximum of 10 tags
+        maxCount: 4, // Maximum of 4 tags
       },
-      'tags.$': String,
+      'tags.$': {
+        type: String,
+        max: 20, // Each tag String can only contain 20 max characters
+      },
       likes: {
         type: Number,
         label: 'Issue Likes',
@@ -34,7 +36,7 @@ export const IssuesSchema = new SimpleSchema(
       status: {
         type: String,
         label: 'Issue Status',
-        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Declined'],
+        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Removed', 'Duplicate'],
         defaultValue: 'Open',
       },
       lat: {
@@ -118,6 +120,25 @@ class IssuesCollection extends BaseCollection {
       return true;
     }
   }
+
+  // publishNewest() {
+  //   Meteor.publish(`${this.collectionName}-Newest`, () => this.collection.find({}, { sort: { createdAt: -1 } }));
+  // }
+  //
+  // publishOldest() {
+  //   Meteor.publish(`${this.collectionName}-Oldest`, () => this.collection.find({}, { sort: { createdAt: 1 } }));
+  //
+  // }
+  //
+  // publishMostLiked() {
+  //   Meteor.publish(`${this.collectionName}-MostLiked`, () => this.collection.find({}, { sort: { likes: -1 } }));
+  //
+  // }
+  //
+  // publishLeastLiked() {
+  //   Meteor.publish(`${this.collectionName}-LeastLiked`, () => this.collection.find({}, { sort: { likes: 1 } }));
+  // }
+
 }
 
 export const Issues = new IssuesCollection();
