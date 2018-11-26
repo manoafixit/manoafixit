@@ -8,45 +8,23 @@ import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
-  state = { visible: false, margin: '10px' };
+  state = { visible: false };
 
   /** handleHideClick = () => this.setState({ visible: false }) */
-  handleShowClick = () => this.setState({ visible: true, margin: '100px' })
+  handleShowClick = () => this.setState({ visible: true })
 
-  handleSidebarHide = () => this.setState({ visible: false, margin: '10px' })
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
-    const { visible, margin } = this.state;
+    const { visible } = this.state;
     return (
-        <Sidebar.Pushable>
-          <Sidebar
-              as={Menu}
-              animation='overlay'
-              direction='top'
-              icon='labeled'
-              inverted
-              onHide={this.handleSidebarHide}
-              vertical
-              visible={visible}
-              width='thin'
-          >
-            {this.props.currentUser ? (
-                [<Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
-            ) : ''}
-            {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
-            ) : ''}
-          </Sidebar>
-
-          <Sidebar.Pusher>
-          <Menu style={{ marginBottom: margin }} attached="top" borderless inverted>
+        <div>
+          <Menu attached="top" borderless inverted>
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
               <Header inverted as='h1'>ManoaFixIt</Header>
             </Menu.Item>
             <Menu.Item onClick={this.handleShowClick}>
-              <Icon name="sidebar" />
+              <Icon name="sidebar"/>
             </Menu.Item>
             <Menu.Item position="right">
               {this.props.currentUser === '' ? (
@@ -65,8 +43,27 @@ class NavBarMobile extends React.Component {
               )}
             </Menu.Item>
           </Menu>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+
+          <Sidebar
+              as={Menu}
+              animation='overlay'
+              icon='labeled'
+              inverted
+              onHide={this.handleSidebarHide}
+              vertical
+              visible={visible}
+              width='thin'
+          >
+            {this.props.currentUser ? (
+                [<Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
+                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
+                  <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
+            ) : ''}
+            {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+                <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
+            ) : ''}
+          </Sidebar>
+        </div>
     );
   }
 }
