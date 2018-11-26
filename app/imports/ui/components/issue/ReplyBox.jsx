@@ -41,7 +41,8 @@ class ReplyBox extends React.Component {
 
   render() {
     const replyBoxStyle = {
-      paddingTop: '20px',
+      paddingTop: '5px',
+      paddingBottom: '15px',
     };
 
     return (

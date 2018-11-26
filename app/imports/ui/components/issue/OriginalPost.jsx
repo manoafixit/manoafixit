@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Segment, Container, Menu, Icon, Message } from 'semantic-ui-react';
+import { Header, Segment, Menu, Icon, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -10,13 +10,14 @@ import Status from '../global/issue/Status';
 class OriginalPost extends React.Component {
   render() {
     const date = format(this.props.issue.createdAt, 'MMMM D, YYYY, hh:mm aa');
+
     const headerStyle = {
       border: 'none',
       boxShadow: 'none',
     };
 
     return (
-        <Container>
+        <div>
           <Menu borderless style={headerStyle}>
             <Menu.Item>
               <Header attached='top'>
@@ -32,12 +33,12 @@ class OriginalPost extends React.Component {
             <Menu.Item> <Status issue={this.props.issue}/> </Menu.Item>
           </Menu>
           <Segment attached>
-            {this.props.issue.description}
+            {this.props.issue.description ? this.props.issue.description : <i>This issue has no description</i>}
           </Segment>
           <Message attached='bottom'>
             {<Tags issue={this.props.issue}/>}
           </Message>
-        </Container>
+        </div>
     );
   }
 }

@@ -4,6 +4,7 @@ import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import OriginalPost from '../../components/issue/OriginalPost';
 import ReplyBox from '../../components/issue/ReplyBox';
+import Replies from '../../components/issue/Replies';
 
 class IssuePageDesktop extends React.Component {
   render() {
@@ -16,15 +17,17 @@ class IssuePageDesktop extends React.Component {
         <div style={wrapperStyle}>
           <Container>
             <OriginalPost issue={this.props.issue}/>
+            <ReplyBox issue={this.props.issue}/>
+            <Replies issue={this.props.issue} replies={this.props.replies}/>
           </Container>
-          <ReplyBox issue={this.props.issue}/>
         </div>
     );
   }
 }
 
 IssuePageDesktop.propTypes = {
-  issue: PropTypes.object.isRequired,
+  issue: PropTypes.object,
+  replies: PropTypes.array.isRequired,
 };
 
 export default withRouter(IssuePageDesktop);

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssuePageDesktop from './IssuePageDesktop';
 import NotImplemented from '../../components/global/NotImplemented';
+import { IssueReplies } from '../../../api/IssueRepliesCollection/IssueRepliesCollection';
 
 class IssuePage extends React.Component {
   render() {
@@ -19,10 +20,9 @@ class IssuePage extends React.Component {
             <Responsive {...Responsive.onlyMobile}>
               <NotImplemented/>
               <IssuePageDesktop issue={this.props.issue}/>
-
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              <IssuePageDesktop issue={this.props.issue}/>
+              <IssuePageDesktop issue={this.props.issue} replies={this.props.replies}/>
             </Responsive>
           </Grid>
         </Container>
@@ -33,14 +33,17 @@ class IssuePage extends React.Component {
 // See Note #1 in the #notes channel on Discord
 IssuePage.propTypes = {
   issue: PropTypes.object,
+  replies: PropTypes.array,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(({ match }) => {
   const sub = Meteor.subscribe('IssuesCollection');
+  const sub2 = Meteor.subscribe('IssueRepliesCollection');
   const docId = match.params._id;
   return {
     issue: Issues.findOne({ _id: docId }),
-    ready: sub.ready(),
+    replies: IssueReplies.getCollectionDocuments({ issue_id: docId }),
+    ready: sub.ready() && sub2.ready(),
   };
 })(IssuePage);
