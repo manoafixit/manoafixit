@@ -5,6 +5,7 @@ import { Grid, Container, Responsive, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssuePageDesktop from './IssuePageDesktop';
+import NotImplemented from '../../components/global/NotImplemented';
 
 class IssuePage extends React.Component {
   render() {
@@ -16,8 +17,9 @@ class IssuePage extends React.Component {
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
-              <div>Mobile version of Issue page has not yet been implemented. Currently using the Desktop version</div>
-              {/* <IssuePageDesktop/> */}
+              <NotImplemented/>
+              <IssuePageDesktop issue={this.props.issue}/>
+
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
               <IssuePageDesktop issue={this.props.issue}/>
