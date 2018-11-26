@@ -5,6 +5,7 @@ import { Grid, Container, Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedPageDesktop from './FeedPageDesktop';
+import NotImplemented from '../../components/global/NotImplemented';
 
 class FeedPage extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class FeedPage extends React.Component {
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
-              <div>Mobile version of Feed page has not yet been implemented. Currently using the Desktop version</div>
+              <NotImplemented/>
               <FeedPageDesktop/>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>

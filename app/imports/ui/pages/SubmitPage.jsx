@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import fetch from 'node-fetch';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {
@@ -33,7 +32,7 @@ class SubmitPage extends React.Component {
 
   componentDidMount() {
     // eslint-disable-next-line no-undef
-    navigator.geolocation.getCurrentPosition((position) => { // TODO: Fix this undefined ESLint error.
+    navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         location: {
           lat: position.coords.latitude,
@@ -41,18 +40,6 @@ class SubmitPage extends React.Component {
         },
         haveUserLocation: true,
       });
-    }, () => {
-      fetch('https://ipapi.co/json')
-          .then(res => res.json())
-          .then(location => {
-            this.setState({
-              location: {
-                lat: location.latitude,
-                long: location.longitude,
-              },
-              haveUserLocation: true,
-            });
-          });
     });
   }
 
