@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Menu, Table, Dropdown, Search } from 'semantic-ui-react';
+import { Container, Loader, Menu, Table, Dropdown, Search } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
@@ -74,6 +74,10 @@ class FeedPageDesktop extends React.Component {
   }
 
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting Issue Data</Loader>;
+  }
+
+  renderPage() {
     const { isLoading } = this.state;
     const wrapperStyle = {
       paddingTop: '20px',

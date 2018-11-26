@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import OriginalPost from '../../components/issue/OriginalPost';
+import ReplyBox from '../../components/issue/ReplyBox';
 
 class IssuePageDesktop extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class IssuePageDesktop extends React.Component {
           <Container>
             <OriginalPost issue={this.props.issue}/>
           </Container>
+          <ReplyBox issue={this.props.issue}/>
         </div>
     );
   }
