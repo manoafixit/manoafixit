@@ -32,10 +32,22 @@ class IssueRepliesCollection extends BaseCollection {
     super('IssueReplies', IssueRepliesSchema);
   }
 
+  /**
+   * Calls db.colleciton.insert()
+   * @param { Object } data The issue reply data to insert.
+   * @param callback The callback function that handles data insertion.
+   * @returns { docID } The _id of the document we inserted.
+   */
   insert(data, callback) {
-
+    const { issue_id, reply, createdAt, owner } = data;
+    const issueID = this.collection.insert({
+      issue_id,
+      reply,
+      createdAt,
+      owner,
+    }, callback);
+    return issueID;
   }
-
 }
 
 export const IssueReplies = new IssueRepliesCollection();

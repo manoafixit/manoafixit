@@ -24,21 +24,21 @@ class ReplyBox extends React.Component {
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
     if (error) {
-      Bert.alert({ type: 'danger', message: `Issue failed to submit: ${error.message}` });
+      Bert.alert({ type: 'danger', message: `Reply failed to submit: ${error.message}` });
     } else {
-      Bert.alert({ type: 'success', message: 'Issue has been submitted' });
+      Bert.alert({ type: 'success', message: 'Successfully replied' });
       this.formRef.reset();
     }
   }
 
   /** On submit, insert the data. */
   submit(data) {
-    const { title, description, tags, likes, status, lat, long, createdAt } = data;
+    const { reply, createdAt } = data;
     const owner = Meteor.user().username;
-    IssueReplies.insert({ title, description, tags, likes, status, lat, long, createdAt, owner }, this.insertCallback);
+    const issue_id = this.props.issue._id;
+    IssueReplies.insert({ issue_id, reply, createdAt, owner }, this.insertCallback);
   }
 
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     const replyBoxStyle = {
       paddingTop: '20px',
@@ -54,7 +54,7 @@ class ReplyBox extends React.Component {
                 <LongTextField name='reply'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='issue_id' value={this.props.issue._id}/>
+                <HiddenField name='issue_id' value='fakevalue'/>
                 <HiddenField name='createdAt' value={new Date()}/>
                 <HiddenField name='owner' value='fakevalue'/>
               </Segment>
@@ -67,6 +67,7 @@ class ReplyBox extends React.Component {
 
 ReplyBox.propTypes = {
   issue: PropTypes.object.isRequired,
+  ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
