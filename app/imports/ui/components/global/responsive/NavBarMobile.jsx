@@ -8,17 +8,35 @@ import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
-  state = { visible: false, margin: '10px' };
+  state = { visible: false };
 
   /** handleHideClick = () => this.setState({ visible: false }) */
-  handleShowClick = () => this.setState({ visible: true, margin: '100px' })
+  handleShowClick = () => this.setState({ visible: true })
 
-  handleSidebarHide = () => this.setState({ visible: false, margin: '10px' })
+  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
-    const { visible, margin } = this.state;
+    const { visible } = this.state;
     return (
-        <Sidebar.Pushable>
+        <div>
+          <Menu attached="top" borderless inverted>
+            <Menu.Item as={NavLink} activeClassName="" exact to="/">
+              <Header inverted as='h1'>ManoaFixIt</Header>
+            </Menu.Item>
+            {this.props.currentUser === '' ? (
+                <Menu.Item position="right">
+                  <Dropdown text="Login" pointing="top right" icon={'user'}>
+                    <Dropdown.Menu>
+                      <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
+                      <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Menu.Item>
+            ) : (<Menu.Item onClick={this.handleShowClick} position="right">
+              <Icon name="sidebar"/>
+            </Menu.Item>)}
+          </Menu>
+
           <Sidebar
               as={Menu}
               animation='overlay'
@@ -31,42 +49,21 @@ class NavBarMobile extends React.Component {
               width='thin'
           >
             {this.props.currentUser ? (
-                [<Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
+                [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/feed"
+                            key='add'>Feed</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/submit"
+                             key='submit'>Submit</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/map"
+                             key='list'>Map</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/signout"
+                             key='signout'>Sign
+                    Out</Menu.Item>]
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
             ) : ''}
           </Sidebar>
-
-          <Sidebar.Pusher>
-          <Menu style={{ marginBottom: margin }} attached="top" borderless inverted>
-            <Menu.Item as={NavLink} activeClassName="" exact to="/">
-              <Header inverted as='h1'>ManoaFixIt</Header>
-            </Menu.Item>
-            <Menu.Item onClick={this.handleShowClick}>
-              <Icon name="sidebar" />
-            </Menu.Item>
-            <Menu.Item position="right">
-              {this.props.currentUser === '' ? (
-                  <Dropdown text="Login" pointing="top right" icon={'user'}>
-                    <Dropdown.Menu>
-                      <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/signin"/>
-                      <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>
-                    </Dropdown.Menu>
-                  </Dropdown>
-              ) : (
-                  <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
-                    <Dropdown.Menu>
-                      <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
-                    </Dropdown.Menu>
-                  </Dropdown>
-              )}
-            </Menu.Item>
-          </Menu>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+        </div>
     );
   }
 }
