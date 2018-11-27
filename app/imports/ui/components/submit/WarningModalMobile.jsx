@@ -31,6 +31,34 @@ export default class WarningModalDesktop extends Component {
               <Header as='h2'> <Icon name='chrome'/> Google Chrome </Header>
               <Header as='h5'> iOS </Header>
               Instructions for iOS.
+
+              <List bulleted>
+                <List.Item>
+                  Tap on the 'Settings' application on your device
+                </List.Item>
+
+                <List.Item>
+                  Tap on 'Privacy'
+                </List.Item>
+                <List.Item>
+                  Make sure 'Location Services' is enabled
+                </List.Item>
+                <List.Item>
+                  Go back to 'Settings'
+                </List.Item>
+                <List.Item>
+                  Tap on 'Chrome'
+                </List.Item>
+                <List.Item>
+                  Tap on 'Location'
+                </List.Item>
+                <List.Item>
+                  In Allow Location Access, make sure "While Using the App" is selected
+                </List.Item>
+                <List.Item>
+                  Refresh the Manoafixit page, and make sure you select "OK" so that you can begin using our app
+                </List.Item>
+              </List>
               <Header as='h5'> Android </Header>
               <List bulleted>
                 <List.Item>
@@ -54,12 +82,43 @@ export default class WarningModalDesktop extends Component {
               <Header as='h2'> <Icon name='safari'/> Safari </Header>
               <Header as='h5'> iOS </Header>
               Instructions for iOS.
+              <List bulleted>
+                <List.Item>
+                  Refresh the page, and make sure you click on "OK" so that you can begin using our app
+                </List.Item>
+              </List>
             </Segment>
 
             <Segment>
               <Header as='h2'> <Icon name='firefox'/> Mozilla Firefox </Header>
               <Header as='h5'> iOS </Header>
               Instructions for iOS.
+              <List bulleted>
+                <List.Item>
+                  Tap on the 'Settings' application on your device
+                </List.Item>
+                <List.Item>
+                  Tap on 'Privacy'
+                </List.Item>
+                <List.Item>
+                  Make sure 'Location Services' is enabled
+                </List.Item>
+                <List.Item>
+                  Go back to 'Settings'
+                </List.Item>
+                <List.Item>
+                  Tap on 'Firefox'
+                </List.Item>
+                <List.Item>
+                  Tap on 'Location'
+                </List.Item>
+                <List.Item>
+                  In Allow Location Access, make sure "While Using the App" is selected
+                </List.Item>
+                <List.Item>
+                  Refresh the Manoafixit page, and make sure you select "OK" so that you can begin using our app
+                </List.Item>
+              </List>
               <Header as='h5'> Android </Header>
               <List bulleted>
                 <List.Item>
