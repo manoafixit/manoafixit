@@ -6,17 +6,17 @@
 .landing-background {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background3.png') no-repeat center center fixed;
   background-size: cover;
-  padding-bottom: 250px;
+  padding-bottom: 31vh;
 }
 
 .landing-background2 {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background2.png') no-repeat center center fixed;
   background-size: cover;
-  padding: 250px 0px;
+  padding: 31vh 0px;
 }
 
 .landing-background3 {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background4.png') no-repeat center center fixed;
   background-size: cover;
-  padding: 250px 0px;
+  padding: 31vh 0px;
 }
