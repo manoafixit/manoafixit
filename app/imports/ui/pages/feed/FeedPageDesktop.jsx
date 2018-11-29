@@ -81,6 +81,7 @@ class FeedPageDesktop extends React.Component {
     const { isLoading } = this.state;
     const wrapperStyle = {
       paddingTop: '20px',
+      paddingBottom: '50px',
     };
 
     const menuHeaderStyle = {
@@ -116,12 +117,15 @@ class FeedPageDesktop extends React.Component {
             <Table
                 striped
                 stackable
+                fixed
+                singleLine
             >
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Issue</Table.HeaderCell>
-                  <Table.HeaderCell>Date</Table.HeaderCell>
-                  <Table.HeaderCell>Poster</Table.HeaderCell>
+                  <Table.HeaderCell width='twelve'>Issue</Table.HeaderCell>
+                  <Table.HeaderCell width='four'>Poster</Table.HeaderCell>
+                  <Table.HeaderCell width='two'>Likes</Table.HeaderCell>
+                  <Table.HeaderCell width='five'>Date</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
