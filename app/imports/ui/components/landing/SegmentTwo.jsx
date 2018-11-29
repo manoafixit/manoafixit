@@ -6,7 +6,7 @@ class SegmentTwo extends React.Component {
   render() {
     return (
         <div className="landing-background2">
-          <Grid textAlign='center' verticalAlign='center' container stackable>
+          <Grid textAlign='center' verticalalign='middle' container stackable>
 
             <Grid.Row>
               <Grid.Column width={14}>

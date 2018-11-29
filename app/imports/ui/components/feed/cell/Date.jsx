@@ -9,7 +9,7 @@ class Date extends React.Component {
     const date = format(this.props.issue.createdAt, 'MMMM D, YYYY hh:mm:ss aa');
 
     return (
-        <Table.Cell textAlign='center'> {date}
+        <Table.Cell> {date}
         </Table.Cell>
     );
   }
