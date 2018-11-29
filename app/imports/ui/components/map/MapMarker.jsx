@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, Label } from 'semantic-ui-react';
+import { format } from "date-fns";
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
@@ -61,16 +62,23 @@ class MapMarker extends React.Component {
       popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
     });
 
+    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY');
+
+    const popupStyle = {
+      whiteSpace: 'normal',
+      wordWrap: 'break-word',
+    };
+
     return (
         this.isValid() ?
             (<Marker position={pos} icon={issueIcon}>
               <Popup>
-                <Card>
+                <Card style={popupStyle}>
                   <Card.Content>
                     <Card.Header> {this.props.issue.title} </Card.Header>
-                    <Card.Meta> {this.props.issue.createdAt} </Card.Meta>
+                    <Card.Meta> {this.props.issue.owner} opened this issue on {date} </Card.Meta>
                     <Card.Description>
-                      <Link to={`/issue/${this.props.issue._id}`}> Go to this Issues page </Link>
+                      <Link to={`/issue/${this.props.issue._id}`}> Go to this Issue&apos;s page </Link>
                     </Card.Description>
                   </Card.Content>
                   <Card.Content extra>
