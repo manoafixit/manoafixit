@@ -139,7 +139,7 @@ export default class WarningModalDesktop extends Component {
             </Segment>
             <Segment>
               <Header as='h4'> If you reset your Location Tracking permission but the popup to allow
-                Location Track isn&apos;t showing, then you need to clear your browsers cookies first.</Header>
+                Location Track isn&apos;t showing, then you need to clear your browser&apos;s cookies first.</Header>
             </Segment>
           </Segment.Group>
           <Modal
