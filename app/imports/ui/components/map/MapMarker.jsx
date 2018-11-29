@@ -36,13 +36,13 @@ class MapMarker extends React.Component {
         iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
         break;
       case 'Acknowledged':
+        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
         break;
-      case 'In Progress':
-        break;
-      case 'Resolved':
+      case 'Ongoing':
+        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
         break;
       default:
-        throw Meteor.Error('Invalid status.');
+        throw new Meteor.Error('Invalid status');
     }
     const issueIcon = L.icon({
       iconUrl: iconUrl,
