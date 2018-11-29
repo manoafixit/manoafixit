@@ -42,7 +42,7 @@ class MapMarker extends React.Component {
         iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
         break;
       default:
-        throw new Meteor.Error('Invalid status');
+        break;
     }
     const issueIcon = L.icon({
       iconUrl: iconUrl,
