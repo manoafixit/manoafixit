@@ -49,10 +49,13 @@ class NavBarMobile extends React.Component {
               width='thin'
           >
             {this.props.currentUser ? (
-                [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/feed"
-                            key='add'>Feed</Menu.Item>,
+
+                [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/"
+                            key='landing'>Home</Menu.Item>,
                   <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/submit"
                              key='submit'>Submit</Menu.Item>,
+                  <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/feed"
+                             key='add'>Feed</Menu.Item>,
                   <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/map"
                              key='list'>Map</Menu.Item>,
                   <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/signout"
