@@ -21,28 +21,30 @@ class SegmentOne extends React.Component {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row>
-              {this.props.currentUser === '' ? (
-                  <div>
-                    <Grid.Column>
-                      <Button as={NavLink} exact to="/signin">
-                        Sign In
-                      </Button>
-                    </Grid.Column>
-                    <Grid.Column>
-                      <Button as={NavLink} exact to="/signup">
-                        Sign Up
-                      </Button>
-                    </Grid.Column>
-                  </div>
-              ) : (
-                  <Grid.Column>
+
+            {this.props.currentUser === '' ? (
+                <Grid.Row>
+                  <Grid.Column width={2} verticalAlign='top' textAlign='center'>
+                    <Button as={NavLink} exact to="/signin">
+                      Sign In
+                    </Button>
+                  </Grid.Column>
+                  <Grid.Column width={2} verticalAlign='top' textAlign='center'>
+                    <Button as={NavLink} exact to="/signup">
+                      Sign Up
+                    </Button>
+                  </Grid.Column>
+                </Grid.Row>
+            ) : (
+                <Grid.Row>
+                  <Grid.Column width={4} verticalAlign='top' textAlign='center'>
                     <Button as={NavLink} exact to="/submit">
                       Submit an Issue
                     </Button>
                   </Grid.Column>
-              )}
-            </Grid.Row>
+                </Grid.Row>
+            )}
+
 
           </Grid>
         </div>
