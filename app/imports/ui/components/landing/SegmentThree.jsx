@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Image, Header, Icon } from 'semantic-ui-react';
+import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class SegmentThree extends React.Component {
@@ -25,7 +25,8 @@ class SegmentThree extends React.Component {
               <Grid.Column width={5} verticalAlign='top' textAlign='center'>
                 <Icon size='huge' name="map marker alternate" inverted/>
                 <Header as='h1' inverted>Heat Map</Header>
-                <Header as='h3' inverted>It can also display a map of the campus that shows the reported issues based on urgency.
+                <Header as='h3' inverted>It can also display a map of the campus that shows the reported issues
+                  based on urgency.
                 </Header>
               </Grid.Column>
             </Grid.Row>
