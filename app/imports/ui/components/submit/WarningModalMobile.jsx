@@ -34,23 +34,23 @@ export default class WarningModalDesktop extends Component {
 
               <List bulleted>
                 <List.Item>
-                  Tap on the 'Settings' application on your device
+                  Tap on the &apos;Settings&apos; application on your device
                 </List.Item>
 
                 <List.Item>
-                  Tap on 'Privacy'
+                  Tap on &apos;Privacy&apos;
                 </List.Item>
                 <List.Item>
-                  Make sure 'Location Services' is enabled
+                  Make sure &apos;Location Services&apos; is enabled
                 </List.Item>
                 <List.Item>
-                  Go back to 'Settings'
+                  Go back to &apos;Settings&apos;
                 </List.Item>
                 <List.Item>
-                  Tap on 'Chrome'
+                  Tap on &apos;Chrome&apos;
                 </List.Item>
                 <List.Item>
-                  Tap on 'Location'
+                  Tap on &apos;Location&apos;
                 </List.Item>
                 <List.Item>
                   In Allow Location Access, make sure "While Using the App" is selected
@@ -95,22 +95,22 @@ export default class WarningModalDesktop extends Component {
               Instructions for iOS.
               <List bulleted>
                 <List.Item>
-                  Tap on the 'Settings' application on your device
+                  Tap on the &apos;Settings&apos; application on your device
                 </List.Item>
                 <List.Item>
-                  Tap on 'Privacy'
+                  Tap on &apos;Privacy&apos;
                 </List.Item>
                 <List.Item>
-                  Make sure 'Location Services' is enabled
+                  Make sure &apos;Location Services&apos; is enabled
                 </List.Item>
                 <List.Item>
-                  Go back to 'Settings'
+                  Go back to &apos;Settings&apos;
                 </List.Item>
                 <List.Item>
-                  Tap on 'Firefox'
+                  Tap on &apos;Firefox&apos;
                 </List.Item>
                 <List.Item>
-                  Tap on 'Location'
+                  Tap on &apos;Location&apos;
                 </List.Item>
                 <List.Item>
                   In Allow Location Access, make sure "While Using the App" is selected
