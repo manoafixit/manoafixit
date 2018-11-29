@@ -1,5 +1,4 @@
 import React from 'react';
-import Meteor from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -9,6 +8,12 @@ import { Card, Label } from 'semantic-ui-react';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      iconUrl: '/images/mapmarkers/MarkerOpen.svg',
+    };
+  }
 
   /**
    * Checks to see if the Map Marker is valid to be displayed. Non-valid Markers are: Resolved, Declined, and Duplicate.
@@ -18,7 +23,7 @@ class MapMarker extends React.Component {
     switch (this.props.issue.status) {
       case 'Resolved':
         return false;
-      case 'Declined':
+      case 'Removed':
         return false;
       case 'Duplicate':
         return false;
@@ -27,25 +32,31 @@ class MapMarker extends React.Component {
     }
   }
 
-  render() {
-    const pos = [this.props.issue.lat, this.props.issue.long];
+  componentWillMount() {
+    this.chooseIcon();
+  }
 
-    let iconUrl;
+  chooseIcon() {
     switch (this.props.issue.status) {
       case 'Open':
-        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
+        this.setState({ iconUrl: '/images/mapmarkers/MarkerOpen.svg' });
         break;
       case 'Acknowledged':
-        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
+        this.setState({ iconUrl: '/images/mapmarkers/MarkerAckd.svg' });
         break;
       case 'Ongoing':
-        iconUrl = 'https://res.cloudinary.com/dry4py4wt/image/upload/v1542591652/icon.svg';
+        this.setState({ iconUrl: '/images/mapmarkers/MarkerProg.svg' });
         break;
       default:
         break;
     }
+  }
+
+  render() {
+    const pos = [this.props.issue.lat, this.props.issue.long];
+
     const issueIcon = L.icon({
-      iconUrl: iconUrl,
+      iconUrl: this.state.iconUrl,
       iconSize: [50, 82], // size of the icon
       popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
     });
@@ -64,7 +75,8 @@ class MapMarker extends React.Component {
                   </Card.Content>
                   <Card.Content extra>
                     {this.props.issue.tags ? this.props.issue.tags.map((tag, index) => <Label key={index}
-                               basic> {tag} </Label>) : ''}
+                                                                                              basic> {tag} </Label>)
+                        : ''}
                   </Card.Content>
                 </Card>
               </Popup>
