@@ -53,10 +53,11 @@ export default class WarningModalDesktop extends Component {
                   Tap on &apos;Location&apos;
                 </List.Item>
                 <List.Item>
-                  In Allow Location Access, make sure "While Using the App" is selected
+                  In Allow Location Access, make sure &lsquo;While Using the App&rsquo; is selected
                 </List.Item>
                 <List.Item>
-                  Refresh the Manoafixit page, and make sure you select "OK" so that you can begin using our app
+                  Refresh the Manoafixit page, and make sure you select &lsquo;OK&rsquo; so that you can
+                  begin using our app
                 </List.Item>
               </List>
               <Header as='h5'> Android </Header>
@@ -84,7 +85,7 @@ export default class WarningModalDesktop extends Component {
               Instructions for iOS.
               <List bulleted>
                 <List.Item>
-                  Refresh the page, and make sure you click on "OK" so that you can begin using our app
+                  Refresh the page, and make sure you click on &lsquo;OK&rsquo; so that you can begin using our app
                 </List.Item>
               </List>
             </Segment>
@@ -113,10 +114,11 @@ export default class WarningModalDesktop extends Component {
                   Tap on &apos;Location&apos;
                 </List.Item>
                 <List.Item>
-                  In Allow Location Access, make sure "While Using the App" is selected
+                  In Allow Location Access, make sure &lsquo;While Using the App&rsquo; is selected
                 </List.Item>
                 <List.Item>
-                  Refresh the Manoafixit page, and make sure you select "OK" so that you can begin using our app
+                  Refresh the Manoafixit page, and make sure you select &lsquo;OK&rsquo; so that you can
+                  begin using our app
                 </List.Item>
               </List>
               <Header as='h5'> Android </Header>
@@ -137,7 +139,7 @@ export default class WarningModalDesktop extends Component {
             </Segment>
             <Segment>
               <Header as='h4'> If you reset your Location Tracking permission but the popup to allow
-                Location Track isn't showing, then you need to clear your browsers cookies first.</Header>
+                Location Track isn&apos;t showing, then you need to clear your browsers cookies first.</Header>
             </Segment>
           </Segment.Group>
           <Modal
