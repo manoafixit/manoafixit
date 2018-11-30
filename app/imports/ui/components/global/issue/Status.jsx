@@ -25,7 +25,7 @@ class Status extends React.Component {
           result = 'red';
           break;
         case 'Duplicate':
-          result = 'purple';
+          result = 'violet';
           break;
         default:
           throw new Meteor.Error('Invalid status');
