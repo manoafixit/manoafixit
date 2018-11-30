@@ -11,10 +11,11 @@ class IssuePageDesktop extends React.Component {
     const wrapperStyle = {
       paddingTop: '30px',
       paddingBottom: '30px',
+      wordWrap: 'break-word',
     };
 
     return (
-        <div style={wrapperStyle}>
+        <div style= {wrapperStyle}>
           <Container>
             <OriginalPost issue={this.props.issue}/>
             <ReplyBox issue={this.props.issue}/>
