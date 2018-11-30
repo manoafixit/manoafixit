@@ -2,48 +2,21 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Loader, Menu, Table, Dropdown, Search } from 'semantic-ui-react';
+import { Container, Loader, Menu, Table, Dropdown } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
 import SubmitButton from '../../components/feed/SubmitButton';
-
-const fakeData = [];
+import SearchBar from '../../components/feed/SearchBar';
 
 class FeedPageDesktop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: {
-        isLoading: false,
-      },
       sort: 1,
       filter: 0,
     };
   }
-
-  // ---Search Bar Start--- //
-
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
-
-// eslint-disable-next-line consistent-return
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const isMatch = result => re.test(result.title);
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(fakeData, isMatch),
-      });
-    }, 300);
-  }
-
-  // ---Search Bar End--- //
 
   handleSortChange = (e, { value }) => this.setState({ sort: value });
 
@@ -94,6 +67,10 @@ class FeedPageDesktop extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.resetSearchBar();
+  }
+
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting Issue Data</Loader>;
   }
@@ -107,8 +84,6 @@ class FeedPageDesktop extends React.Component {
       boxShadow: 'none',
       border: 'none',
     };
-
-    const { isLoading } = this.state;
 
     const sortOptions = [
       { key: 1, text: 'Newest', value: 1 },
@@ -137,10 +112,7 @@ class FeedPageDesktop extends React.Component {
 
             <Menu borderless style={menuHeaderStyle}>
               <Menu.Item>
-                <Search
-                    loading={isLoading}
-                    onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                />
+                <SearchBar issues={this.props.issues}/>
               </Menu.Item>
               <Menu.Item>
                 <Dropdown
@@ -183,6 +155,7 @@ class FeedPageDesktop extends React.Component {
 }
 
 FeedPageDesktop.propTypes = {
+  issues: PropTypes.array.isRequired,
   issuesNewest: PropTypes.array.isRequired,
   issuesOldest: PropTypes.array.isRequired,
   issuesMostLiked: PropTypes.array.isRequired,
@@ -193,6 +166,7 @@ FeedPageDesktop.propTypes = {
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
   return {
+    issues: Issues.getCollectionDocuments(),
     issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
     issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
     issuesMostLiked: Issues.getCollectionDocuments({}, { sort: { likes: -1 } }),

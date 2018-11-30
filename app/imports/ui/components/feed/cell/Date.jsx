@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 
 class Date extends React.Component {
   render() {
-    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY hh:mm:ss aa');
+    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY hh:mm aa');
 
     return (
         <Table.Cell> {date}
