@@ -8,7 +8,7 @@ import Status from '../../global/issue/Status';
 class TitleTags extends React.Component {
   render() {
 
-    const divStyle = { paddingTop: '0px', paddingRight: '10px' };
+    const divStyle = { paddingTop: '0px', paddingLeft: '10px' };
 
     return (
         <Table.Cell>
