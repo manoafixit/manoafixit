@@ -67,10 +67,6 @@ class FeedPageDesktop extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.resetSearchBar();
-  }
-
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting Issue Data</Loader>;
   }
