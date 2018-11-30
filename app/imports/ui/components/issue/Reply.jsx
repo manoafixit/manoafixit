@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class Reply extends React.Component {
   render() {
-    const date = format(this.props.reply.createdAt, 'MMMM D, YYYY, hh:mm aa');
+    const date = format(this.props.reply.createdAt, 'MMMM D, YYYY, h:mm aa');
 
     const segmentStyle = {
       paddingTop: '15px',
