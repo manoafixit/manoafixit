@@ -5,22 +5,19 @@ import { Grid, Container, Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedPageDesktop from './FeedPageDesktop';
-import NotImplemented from '../../components/global/NotImplemented';
+import FeedPageMobile from './FeedPageMobile';
 
 class FeedPage extends React.Component {
   render() {
     return (
-        <Container>
-          <Grid stackable>
-            <Responsive {...Responsive.onlyMobile}>
-              <NotImplemented/>
-              <FeedPageDesktop/>
-            </Responsive>
-            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-              <FeedPageDesktop/>
-            </Responsive>
-          </Grid>
-        </Container>
+        <div>
+          <Responsive {...Responsive.onlyMobile}>
+            <FeedPageMobile/>
+          </Responsive>
+          <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+            <FeedPageDesktop/>
+          </Responsive>
+        </div>
     );
   }
 }
