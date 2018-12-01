@@ -8,6 +8,7 @@ import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
 import SubmitButton from '../../components/feed/SubmitButton';
 import SearchBar from '../../components/feed/SearchBar';
+import SortBy from '../../components/feed/SortBy';
 
 class FeedPageDesktop extends React.Component {
   constructor(props) {
@@ -18,7 +19,30 @@ class FeedPageDesktop extends React.Component {
     };
   }
 
-  handleSortChange = (e, { value }) => this.setState({ sort: value });
+  handleFilterChange = (e, { value }) => this.setState({ filter: value });
+
+  filterBy(issues) {
+    switch (this.state.filter) {
+      case 0:
+        return issues;
+      case 1:
+        return _.filter(issues, (issue) => issue.status === 'Open');
+      case 2:
+        return _.filter(issues, (issue) => issue.status === 'Acknowledged');
+      case 3:
+        return _.filter(issues, (issue) => issue.status === 'Ongoing');
+      case 4:
+        return _.filter(issues, (issue) => issue.status === 'Resolved');
+      case 5:
+        return _.filter(issues, (issue) => issue.status === 'Removed');
+      default:
+        throw new Meteor.Error('Invalid status');
+    }
+  }
+
+  onSortOptionChange = (value) => {
+    this.setState({ sort: value });
+  }
 
   sortBy() {
     let result = [];
@@ -46,27 +70,6 @@ class FeedPageDesktop extends React.Component {
     return result;
   }
 
-  handleFilterChange = (e, { value }) => this.setState({ filter: value });
-
-  filterBy(issues) {
-    switch (this.state.filter) {
-      case 0:
-        return issues;
-      case 1:
-        return _.filter(issues, (issue) => issue.status === 'Open');
-      case 2:
-        return _.filter(issues, (issue) => issue.status === 'Acknowledged');
-      case 3:
-        return _.filter(issues, (issue) => issue.status === 'Ongoing');
-      case 4:
-        return _.filter(issues, (issue) => issue.status === 'Resolved');
-      case 5:
-        return _.filter(issues, (issue) => issue.status === 'Removed');
-      default:
-        throw new Meteor.Error('Invalid status');
-    }
-  }
-
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting Issue Data</Loader>;
   }
@@ -80,13 +83,6 @@ class FeedPageDesktop extends React.Component {
       boxShadow: 'none',
       border: 'none',
     };
-
-    const sortOptions = [
-      { key: 1, text: 'Newest', value: 1 },
-      { key: 2, text: 'Oldest', value: 2 },
-      { key: 3, text: 'Most Liked', value: 3 },
-      { key: 4, text: 'Least Liked', value: 4 },
-    ];
 
     const filterOptions = [
       { key: 0, text: 'All Issues', value: 0 },
@@ -118,11 +114,7 @@ class FeedPageDesktop extends React.Component {
                 />
               </Menu.Item>
               <Menu.Item position='right'>
-                <Dropdown
-                    placeholder='Sort By'
-                    options={sortOptions}
-                    onChange={this.handleSortChange}
-                />
+                <SortBy onSortOptionChange={this.onSortOptionChange}/>
               </Menu.Item>
             </Menu>
 
