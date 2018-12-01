@@ -1,27 +1,25 @@
+/* eslint-disable no-console */
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
+import { ROLE } from '../../api/Roles/Roles';
 
-/* eslint-disable no-console */
+let superAdminUserID = '';
 
-function createUser(email, password, role) {
-  console.log(`  Creating user ${email}.`);
+function createSuperAdminUser() {
+  const username = Meteor.settings.superAdmin.username;
+  const email = Meteor.settings.superAdmin.email;
+  const password = '3qZ98gnUXNj8dvPm';
   const userID = Accounts.createUser({
-    username: email,
+    username: username,
     email: email,
     password: password,
   });
-  if (role === 'admin') {
-    Roles.addUsersToRoles(userID, 'admin');
-  }
+  Roles.addUsersToRoles(userID, ROLE.SUPERADMIN);
+  superAdminUserID = userID;
+  console.log(`Super Admin Initialized - Username: ${username} | Email: ${email}`);
 }
 
-/** When running app for first time, pass a settings file to set up a default user account. */
-if (Meteor.users.find().count() === 0) {
-  if (Meteor.settings.defaultAccounts) {
-    console.log('Creating the default user(s)');
-    Meteor.settings.defaultAccounts.map(({ email, password, role }) => createUser(email, password, role));
-  } else {
-    console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
-  }
+if (superAdminUserID === '') {
+  createSuperAdminUser();
 }
