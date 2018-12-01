@@ -2,13 +2,14 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Loader, Menu, Table, Dropdown } from 'semantic-ui-react';
+import { Container, Loader, Menu, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
 import SubmitButton from '../../components/feed/SubmitButton';
 import SearchBar from '../../components/feed/SearchBar';
 import SortBy from '../../components/feed/SortBy';
+import FilterBy from '../../components/feed/FilterBy';
 
 class FeedPageDesktop extends React.Component {
   constructor(props) {
@@ -19,7 +20,9 @@ class FeedPageDesktop extends React.Component {
     };
   }
 
-  handleFilterChange = (e, { value }) => this.setState({ filter: value });
+  onFilterOptionChange = (value) => {
+    this.setState({ filter: value });
+  }
 
   filterBy(issues) {
     switch (this.state.filter) {
@@ -84,15 +87,6 @@ class FeedPageDesktop extends React.Component {
       border: 'none',
     };
 
-    const filterOptions = [
-      { key: 0, text: 'All Issues', value: 0 },
-      { key: 1, text: 'Open Issues', value: 1 },
-      { key: 2, text: 'Acknowledged Issues', value: 2 },
-      { key: 3, text: 'Ongoing Issues', value: 3 },
-      { key: 4, text: 'Resolved Issues', value: 4 },
-      { key: 5, text: 'Removed Issues', value: 5 },
-    ];
-
     return (
         <div className='wrapper' style={wrapperStyle}>
           <Container>
@@ -107,11 +101,7 @@ class FeedPageDesktop extends React.Component {
                 <SearchBar issues={this.props.issues}/>
               </Menu.Item>
               <Menu.Item>
-                <Dropdown
-                    placeholder='Filter Issues'
-                    options={filterOptions}
-                    onChange={this.handleFilterChange}
-                />
+                <FilterBy onFilterOptionChange={this.onFilterOptionChange}/>
               </Menu.Item>
               <Menu.Item position='right'>
                 <SortBy onSortOptionChange={this.onSortOptionChange}/>
