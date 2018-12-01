@@ -2,12 +2,14 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Loader, Menu, Table, Dropdown, Grid } from 'semantic-ui-react';
+import { Container, Loader, Menu, Table, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
 import SubmitButton from '../../components/feed/SubmitButton';
 import SearchBar from '../../components/feed/SearchBar';
+import SortBy from '../../components/feed/SortBy';
+import FilterBy from '../../components/feed/FilterBy';
 
 class FeedPageMobile extends React.Component {
   constructor(props) {
@@ -18,7 +20,9 @@ class FeedPageMobile extends React.Component {
     };
   }
 
-  handleSortChange = (e, { value }) => this.setState({ sort: value });
+  onSortOptionChange = (value) => {
+    this.setState({ sort: value });
+  }
 
   sortBy() {
     let result = [];
@@ -46,7 +50,9 @@ class FeedPageMobile extends React.Component {
     return result;
   }
 
-  handleFilterChange = (e, { value }) => this.setState({ filter: value });
+  onFilterOptionChange = (value) => {
+    this.setState({ filter: value });
+  }
 
   filterBy(issues) {
     switch (this.state.filter) {
@@ -76,26 +82,11 @@ class FeedPageMobile extends React.Component {
       paddingTop: '20px',
       paddingBottom: '50px',
     };
+
     const menuHeaderStyle = {
       boxShadow: 'none',
       border: 'none',
     };
-
-    const sortOptions = [
-      { key: 1, text: 'Newest', value: 1 },
-      { key: 2, text: 'Oldest', value: 2 },
-      { key: 3, text: 'Most Liked', value: 3 },
-      { key: 4, text: 'Least Liked', value: 4 },
-    ];
-
-    const filterOptions = [
-      { key: 0, text: 'All Issues', value: 0 },
-      { key: 1, text: 'Open Issues', value: 1 },
-      { key: 2, text: 'Acknowledged Issues', value: 2 },
-      { key: 3, text: 'Ongoing Issues', value: 3 },
-      { key: 4, text: 'Resolved Issues', value: 4 },
-      { key: 5, text: 'Removed Issues', value: 5 },
-    ];
 
     return (
         <div className='wrapper' style={wrapperStyle}>
@@ -122,19 +113,11 @@ class FeedPageMobile extends React.Component {
                 <Menu borderless style={menuHeaderStyle}>
 
                   <Menu.Item>
-                    <Dropdown
-                        placeholder='Filter Issues'
-                        options={filterOptions}
-                        onChange={this.handleFilterChange}
-                    />
+                    <FilterBy onFilterOptionChange={this.onFilterOptionChange}/>
                   </Menu.Item>
 
                   <Menu.Item position='right'>
-                    <Dropdown
-                        placeholder='Sort By'
-                        options={sortOptions}
-                        onChange={this.handleSortChange}
-                    />
+                    <SortBy onSortOptionChange={this.onSortOptionChange}/>
                   </Menu.Item>
 
                 </Menu>
