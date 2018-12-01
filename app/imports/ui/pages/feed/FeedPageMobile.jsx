@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Loader, Menu, Table, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
-import FeedRow from '../../components/feed/FeedRow';
+import FeedRowMobile from '../../components/feed/FeedRowMobile';
 import SubmitButton from '../../components/feed/SubmitButton';
 import SearchBar from '../../components/feed/SearchBar';
 import SortBy from '../../components/feed/SortBy';
@@ -30,19 +30,19 @@ class FeedPageMobile extends React.Component {
     switch (this.state.sort) {
       case 1:
         filtered = this.filterBy(this.props.issuesNewest);
-        result = filtered.map((issue, index) => <FeedRow key={index} issue={issue}/>);
+        result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       case 2:
         filtered = this.filterBy(this.props.issuesOldest);
-        result = filtered.map((issue, index) => <FeedRow key={index} issue={issue}/>);
+        result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       case 3:
         filtered = this.filterBy(this.props.issuesMostLiked);
-        result = filtered.map((issue, index) => <FeedRow key={index} issue={issue}/>);
+        result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       case 4:
         filtered = this.filterBy(this.props.issuesLeastLiked);
-        result = filtered.map((issue, index) => <FeedRow key={index} issue={issue}/>);
+        result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       default:
         throw new Meteor.Error('Error in switch() somehow');
