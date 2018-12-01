@@ -20,6 +20,6 @@ function createSuperAdminUser() {
   console.log(`Super Admin Initialized - Username: ${username} | Email: ${email}`);
 }
 
-if (superAdminUserID === '') {
+if (superAdminUserID === '' && !Meteor.users.findOne()) {
   createSuperAdminUser();
 }

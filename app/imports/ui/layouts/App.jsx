@@ -4,14 +4,14 @@ import { Meteor } from 'meteor/meteor';
 import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import NavBar from '../components/global/NavBar';
+import NavBar from '../components/global/navbar/NavBar';
 import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
 import SubmitPage from '../pages/SubmitPage';
-import MapPage from '../pages/MapPage';
 import FeedPage from '../pages/feed/FeedPage';
-import AddStuff from '../pages/meteor-template/AddStuff';
 import IssuePage from '../pages/issue/IssuePage';
+import MapPage from '../pages/MapPage';
+import AdminsPage from '../pages/admins/AdminsPage';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -31,8 +31,8 @@ class App extends React.Component {
               <ProtectedRoute path="/map" component={MapPage}/>
               <ProtectedRoute path="/submit" component={SubmitPage}/>
               <ProtectedRoute path="/feed" component={FeedPage}/>
-              <ProtectedRoute path="/suggestions" component={AddStuff}/>
               <ProtectedRoute path="/issue/:_id" component={IssuePage}/>
+              <ProtectedRoute path="/admins" component={AdminsPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

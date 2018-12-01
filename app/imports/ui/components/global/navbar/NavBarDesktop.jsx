@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
+import { ROLE } from '../../../../api/Roles/Roles';
 
 /** The NavBarDesktop appears at the top of every page. Rendered by the App Layout component. */
 class NavBarDesktop extends React.Component {
@@ -21,8 +22,8 @@ class NavBarDesktop extends React.Component {
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
           ) : ''}
-          {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
+          {Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ? (
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/admins" key='admins'>Admins</Menu.Item>
           ) : ''}
           <Menu.Item position="right">
             {this.props.currentUser === '' ? (
