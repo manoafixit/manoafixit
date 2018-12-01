@@ -14,6 +14,10 @@ class OriginalPost extends React.Component {
     const headerStyle = {
       border: 'none',
       boxShadow: 'none',
+      fontSize: 'xx-large',
+      fontColor: '#5C9EAD',
+      fontStyle: 'italic',
+      fontWeight: 'bolder',
     };
 
     return (
@@ -33,7 +37,7 @@ class OriginalPost extends React.Component {
             <Menu.Item> <Status issue={this.props.issue}/> </Menu.Item>
           </Menu>
           <Segment attached>
-            {this.props.issue.description ? this.props.issue.description : <i>This issue has no description</i>}
+            {this.props.issue.description ? this.props.issue.description :  <i>This issue has no description</i>}
           </Segment>
           <Message attached='bottom'>
             {<Tags issue={this.props.issue}/>}
