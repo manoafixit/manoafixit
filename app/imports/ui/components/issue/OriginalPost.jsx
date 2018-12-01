@@ -9,7 +9,7 @@ import Status from '../global/issue/Status';
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class OriginalPost extends React.Component {
   render() {
-    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY, hh:mm aa');
+    const date = format(this.props.issue.createdAt, 'MMMM D, YYYY, h:mm aa');
 
     const headerStyle = {
       border: 'none',

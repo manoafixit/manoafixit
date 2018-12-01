@@ -5,7 +5,7 @@ import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, Label } from 'semantic-ui-react';
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
