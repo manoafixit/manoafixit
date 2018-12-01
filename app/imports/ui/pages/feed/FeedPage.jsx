@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Grid, Container, Responsive } from 'semantic-ui-react';
+import { Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedPageDesktop from './FeedPageDesktop';
