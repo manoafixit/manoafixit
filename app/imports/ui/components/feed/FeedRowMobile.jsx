@@ -11,6 +11,9 @@ import Status from '../../components/global/issue/Status';
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class FeedRowMobile extends React.Component {
   render() {
+
+    const fontStyle = { fontWeight: '900' };
+
     return (
         <Segment attached>
           <Grid columns='equal'>
@@ -24,7 +27,9 @@ class FeedRowMobile extends React.Component {
                 </Grid.Row>
               </Grid.Column>
               <Grid.Column>
-                <Link to={`/issue/${this.props.issue._id}`}> {this.props.issue.title} </Link>
+                <div style={fontStyle}>
+                  <Link to={`/issue/${this.props.issue._id}`}> {this.props.issue.title} </Link>
+                </div>
                 <OwnerMobile issue={this.props.issue}/>
                 <DateMobile issue={this.props.issue}/>
                 <TitleTagsMobile issue={this.props.issue}/>
