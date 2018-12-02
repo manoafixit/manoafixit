@@ -13,7 +13,7 @@ import FeedPage from '../pages/feed/FeedPage';
 import IssuePage from '../pages/issue/IssuePage';
 import MapPage from '../pages/MapPage';
 import AdminsPage from '../pages/admins/AdminsPage';
-import AddAdminsPage from '../pages/admins/AddAdminsPage';
+// import AddAdminsPage from '../pages/admins/AddAdminsPage';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -35,7 +35,7 @@ class App extends React.Component {
               <ProtectedRoute path="/feed" component={FeedPage}/>
               <ProtectedRoute path="/issue/:_id" component={IssuePage}/>
               <SuperAdminProtectedRoute path="/admins" component={AdminsPage}/>
-              <SuperAdminProtectedRoute path="/createAdmin" component={AddAdminsPage}/>
+              {/* <SuperAdminProtectedRoute path="/createAdmin" component={AddAdminsPage}/> */}
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

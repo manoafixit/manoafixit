@@ -11,15 +11,18 @@ class UsersCollection extends BaseCollection {
   }
 
   createAdminAccount(username, email, password) {
-    const exists = Meteor.users.findOne({ username: username });
-    if (exists) return false;
     const adminID = Accounts.createUser({ username, email, password });
+    console.log(adminID);
     Roles.addUsersToRoles(adminID, ROLE.ADMIN);
     return true;
   }
 
   publish() {
     Meteor.publish(this.collectionName, () => Meteor.users.find());
+  }
+
+  addUserToRole(id, role) {
+    Roles.addUsersToRoles(id, role);
   }
 
   getAllAdminsOnly() {

@@ -1,95 +1,91 @@
 import React from 'react';
+import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Header, Message, Segment, Form } from 'semantic-ui-react';
+import { Tracker } from 'meteor/tracker';
+import { Grid, Header, Segment } from 'semantic-ui-react';
+import { Bert } from 'meteor/themeteorchef:bert';
+import {
+  AutoForm,
+  TextField,
+  SubmitField,
+  ErrorsField,
+} from 'uniforms-semantic/';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
+import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Bert } from 'meteor/themeteorchef:bert';
 import { ROLE } from '../../../api/Roles/Roles';
-import { Users } from '../../../api/UsersCollection/UsersCollection';
 
-export default class AddAdminsPage extends React.Component {
+class AddAdminsPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', email: '', password: '', error: '', redirectToRefer: false };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.createAccount = this.createAccount.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.formRef = null;
+    this.state = {
+      username: '',
+    };
   }
 
-  handleChange(e, { name, value }) {
-    this.setState({ [name]: value });
+  /** Notify the user of the results of the submit. If successful, clear the form. */
+  insertCallback(error) {
+    if (error) {
+      Bert.alert({ type: 'danger', message: `Issue failed to submit: ${error.message}` });
+    } else {
+      Bert.alert({ type: 'success', message: 'Issue has been submitted' });
+      this.formRef.reset();
+    }
   }
 
   /** On submit, insert the data. */
-  handleSubmit() {
-    const { username, email, password } = this.state;
-    if (Users.createAdminAccount(username, email, password)) {
-      Bert.alert({ type: 'success', message: `Created Admin Account: ${email}` });
-    }
-    Bert.alert({ type: 'danger', message: 'Failed to Create Admin Account' });
+  createAccount(data) {
+    const { username, email, password } = data;
+    this.setState({ username: username });
+    console.log(this.state.username);
+    Accounts.createUser({ username, email, password });
+    if (this.props.admin._id) Roles.addUsersToRoles(this.props.admin._id, ROLE.ADMIN);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
-    // const { from } = this.props.location.state || { from: { pathname: '/admins' } };
-    // if (this.state.redirectToReferer) {
-    //   return <Redirect to={from}/>;
-    // }
+    const accountSchema = new SimpleSchema(
+        {
+          username: { type: String },
+          email: { type: String },
+          password: { type: String },
+        }, { tracker: Tracker },
+    );
     return (
-        <Container>
-          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">
-                Create an Admin Account
-              </Header>
-              <Form onSubmit={this.handleSubmit}>
-                <Segment stacked>
-                  <Form.Input
-                      label="Username"
-                      icon="user"
-                      iconPosition="left"
-                      name="username"
-                      type="username"
-                      placeholder="Username"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Email"
-                      icon="mail"
-                      iconPosition="left"
-                      name="email"
-                      type="email"
-                      placeholder="E-mail address"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Password"
-                      icon="lock"
-                      iconPosition="left"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Button content="Submit"/>
+        <Grid container centered>
+          <Grid.Column>
+            <div>
+              <Header as="h2" textAlign="center">Submit Issue</Header>
+              <AutoForm ref={(ref) => {
+                this.formRef = ref;
+              }} schema={accountSchema} onSubmit={this.createAccount}>
+                <Segment>
+                  <TextField name='username'/>
+                  <TextField name='email'/>
+                  <TextField name='password'/>
+                  <SubmitField value='Submit'/>
+                  <ErrorsField/>
                 </Segment>
-              </Form>
-              {this.state.error === '' ? (
-                  ''
-              ) : (
-                  <Message
-                      error
-                      header="Creation of Admin was not successful"
-                      content={this.state.error}
-                  />
-              )}
-            </Grid.Column>
-          </Grid>
-        </Container>
+              </AutoForm>
+            </div>
+          </Grid.Column>
+        </Grid>
     );
   }
 }
 
 AddAdminsPage.propTypes = {
-  location: PropTypes.object,
+  admin: PropTypes.object.isRequired,
 };
+
+export default withTracker(() => {
+  Meteor.subscribe('UsersCollection');
+  console.log(Meteor.users.findOne({ username: this.state.username }));
+  return {
+    admin: Meteor.users.findOne({ username: this.state.username }),
+  };
+})(AddAdminsPage);
