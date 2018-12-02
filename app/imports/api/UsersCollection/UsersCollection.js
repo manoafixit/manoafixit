@@ -10,12 +10,12 @@ class UsersCollection extends BaseCollection {
     this.collectionName = 'UsersCollection';
   }
 
-  createAdminAccount(username, email, password) {
-    const adminID = Accounts.createUser({ username, email, password });
-    console.log(adminID);
-    Roles.addUsersToRoles(adminID, ROLE.ADMIN);
-    return true;
-  }
+  // createAdminAccount(username, email, password) {
+  //   const adminID = Accounts.createUser({ username, email, password });
+  //   console.log(adminID);
+  //   Roles.addUsersToRoles(adminID, ROLE.ADMIN);
+  //   return true;
+  // }
 
   publish() {
     Meteor.publish(this.collectionName, () => Meteor.users.find());

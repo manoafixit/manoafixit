@@ -42,4 +42,4 @@ AdminsPageDesktop.propTypes = {
   accounts: PropTypes.array.isRequired,
 };
 
-export default withTracker(() => ({ accounts: Users.getAllUsers() }))(AdminsPageDesktop);
+export default withTracker(() => ({ accounts: Users.getAllUsersOnly() }))(AdminsPageDesktop);
