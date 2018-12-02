@@ -29,11 +29,11 @@ class FeedPageMobile extends React.Component {
     let filtered;
     switch (this.state.sort) {
       case 1:
-        filtered = this.filterBy(this.props.issuesOldest);
+        filtered = this.filterBy(this.props.issuesNewest);
         result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       case 2:
-        filtered = this.filterBy(this.props.issuesNewest);
+        filtered = this.filterBy(this.props.issuesOldest);
         result = filtered.map((issue, index) => <FeedRowMobile key={index} issue={issue}/>);
         break;
       case 3:
