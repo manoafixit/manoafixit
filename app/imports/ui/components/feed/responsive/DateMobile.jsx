@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Grid, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -9,9 +9,9 @@ class DateMobile extends React.Component {
     const date = format(this.props.issue.createdAt, 'MMMM D, YYYY h:mm aa');
 
     return (
-        <Table.Cell>
+        <Grid.Column>
           {date}
-        </Table.Cell>
+        </Grid.Column>
     );
   }
 }

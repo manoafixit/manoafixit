@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Loader, Menu, Table, Grid } from 'semantic-ui-react';
+import { Container, Loader, Menu, Table, Segment, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRowMobile from '../../components/feed/FeedRowMobile';
@@ -124,24 +124,10 @@ class FeedPageMobile extends React.Component {
               </Grid.Row>
             </Grid>
 
-            <Table
-                striped
-                unstackable
-                fixed
-                singleLine
-            >
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell width='twelve'>Issue</Table.HeaderCell>
-                  <Table.HeaderCell width='four'>Poster</Table.HeaderCell>
-                  <Table.HeaderCell width='two'>Likes</Table.HeaderCell>
-                  <Table.HeaderCell width='five'>Date</Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
+            <Segment vertical>
                 {this.sortBy()}
-              </Table.Body>
-            </Table>
+            </Segment>
+
           </Container>
         </div>
     );
