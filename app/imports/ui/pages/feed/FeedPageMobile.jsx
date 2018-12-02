@@ -95,16 +95,9 @@ class FeedPageMobile extends React.Component {
             <Grid>
               <Grid.Row>
                 <Menu borderless style={menuHeaderStyle}>
-                  <Menu.Item position='right'>
-                    <SubmitButton/>
-                  </Menu.Item>
-                </Menu>
-              </Grid.Row>
-
-              <Grid.Row>
-                <Menu borderless style={menuHeaderStyle}>
                   <Menu.Item>
                     <SearchBar issues={this.props.issues}/>
+                    <SubmitButton/>
                   </Menu.Item>
                 </Menu>
               </Grid.Row>
