@@ -1,2 +1,2 @@
-import './accounts.js';
+import './SuperAdmin.js';
 import './Publications.js';

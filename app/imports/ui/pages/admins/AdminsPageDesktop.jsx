@@ -1,36 +1,45 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Loader } from 'semantic-ui-react';
+import { Table, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
+import { Users } from '../../../api/UsersCollection/UsersCollection';
+import AdminAccountsRow from '../../components/admins/AdminAccountsRow';
 
 class AdminsPageDesktop extends React.Component {
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting Issue Data</Loader>;
-  }
-
-  renderPage() {
     const wrapperStyle = {
       paddingTop: '20px',
       paddingBottom: '50px',
     };
 
     return (
-        <div style={wrapperStyle}>Test</div>
+        <div style={wrapperStyle}>
+          <Header as="h2" textAlign="center">Admin Accounts</Header>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Username</Table.HeaderCell>
+                <Table.HeaderCell>Email</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {this.props.accounts.map((account, index) => <AdminAccountsRow key={index} account={account}/>)}
+            </Table.Body>
+          </Table>
+        </div>
     );
   }
 }
 
 AdminsPageDesktop.propTypes = {
-  issues: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
+  accounts: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {
-  const sub = Meteor.subscribe('IssuesCollection');
+  console.log(Users.getAllUsers());
+  console.log(Users.getAllUsersOnly());
+  console.log(Users.getAllAdminsOnly());
   return {
-    issues: Issues.getCollectionDocuments(),
-    ready: sub.ready(),
+    accounts: Users.getAllUsers(),
   };
 })(AdminsPageDesktop);

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Roles } from 'meteor/alanning:roles';
+import { ROLE } from '../../api/Roles/Roles';
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -26,7 +28,7 @@ export default class Signup extends React.Component {
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
     const { username, email, password } = this.state;
-    Accounts.createUser({ username, email, password }, (err) => {
+    const userID = Accounts.createUser({ username, email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -34,6 +36,7 @@ export default class Signup extends React.Component {
         this.setState({ error: '', redirectToReferer: true });
       }
     });
+    Roles.addUsersToRoles(userID, ROLE.USER);
   }
 
   /** Display the signup form. */
