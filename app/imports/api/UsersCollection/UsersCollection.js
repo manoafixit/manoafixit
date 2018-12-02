@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../Roles/Roles';
 import BaseCollection from '../BaseCollection/BaseCollection';
@@ -7,6 +8,14 @@ class UsersCollection extends BaseCollection {
   constructor() {
     super();
     this.collectionName = 'UsersCollection';
+  }
+
+  createAdminAccount(username, email, password) {
+    const exists = Meteor.users.findOne({ username: username });
+    if (exists) return false;
+    const adminID = Accounts.createUser({ username, email, password });
+    Roles.addUsersToRoles(adminID, ROLE.ADMIN);
+    return true;
   }
 
   publish() {

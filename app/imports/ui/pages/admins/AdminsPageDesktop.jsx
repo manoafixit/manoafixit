@@ -1,7 +1,8 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Table, Header } from 'semantic-ui-react';
+import { Table, Header, Menu, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Users } from '../../../api/UsersCollection/UsersCollection';
 import AdminAccountsRow from '../../components/admins/AdminAccountsRow';
 
@@ -14,7 +15,12 @@ class AdminsPageDesktop extends React.Component {
 
     return (
         <div style={wrapperStyle}>
-          <Header as="h2" textAlign="center">Admin Accounts</Header>
+          <Menu>
+            <Menu.Item> <Header as="h2" textAlign="center">Admin Accounts</Header> </Menu.Item>
+            <Menu.Item position='right'>
+                <Link to={'/createAdmin'}> <Button color='blue' content='Create Admin Account' size='large'/> </Link>
+            </Menu.Item>
+          </Menu>
           <Table celled>
             <Table.Header>
               <Table.Row>
@@ -36,10 +42,8 @@ AdminsPageDesktop.propTypes = {
 };
 
 export default withTracker(() => {
-  console.log(Users.getAllUsers());
-  console.log(Users.getAllUsersOnly());
   console.log(Users.getAllAdminsOnly());
   return {
-    accounts: Users.getAllUsers(),
+    accounts: Users.getAllAdminsOnly(),
   };
 })(AdminsPageDesktop);

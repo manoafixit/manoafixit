@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { ROLE } from '../../api/Roles/Roles';
 import NavBar from '../components/global/navbar/NavBar';
 import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
@@ -12,6 +13,7 @@ import FeedPage from '../pages/feed/FeedPage';
 import IssuePage from '../pages/issue/IssuePage';
 import MapPage from '../pages/MapPage';
 import AdminsPage from '../pages/admins/AdminsPage';
+import AddAdminsPage from '../pages/admins/AddAdminsPage';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -32,7 +34,8 @@ class App extends React.Component {
               <ProtectedRoute path="/submit" component={SubmitPage}/>
               <ProtectedRoute path="/feed" component={FeedPage}/>
               <ProtectedRoute path="/issue/:_id" component={IssuePage}/>
-              <ProtectedRoute path="/admins" component={AdminsPage}/>
+              <SuperAdminProtectedRoute path="/admins" component={AdminsPage}/>
+              <SuperAdminProtectedRoute path="/createAdmin" component={AddAdminsPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
@@ -73,6 +76,20 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
           const isLogged = Meteor.userId() !== null;
           const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
           return (isLogged && isAdmin) ?
+              (<Component {...props} />) :
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              );
+        }}
+    />
+);
+
+const SuperAdminProtectedRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) => {
+          const isLogged = Meteor.userId() !== null;
+          const isSuperAdmin = Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN);
+          return (isLogged && isSuperAdmin) ?
               (<Component {...props} />) :
               (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
               );
