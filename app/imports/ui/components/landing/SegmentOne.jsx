@@ -25,12 +25,12 @@ class SegmentOne extends React.Component {
             {this.props.currentUser === '' ? (
                 <Grid.Row>
                   <Grid.Column width={2} verticalAlign='top' textAlign='center'>
-                    <Button as={NavLink} exact to="/signin">
+                    <Button as={NavLink} color='green' exact to="/signin">
                       Sign In
                     </Button>
                   </Grid.Column>
                   <Grid.Column width={2} verticalAlign='top' textAlign='center'>
-                    <Button as={NavLink} exact to="/signup">
+                    <Button as={NavLink} color='green' exact to="/signup">
                       Sign Up
                     </Button>
                   </Grid.Column>
@@ -38,7 +38,7 @@ class SegmentOne extends React.Component {
             ) : (
                 <Grid.Row>
                   <Grid.Column width={4} verticalAlign='top' textAlign='center'>
-                    <Button as={NavLink} exact to="/submit">
+                    <Button as={NavLink} color='green' exact to="/submit">
                       Submit an Issue
                     </Button>
                   </Grid.Column>
