@@ -37,21 +37,20 @@ class AdminStatusChange extends React.Component {
   }
 
   handleStatusChange = (e, { value }) => {
-    /* eslint-disable no-console */
     this.setState({ stateValue: value });
     const owner = Meteor.user().username;
 
     let reply;
     const issueID = this.props.issue._id;
     const replyDate = new Date();
-    console.log(`Logging Line 47 (issueID): ${issueID}`);
-    console.log(`Logging Line 48 (replyDate): ${replyDate}`);
-    console.log('-----');
+    // console.log(`Logging Line 47 (issueID): ${issueID}`);
+    // console.log(`Logging Line 48 (replyDate): ${replyDate}`);
+    // console.log('-----');
     switch (value) {
       case 1:
         Issues.update(issueID, { status: 'Open' }, undefined, this.updateCallback);
-        console.log(`Logging Line 53 (issueID): ${issueID}`);
-        console.log(`Logging Line 54 (replyDate): ${replyDate}`);
+        // console.log(`Logging Line 53 (issueID): ${issueID}`);
+        // console.log(`Logging Line 54 (replyDate): ${replyDate}`);
         reply = this.generateReply('Open');
         IssueReplies.insert({ issueID, reply, replyDate, owner }, this.insertCallback);
         break;

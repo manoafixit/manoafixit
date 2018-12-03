@@ -45,8 +45,8 @@ class IssueRepliesCollection extends BaseCollection {
       reply,
       createdAt,
       owner,
-    }, (error) => { console.log(error); });
-    console.log(`From IssueReplies Collection: ${issue_id} | ${reply} | ${createdAt} | ${owner}`);
+    }, callback);
+    // console.log(`From IssueReplies Collection: ${issue_id} | ${reply} | ${createdAt} | ${owner}`);
     return issueID;
   }
 }
