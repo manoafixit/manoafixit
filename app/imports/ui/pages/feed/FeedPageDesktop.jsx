@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Loader, Menu, Table } from 'semantic-ui-react';
+import { Container, Header, Loader, Menu, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import FeedRow from '../../components/feed/FeedRow';
@@ -91,6 +91,9 @@ class FeedPageDesktop extends React.Component {
         <div className='wrapper' style={wrapperStyle}>
           <Container>
             <Menu borderless style={menuHeaderStyle}>
+              <Menu.Item position='left'>
+                <Header as="h1" textAlign="center">Feed</Header>
+              </Menu.Item>
               <Menu.Item position='right'>
                 <SubmitButton/>
               </Menu.Item>
