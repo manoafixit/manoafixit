@@ -16,6 +16,7 @@ function createSuperAdminUser() {
     password: password,
   });
   Roles.addUsersToRoles(userID, ROLE.SUPERADMIN);
+  Roles.addUsersToRoles(userID, ROLE.ADMIN);
   superAdminUserID = userID;
   console.log(`Super Admin Initialized - Username: ${username} | Email: ${email}`);
 }
