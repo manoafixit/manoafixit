@@ -2,6 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 import { _ } from 'meteor/erasaur:meteor-lodash';
 import BaseCollection from '../BaseCollection/BaseCollection';
+import { STATUS } from './IssueStatuses';
 
 export const IssuesSchema = new SimpleSchema(
     {
@@ -35,7 +36,8 @@ export const IssuesSchema = new SimpleSchema(
       status: {
         type: String,
         label: 'Issue Status',
-        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Removed', 'Duplicate'],
+        allowedValues: [`${STATUS.OPEN}`, `${STATUS.ACKNOWLEDGED}`, `${STATUS.ONGOING}`, `${STATUS.RESOLVED}`,
+          `${STATUS.DUPLICATE}`, `${STATUS.REMOVED}`],
         defaultValue: 'Open',
       },
       lat: {
@@ -63,7 +65,7 @@ class IssuesCollection extends BaseCollection {
   }
 
   /**
-   * Calls db.colleciton.insert()
+   * Calls db.collection.insert()
    * @param { Object } data The issue data to insert.
    * @param callback The callback function that handles data insertion.
    * @returns { docID } The _id of the document we inserted.

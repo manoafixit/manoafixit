@@ -6,6 +6,7 @@ import { Marker, Popup } from 'react-leaflet';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, Label } from 'semantic-ui-react';
 import { format } from 'date-fns';
+import { STATUS } from '../../../api/IssuesCollection/IssueStatuses';
 
 /** Renders a single row in the List Contacts table. See pages/ListContacts.jsx. */
 class MapMarker extends React.Component {
@@ -22,11 +23,11 @@ class MapMarker extends React.Component {
    */
   isValid() {
     switch (this.props.issue.status) {
-      case 'Resolved':
+      case `${STATUS.RESOLVED}`:
         return false;
-      case 'Removed':
+      case `${STATUS.REMOVED}`:
         return false;
-      case 'Duplicate':
+      case `${STATUS.DUPLICATE}`:
         return false;
       default:
         return true;
@@ -39,13 +40,13 @@ class MapMarker extends React.Component {
 
   chooseIcon() {
     switch (this.props.issue.status) {
-      case 'Open':
+      case `${STATUS.OPEN}`:
         this.setState({ iconUrl: '/images/mapmarkers/MarkerOpen.svg' });
         break;
-      case 'Acknowledged':
+      case `${STATUS.ACKNOWLEDGED}`:
         this.setState({ iconUrl: '/images/mapmarkers/MarkerAckd.svg' });
         break;
-      case 'Ongoing':
+      case `${STATUS.ONGOING}`:
         this.setState({ iconUrl: '/images/mapmarkers/MarkerProg.svg' });
         break;
       default:
