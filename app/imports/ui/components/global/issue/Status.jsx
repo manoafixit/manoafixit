@@ -14,10 +14,10 @@ class Status extends React.Component {
           result = 'blue';
           break;
         case `${STATUS.ACKNOWLEDGED}`:
-          result = 'orange';
+          result = 'yellow';
           break;
         case `${STATUS.ONGOING}`:
-          result = 'yellow';
+          result = 'orange';
           break;
         case `${STATUS.RESOLVED}`:
           result = 'green';
