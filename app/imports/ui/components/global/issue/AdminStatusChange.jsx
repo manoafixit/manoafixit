@@ -9,7 +9,7 @@ class AdminStatusChange extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 1,
+      stateValue: 1,
     };
   }
 
@@ -22,6 +22,7 @@ class AdminStatusChange extends React.Component {
   }
 
   handleStatusChange = (e, { value }) => {
+    this.setState({ stateValue: value });
     switch (value) {
       case 1:
         Issues.update(this.props.issue._id, { status: 'Open' }, undefined, this.updateCallback);
@@ -61,6 +62,8 @@ class AdminStatusChange extends React.Component {
             placeholder={this.props.issue.status}
             options={statusOptions}
             onChange={this.handleStatusChange}
+            clearable='true'
+            defaultValue={this.state.stateValue}
         />
     );
   }
