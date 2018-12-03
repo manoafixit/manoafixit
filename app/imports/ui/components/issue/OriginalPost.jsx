@@ -26,6 +26,7 @@ class OriginalPost extends React.Component {
       fontColor: '#5C9EAD',
       fontStyle: 'italic',
       fontWeight: 'bolder',
+      maxWidth: '50ch',
     };
 
     return (
