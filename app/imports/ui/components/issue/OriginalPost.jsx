@@ -44,7 +44,7 @@ class OriginalPost extends React.Component {
             </Menu.Item>
             <Menu.Item>
               { (Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)
-                  && Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
+                  || Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
                   <AdminStatusChange issue={this.props.issue}/>
                   : <Status issue={this.props.issue}/>}
             </Menu.Item>
