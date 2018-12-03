@@ -33,41 +33,54 @@ class AdminStatusChange extends React.Component {
 
   generateReply(status) {
     const owner = Meteor.user().username;
+    if (status === 'Duplicate') {
+      return `${owner} marked this Issue as ${status}`;
+    }
+    if (status === 'Removed') {
+      return `${owner} removed this Issue`;
+    }
     return `${owner} changed the status of this Issue to ${status}`;
+
   }
 
   handleStatusChange = (e, { value }) => {
     this.setState({ stateValue: value });
     const owner = Meteor.user().username;
-
+    const issue_id = this.props.issue._id;
+    const createdAt = new Date();
+    const admin_status = true;
     let reply;
-    const issueID = this.props.issue._id;
-    const replyDate = new Date();
-    // console.log(`Logging Line 47 (issueID): ${issueID}`);
-    // console.log(`Logging Line 48 (replyDate): ${replyDate}`);
-    // console.log('-----');
+
     switch (value) {
       case 1:
-        Issues.update(issueID, { status: 'Open' }, undefined, this.updateCallback);
-        // console.log(`Logging Line 53 (issueID): ${issueID}`);
-        // console.log(`Logging Line 54 (replyDate): ${replyDate}`);
+        Issues.update(issue_id, { status: 'Open' }, undefined, this.updateCallback);
         reply = this.generateReply('Open');
-        IssueReplies.insert({ issueID, reply, replyDate, owner }, this.insertCallback);
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 2:
-        Issues.update(issueID, { status: 'Acknowledged' }, undefined, this.updateCallback);
+        Issues.update(issue_id, { status: 'Acknowledged' }, undefined, this.updateCallback);
+        reply = this.generateReply('Acknowledged');
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 3:
-        Issues.update(issueID, { status: 'Ongoing' }, undefined, this.updateCallback);
+        Issues.update(issue_id, { status: 'Ongoing' }, undefined, this.updateCallback);
+        reply = this.generateReply('Ongoing');
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 4:
-        Issues.update(issueID, { status: 'Resolved' }, undefined, this.updateCallback);
+        Issues.update(issue_id, { status: 'Resolved' }, undefined, this.updateCallback);
+        reply = this.generateReply('Resolved');
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 5:
-        Issues.update(issueID, { status: 'Duplicate' }, undefined, this.updateCallback);
+        Issues.update(issue_id, { status: 'Duplicate' }, undefined, this.updateCallback);
+        reply = this.generateReply('Duplicate');
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 6:
-        Issues.update(issueID, { status: 'Removed' }, undefined, this.updateCallback);
+        Issues.update(issue_id, { status: 'Removed' }, undefined, this.updateCallback);
+        reply = this.generateReply('Removed');
+        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       default:
         break;
