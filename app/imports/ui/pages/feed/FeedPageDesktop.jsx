@@ -10,6 +10,7 @@ import SubmitButton from '../../components/feed/SubmitButton';
 import SearchBar from '../../components/feed/SearchBar';
 import SortBy from '../../components/feed/SortBy';
 import FilterBy from '../../components/feed/FilterBy';
+import { STATUS } from '../../../api/IssuesCollection/IssueStatuses';
 
 class FeedPageDesktop extends React.Component {
   constructor(props) {
@@ -29,15 +30,15 @@ class FeedPageDesktop extends React.Component {
       case 0:
         return issues;
       case 1:
-        return _.filter(issues, (issue) => issue.status === 'Open');
+        return _.filter(issues, (issue) => issue.status === `${STATUS.OPEN}`);
       case 2:
-        return _.filter(issues, (issue) => issue.status === 'Acknowledged');
+        return _.filter(issues, (issue) => issue.status === `${STATUS.ACKNOWLEDGED}`);
       case 3:
-        return _.filter(issues, (issue) => issue.status === 'Ongoing');
+        return _.filter(issues, (issue) => issue.status === `${STATUS.ONGOING}`);
       case 4:
-        return _.filter(issues, (issue) => issue.status === 'Resolved');
+        return _.filter(issues, (issue) => issue.status === `${STATUS.RESOLVED}`);
       case 5:
-        return _.filter(issues, (issue) => issue.status === 'Removed');
+        return _.filter(issues, (issue) => issue.status === `${STATUS.DUPLICATE}`);
       default:
         throw new Meteor.Error('Invalid status');
     }

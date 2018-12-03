@@ -6,6 +6,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
+import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
 
 class AdminStatusChange extends React.Component {
   constructor(props) {
@@ -89,12 +90,12 @@ class AdminStatusChange extends React.Component {
 
   render() {
     const statusOptions = [
-      { key: 1, text: 'Open', value: 1 },
-      { key: 2, text: 'Acknowledged', value: 2 },
-      { key: 3, text: 'Ongoing', value: 3 },
-      { key: 4, text: 'Resolved', value: 4 },
-      { key: 5, text: 'Duplicate', value: 5 },
-      { key: 6, text: 'Removed', value: 6 },
+      { key: 1, text: `${STATUS.OPEN}`, value: 1 },
+      { key: 2, text: `${STATUS.ACKNOWLEDGED}`, value: 2 },
+      { key: 3, text: `${STATUS.ONGOING}`, value: 3 },
+      { key: 4, text: `${STATUS.RESOLVED}`, value: 4 },
+      { key: 5, text: `${STATUS.DUPLICATE}`, value: 5 },
+      { key: 6, text: `${STATUS.REMOVED}`, value: 6 },
     ];
 
     return (
