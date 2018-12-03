@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Table } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import TitleTagsMobile from './responsive/TitleTagsMobile';

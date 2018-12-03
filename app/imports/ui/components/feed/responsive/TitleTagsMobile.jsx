@@ -1,9 +1,8 @@
 import React from 'react';
-import { Grid, Table, Segment } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Tags from '../../global/issue/Tags';
-import Status from '../../global/issue/Status';
 
 class TitleTagsMobile extends React.Component {
   render() {
