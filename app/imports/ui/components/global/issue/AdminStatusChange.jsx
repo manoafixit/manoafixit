@@ -6,6 +6,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
+import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
 
 class AdminStatusChange extends React.Component {
   constructor(props) {
@@ -53,33 +54,33 @@ class AdminStatusChange extends React.Component {
 
     switch (value) {
       case 1:
-        Issues.update(issue_id, { status: 'Open' }, undefined, this.updateCallback);
-        reply = this.generateReply('Open');
+        Issues.update(issue_id, { status: `${STATUS.OPEN}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.OPEN}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 2:
-        Issues.update(issue_id, { status: 'Acknowledged' }, undefined, this.updateCallback);
-        reply = this.generateReply('Acknowledged');
+        Issues.update(issue_id, { status: `${STATUS.ACKNOWLEDGED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.ACKNOWLEDGED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 3:
-        Issues.update(issue_id, { status: 'Ongoing' }, undefined, this.updateCallback);
-        reply = this.generateReply('Ongoing');
+        Issues.update(issue_id, { status: `${STATUS.ONGOING}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.ONGOING}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 4:
-        Issues.update(issue_id, { status: 'Resolved' }, undefined, this.updateCallback);
-        reply = this.generateReply('Resolved');
+        Issues.update(issue_id, { status: `${STATUS.RESOLVED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.RESOLVED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 5:
-        Issues.update(issue_id, { status: 'Duplicate' }, undefined, this.updateCallback);
-        reply = this.generateReply('Duplicate');
+        Issues.update(issue_id, { status: `${STATUS.DUPLICATE}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.DUPLICATE}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 6:
-        Issues.update(issue_id, { status: 'Removed' }, undefined, this.updateCallback);
-        reply = this.generateReply('Removed');
+        Issues.update(issue_id, { status: `${STATUS.REMOVED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.REMOVED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       default:
@@ -89,12 +90,12 @@ class AdminStatusChange extends React.Component {
 
   render() {
     const statusOptions = [
-      { key: 1, text: 'Open', value: 1 },
-      { key: 2, text: 'Acknowledged', value: 2 },
-      { key: 3, text: 'Ongoing', value: 3 },
-      { key: 4, text: 'Resolved', value: 4 },
-      { key: 5, text: 'Duplicate', value: 5 },
-      { key: 6, text: 'Removed', value: 6 },
+      { key: 1, text: `${STATUS.OPEN}`, value: 1 },
+      { key: 2, text: `${STATUS.ACKNOWLEDGED}`, value: 2 },
+      { key: 3, text: `${STATUS.ONGOING}`, value: 3 },
+      { key: 4, text: `${STATUS.RESOLVED}`, value: 4 },
+      { key: 5, text: `${STATUS.DUPLICATE}`, value: 5 },
+      { key: 6, text: `${STATUS.REMOVED}`, value: 6 },
     ];
 
     return (

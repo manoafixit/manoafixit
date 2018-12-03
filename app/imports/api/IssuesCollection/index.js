@@ -1,1 +1,2 @@
 import './IssuesCollection';
+import './IssueStatuses';
