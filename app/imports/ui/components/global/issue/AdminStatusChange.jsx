@@ -54,33 +54,33 @@ class AdminStatusChange extends React.Component {
 
     switch (value) {
       case 1:
-        Issues.update(issue_id, { status: 'Open' }, undefined, this.updateCallback);
-        reply = this.generateReply('Open');
+        Issues.update(issue_id, { status: `${STATUS.OPEN}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.OPEN}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 2:
-        Issues.update(issue_id, { status: 'Acknowledged' }, undefined, this.updateCallback);
-        reply = this.generateReply('Acknowledged');
+        Issues.update(issue_id, { status: `${STATUS.ACKNOWLEDGED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.ACKNOWLEDGED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 3:
-        Issues.update(issue_id, { status: 'Ongoing' }, undefined, this.updateCallback);
-        reply = this.generateReply('Ongoing');
+        Issues.update(issue_id, { status: `${STATUS.ONGOING}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.ONGOING}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 4:
-        Issues.update(issue_id, { status: 'Resolved' }, undefined, this.updateCallback);
-        reply = this.generateReply('Resolved');
+        Issues.update(issue_id, { status: `${STATUS.RESOLVED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.RESOLVED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 5:
-        Issues.update(issue_id, { status: 'Duplicate' }, undefined, this.updateCallback);
-        reply = this.generateReply('Duplicate');
+        Issues.update(issue_id, { status: `${STATUS.DUPLICATE}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.DUPLICATE}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       case 6:
-        Issues.update(issue_id, { status: 'Removed' }, undefined, this.updateCallback);
-        reply = this.generateReply('Removed');
+        Issues.update(issue_id, { status: `${STATUS.REMOVED}` }, undefined, this.updateCallback);
+        reply = this.generateReply(`${STATUS.REMOVED}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
       default:
