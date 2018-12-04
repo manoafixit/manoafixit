@@ -6,6 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header, Sidebar, Icon } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../../../api/Roles/Roles';
+import { zIndexMapFix } from './NavBar';
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
@@ -48,6 +49,7 @@ class NavBarMobile extends React.Component {
               vertical
               visible={visible}
               width='thin'
+              style={zIndexMapFix}
           >
             {this.props.currentUser ? (
                 [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/"

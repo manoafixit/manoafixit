@@ -6,11 +6,13 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../../../api/Roles/Roles';
+import { zIndexMapFix } from './NavBar';
 
 /** The NavBarDesktop appears at the top of every page. Rendered by the App Layout component. */
 class NavBarDesktop extends React.Component {
   render() {
     const menuStyle = { marginBottom: '10px' };
+
     return (
         <Menu style={menuStyle} attached="top" borderless inverted>
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
@@ -34,7 +36,7 @@ class NavBarDesktop extends React.Component {
                   </Dropdown.Menu>
                 </Dropdown>
             ) : (
-                <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
+                <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'} style={zIndexMapFix}>
                   <Dropdown.Menu>
                     <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
                   </Dropdown.Menu>
