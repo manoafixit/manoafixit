@@ -7,6 +7,9 @@ import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Issues } from '../../api/IssuesCollection/IssuesCollection';
 import MapMarker from '../components/map/MapMarker';
+import MarkerLegend from '../components/map/MarkerLegend';
+
+// import MarkerLegendControl from '../components/map/MarkerLegendControl';
 
 class MapPage extends React.Component {
   constructor(props) {
@@ -34,15 +37,18 @@ class MapPage extends React.Component {
 
     const centerPos = [21.2969, -157.8171];
     return (
-        <Map className="map" center={centerPos} zoom={this.state.zoom} style={style}>
-          <TileLayer
-              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {
-            this.props.issues.map((issue, index) => <MapMarker key={index} issue={issue}/>)
-          }
-        </Map>
+        <div>
+          <MarkerLegend/>
+          <Map className="map" center={centerPos} zoom={this.state.zoom} style={style}>
+            <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {
+              this.props.issues.map((issue, index) => <MapMarker key={index} issue={issue}/>)
+            }
+          </Map>
+        </div>
     );
   }
 }
