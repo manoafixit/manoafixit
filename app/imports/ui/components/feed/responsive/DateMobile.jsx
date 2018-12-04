@@ -1,22 +1,23 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
 
-class Date extends React.Component {
+class DateMobile extends React.Component {
   render() {
     const date = format(this.props.issue.createdAt, 'MMMM D, YYYY h:mm aa');
 
     return (
-        <Table.Cell> {date}
-        </Table.Cell>
+        <Grid.Column>
+          {date}
+        </Grid.Column>
     );
   }
 }
 
-Date.propTypes = {
+DateMobile.propTypes = {
   issue: PropTypes.object.isRequired,
 };
 
-export default withRouter(Date);
+export default withRouter(DateMobile);

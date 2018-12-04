@@ -1,8 +1,8 @@
 import SimpleSchema from 'simpl-schema';
-import Meteor from 'meteor/meteor';
-import _ from 'meteor/underscore';
 import { Tracker } from 'meteor/tracker';
+import { _ } from 'meteor/erasaur:meteor-lodash';
 import BaseCollection from '../BaseCollection/BaseCollection';
+import { STATUS } from './IssueStatuses';
 
 export const IssuesSchema = new SimpleSchema(
     {
@@ -36,7 +36,8 @@ export const IssuesSchema = new SimpleSchema(
       status: {
         type: String,
         label: 'Issue Status',
-        allowedValues: ['Open', 'Acknowledged', 'Ongoing', 'Resolved', 'Removed', 'Duplicate'],
+        allowedValues: [`${STATUS.OPEN}`, `${STATUS.ACKNOWLEDGED}`, `${STATUS.ONGOING}`, `${STATUS.RESOLVED}`,
+          `${STATUS.DUPLICATE}`, `${STATUS.REMOVED}`],
         defaultValue: 'Open',
       },
       lat: {
@@ -64,7 +65,7 @@ class IssuesCollection extends BaseCollection {
   }
 
   /**
-   * Calls db.colleciton.insert()
+   * Calls db.collection.insert()
    * @param { Object } data The issue data to insert.
    * @param callback The callback function that handles data insertion.
    * @returns { docID } The _id of the document we inserted.
@@ -93,32 +94,38 @@ class IssuesCollection extends BaseCollection {
    * @param { Object } options The options for update(). Set to false for all options.
    * @param { callback } callback The Callback function that handles update status.
    * @returns {boolean} true
-   * @throws { Meteor.Error } if there is no callback function provided.
    */
-  update(issueID, data, options = { multi: false, upsert: false }, callback) {
+  update(issueID, data, options, callback) {
     if (callback === undefined) {
-      throw new Meteor.Error(`${this.collectionName}'s update() method must provide a callback`);
-    } else {
-      const { title, description, tags, likes, status } = data;
-      const updated = {};
-      if (title) {
-        updated.title = title;
-      }
-      if (description) {
-        updated.description = description;
-      }
-      if (tags) {
-        updated.tags = tags;
-      }
-      if (_.isNumber(likes)) {
-        updated.likes = likes;
-      }
-      if (status) {
-        updated.status = status;
-      }
-      this.collection.update(issueID, { $set: updated }, options, callback);
-      return true;
+      console.log(`${this.collectionName}'s update() method must provide a callback`);
+      return false;
     }
+    let setOptions;
+    if (options === undefined) {
+      setOptions = { multi: false, upsert: false };
+    } else {
+      setOptions = options;
+    }
+    const { title, description, tags, likes, status } = data;
+    const updated = {};
+    if (title) {
+      updated.title = title;
+    }
+    if (description) {
+      updated.description = description;
+    }
+    if (tags) {
+      updated.tags = tags;
+    }
+    if (_.isNumber(likes)) {
+      updated.likes = likes;
+    }
+    if (status) {
+      updated.status = status;
+    }
+    this.collection.update(issueID, { $set: updated }, setOptions, callback);
+    return true;
+
   }
 }
 

@@ -24,6 +24,11 @@ export const IssueRepliesSchema = new SimpleSchema(
         type: String,
         label: 'Poster of the Reply',
       },
+      admin_status: {
+        type: Boolean,
+        label: 'Whether or not this reply is an admin status',
+        defaultValue: false,
+      },
     }, { tracker: Tracker },
 );
 
@@ -39,12 +44,13 @@ class IssueRepliesCollection extends BaseCollection {
    * @returns { docID } The _id of the document we inserted.
    */
   insert(data, callback) {
-    const { issue_id, reply, createdAt, owner } = data;
+    const { issue_id, reply, createdAt, owner, admin_status } = data;
     const issueID = this.collection.insert({
       issue_id,
       reply,
       createdAt,
       owner,
+      admin_status,
     }, callback);
     return issueID;
   }

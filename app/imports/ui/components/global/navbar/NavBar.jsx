@@ -1,7 +1,7 @@
 import React from 'react';
 import { Responsive } from 'semantic-ui-react';
-import NavBarDesktop from '../../components/global/responsive/NavBarDesktop';
-import NavBarMobile from '../../components/global/responsive/NavBarMobile';
+import NavBarDesktop from './NavBarDesktop';
+import NavBarMobile from './NavBarMobile';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 export default class NavBar extends React.Component {

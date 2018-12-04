@@ -7,11 +7,18 @@ import Status from '../../global/issue/Status';
 
 class TitleTags extends React.Component {
   render() {
+
+    const divStyle = {
+      paddingLeft: '60px',
+    };
+
     return (
         <Table.Cell>
           <Status issue={this.props.issue}/>
           <Link to={`/issue/${this.props.issue._id}`}> {this.props.issue.title} </Link>
-          <Tags issue={this.props.issue}/>
+          <div style={divStyle}>
+              <Tags issue={this.props.issue} size={'mini'}/>
+          </div>
         </Table.Cell>
     );
   }

@@ -1,14 +1,11 @@
 import React from 'react';
-import { Segment, Header } from 'semantic-ui-react';
+import { Segment, Header, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { format } from 'date-fns';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
-class Reply extends React.Component {
+class AdminStatusReply extends React.Component {
   render() {
-    const date = format(this.props.reply.createdAt, 'MMMM D, YYYY, h:mm aa');
-
     const segmentStyle = {
       paddingTop: '15px',
       paddingBottom: '15px',
@@ -16,17 +13,17 @@ class Reply extends React.Component {
 
     return (
         <div style={segmentStyle}>
-          <Header attached='top'> {this.props.reply.owner} commented on {date} </Header>
+          <Header attached='top'> <Icon name='warning circle'/> Issue Status Changed </Header>
           <Segment attached>
-            {this.props.reply.reply}
+            <i> {this.props.reply.reply} </i>
           </Segment>
         </div>
     );
   }
 }
 
-Reply.propTypes = {
+AdminStatusReply.propTypes = {
   reply: PropTypes.object.isRequired,
 };
 
-export default withRouter(Reply);
+export default withRouter(AdminStatusReply);

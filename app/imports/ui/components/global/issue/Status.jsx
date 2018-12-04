@@ -3,29 +3,30 @@ import { Meteor } from 'meteor/meteor';
 import { Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
 
 class Status extends React.Component {
   render() {
     const labelColor = () => {
       let result;
       switch (this.props.issue.status) {
-        case 'Open':
+        case `${STATUS.OPEN}`:
           result = 'blue';
           break;
-        case 'Acknowledged':
-          result = 'orange';
-          break;
-        case 'Ongoing':
+        case `${STATUS.ACKNOWLEDGED}`:
           result = 'yellow';
           break;
-        case 'Resolved':
+        case `${STATUS.ONGOING}`:
+          result = 'orange';
+          break;
+        case `${STATUS.RESOLVED}`:
           result = 'green';
           break;
-        case 'Removed':
-          result = 'red';
+        case `${STATUS.DUPLICATE}`:
+          result = 'violet';
           break;
-        case 'Duplicate':
-          result = 'purple';
+        case `${STATUS.REMOVED}`:
+          result = 'red';
           break;
         default:
           throw new Meteor.Error('Invalid status');
@@ -34,9 +35,9 @@ class Status extends React.Component {
     };
 
     return (
-          <Label
-              color={labelColor()}
-              content={this.props.issue.status}/>
+        <Label
+            color={labelColor()}
+            content={this.props.issue.status}/>
     );
   }
 }
