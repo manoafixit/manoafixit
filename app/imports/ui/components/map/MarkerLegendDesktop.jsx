@@ -1,8 +1,8 @@
 import React from 'react';
 import { Image, Container, Menu } from 'semantic-ui-react';
 import { STATUS } from '../../../api/IssuesCollection/IssueStatuses';
-// https://github.com/PaulLeCam/react-leaflet/issues/130#issuecomment-200816152
-export default class MarkerLegend extends React.Component {
+
+export default class MarkerLegendDesktop extends React.Component {
   render() {
     const wrapperStyle = {
       maxHeight: '30px',
