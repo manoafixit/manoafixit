@@ -33,7 +33,7 @@ class IssuePageDesktop extends React.Component {
 
 IssuePageDesktop.propTypes = {
   issue: PropTypes.object,
-  replies: PropTypes.array.isRequired,
+  replies: PropTypes.array,
 };
 
 export default withRouter(IssuePageDesktop);
