@@ -10,3 +10,8 @@ export const navbarStyle = {
   color: '#fff',
   marginBottom: '10px',
 };
+
+export const sidebarStyle = {
+  backgroundColor: Palette.landingColors.green2,
+  color: '#fff',
+};
