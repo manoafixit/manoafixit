@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Grid, Header, Menu, Responsive } from 'semantic-ui-react';
+import { Grid, Header, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { Meteor } from 'meteor/meteor';
