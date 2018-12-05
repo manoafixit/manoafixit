@@ -5,6 +5,7 @@ import { Grid, Container, Responsive, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssuePageDesktop from './IssuePageDesktop';
+import IssuePageMobile from './IssuePageMobile';
 import NotImplemented from '../../components/global/NotImplemented';
 import { IssueReplies } from '../../../api/IssueRepliesCollection/IssueRepliesCollection';
 
