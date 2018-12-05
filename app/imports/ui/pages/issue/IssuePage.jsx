@@ -18,7 +18,7 @@ class IssuePage extends React.Component {
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
-              <IssuePageMobile issue={this.props.issue}/>
+              <IssuePageMobile issue={this.props.issue} replies={this.props.replies}/>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
               <IssuePageDesktop issue={this.props.issue} replies={this.props.replies}/>
