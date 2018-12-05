@@ -105,7 +105,9 @@ class FeedPageMobile extends React.Component {
                 <Menu borderless style={menuHeaderStyle}>
                   <Menu.Item style={{ paddingLeft: '10px' }}>
                     <SearchBar issues={this.props.issues}/>
-                    <SubmitButton/>
+                    <div style={{ paddingLeft: '10px' }}>
+                      <SubmitButton/>
+                    </div>
                   </Menu.Item>
                 </Menu>
               </Grid.Row>

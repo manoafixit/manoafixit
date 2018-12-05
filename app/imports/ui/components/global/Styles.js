@@ -8,7 +8,7 @@ export const buttonLanding = {
 export const navbarStyle = {
   backgroundColor: Palette.landingColors.green1,
   color: '#fff',
-  marginBottom: '10px',
+  marginBottom: '14px',
   zIndex: 999,
 };
 

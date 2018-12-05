@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Grid, Image, Button } from 'semantic-ui-react';
-import { Dropdown } from 'semantic-ui-react/dist/commonjs/modules/Dropdown/Dropdown';
 import { buttonLanding } from '../global/Styles';
 
 /** A simple static component to render some text for the landing page. */
@@ -26,22 +25,22 @@ class SegmentOne extends React.Component {
             {this.props.currentUser === '' ? (
                 <Grid.Row>
                   <Grid.Column width={2} verticalAlign='top' textAlign='center'>
-                    <Button style={buttonLanding} as={NavLink} color='green' exact to="/signin">
-                      Sign In
-                    </Button>
+                    <Link to={'/signin'}>
+                      <Button style={buttonLanding} color='green' content='Sign In'/>
+                    </Link>
                   </Grid.Column>
                   <Grid.Column width={2} verticalAlign='top' textAlign='center'>
-                    <Button style={buttonLanding} as={NavLink} color='green' exact to="/signup">
-                      Sign Up
-                    </Button>
+                    <Link to={'/signup'}>
+                      <Button style={buttonLanding} color='green' content='Sign Up'/>
+                    </Link>
                   </Grid.Column>
                 </Grid.Row>
             ) : (
                 <Grid.Row>
                   <Grid.Column width={4} verticalAlign='top' textAlign='center'>
-                    <Button style={buttonLanding} as={NavLink} exact to="/submit">
-                      Submit an Issue
-                    </Button>
+                    <Link to={'/submit'}>
+                      <Button style={buttonLanding} content='Submit an Issue'/>
+                    </Link>
                   </Grid.Column>
                 </Grid.Row>
             )}

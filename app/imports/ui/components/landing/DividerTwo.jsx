@@ -1,13 +1,12 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { Grid, Header, Icon, Image } from 'semantic-ui-react';
+import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
 class DividerTwo extends React.Component {
   render() {
     return (
         <div className="divider-background">
-          <Grid textAlign='center' verticalAlign='center' container stackable>
+          <Grid textAlign='center' verticalAlign='middle' container stackable>
 
             <Grid.Row>
               <Grid.Column width={5} verticalAlign='top' textAlign='center'>
