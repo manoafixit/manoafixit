@@ -38,7 +38,7 @@ class SegmentOne extends React.Component {
             ) : (
                 <Grid.Row>
                   <Grid.Column width={4} verticalAlign='top' textAlign='center'>
-                    <Button style={{backgroundColor: '#073B17', color: '#fff'}} as={NavLink} exact to="/submit">
+                    <Button as={NavLink} color='green' exact to="/submit">
                       Submit an Issue
                     </Button>
                   </Grid.Column>
