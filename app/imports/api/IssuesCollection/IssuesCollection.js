@@ -56,6 +56,10 @@ export const IssuesSchema = new SimpleSchema(
         type: String,
         label: 'Poster of the Issue',
       },
+      likedBy: {
+        type: Object,
+        label: 'List of User IDs who liked the Issue',
+      },
     }, { tracker: Tracker },
 );
 
