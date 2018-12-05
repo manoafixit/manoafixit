@@ -30,8 +30,6 @@ export default class WarningModalDesktop extends Component {
             <Segment>
               <Header as='h2'> <Icon name='chrome'/> Google Chrome </Header>
               <Header as='h5'> iOS </Header>
-              Instructions for iOS.
-
               <List bulleted>
                 <List.Item>
                   Tap on the &apos;Settings&apos; application on your device
@@ -82,7 +80,6 @@ export default class WarningModalDesktop extends Component {
             <Segment>
               <Header as='h2'> <Icon name='safari'/> Safari </Header>
               <Header as='h5'> iOS </Header>
-              Instructions for iOS.
               <List bulleted>
                 <List.Item>
                   Refresh the page, and make sure you click on &lsquo;OK&rsquo; so that you can begin using our app
@@ -93,7 +90,6 @@ export default class WarningModalDesktop extends Component {
             <Segment>
               <Header as='h2'> <Icon name='firefox'/> Mozilla Firefox </Header>
               <Header as='h5'> iOS </Header>
-              Instructions for iOS.
               <List bulleted>
                 <List.Item>
                   Tap on the &apos;Settings&apos; application on your device
@@ -124,7 +120,7 @@ export default class WarningModalDesktop extends Component {
               <Header as='h5'> Android </Header>
               <List bulleted>
                 <List.Item>
-                  Click on <Icon name='ellipsis vertical'/> icon on the top right of your browser.
+                  Click on <Icon name='ellipsis vertical'/> icon on the top right of your browser
                 </List.Item>
                 <List.Item>
                   Click on Settings
@@ -133,7 +129,7 @@ export default class WarningModalDesktop extends Component {
                   Click on Clear Private Data
                 </List.Item>
                 <List.Item>
-                  Check Site settings, and click CLEAR DATA.
+                  Check Site settings, and click CLEAR DATA
                 </List.Item>
               </List>
             </Segment>
