@@ -20,7 +20,7 @@ class Replies extends React.Component {
 }
 
 Replies.propTypes = {
-  replies: PropTypes.array.isRequired,
+  replies: PropTypes.array,
   issue: PropTypes.object,
 };
 

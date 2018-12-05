@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import TitleTags from './cell/TitleTags';
 import Date from './cell/Date';
 import Owner from './cell/Owner';
-import Likes from './cell/Likes';
+import Likes from '../global/issue/Likes';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class FeedRow extends React.Component {
@@ -14,7 +14,9 @@ class FeedRow extends React.Component {
         <Table.Row>
           <TitleTags issue={this.props.issue}/>
           <Owner issue={this.props.issue}/>
-          <Likes issue={this.props.issue}/>
+          <Table.Cell>
+            <Likes issue={this.props.issue}/>
+          </Table.Cell>
           <Date issue={this.props.issue}/>
         </Table.Row>
     );
