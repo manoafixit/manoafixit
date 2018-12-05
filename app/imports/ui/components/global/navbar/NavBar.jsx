@@ -18,7 +18,3 @@ export default class NavBar extends React.Component {
     );
   }
 }
-
-export const zIndexMapFix = {
-  zIndex: 999,
-};

@@ -5,8 +5,16 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header, Sidebar, Icon } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
+<<<<<<< HEAD:app/imports/ui/components/global/navbar/NavBarMobile.jsx
+<<<<<<< HEAD:app/imports/ui/components/global/navbar/NavBarMobile.jsx
 import { ROLE } from '../../../../api/Roles/Roles';
+import { zIndexMapFix } from './NavBar';
+=======
 import { navbarStyle, sidebarStyle } from '../Styles';
+>>>>>>> Changed Colors of Navbar (mobile) and Sidebar:app/imports/ui/components/global/responsive/NavBarMobile.jsx
+=======
+import { navbarStyle, sidebarStyle } from '../Styles';
+>>>>>>> dabd91d3157cf75d81edf33b070fb0f1ba89cf99:app/imports/ui/components/global/responsive/NavBarMobile.jsx
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
@@ -46,10 +54,11 @@ class NavBarMobile extends React.Component {
               icon='labeled'
               inverted
               onHide={this.handleSidebarHide}
-              style={sidebarStyle}
+              style={navbarStyle}
               vertical
               visible={visible}
               width='thin'
+              style={zIndexMapFix}
           >
             {this.props.currentUser ? (
                 [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/"

@@ -9,9 +9,11 @@ export const navbarStyle = {
   backgroundColor: Palette.landingColors.green1,
   color: '#fff',
   marginBottom: '10px',
+  zIndex: 999,
 };
 
 export const sidebarStyle = {
   backgroundColor: Palette.landingColors.green2,
   color: '#fff',
+  zIndex: 999,
 };
