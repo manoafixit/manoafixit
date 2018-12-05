@@ -4,26 +4,22 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header } from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
-import { ROLE } from '../../../../api/Roles/Roles';
+import { navbarStyle } from '../Styles';
 
 /** The NavBarDesktop appears at the top of every page. Rendered by the App Layout component. */
 class NavBarDesktop extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px' };
     return (
-        <Menu style={menuStyle} attached="top" borderless inverted>
+        <Menu style={navbarStyle} attached="top" borderless inverted>
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
             <Header inverted as='h1'>ManoaFixIt</Header>
           </Menu.Item>
           {this.props.currentUser ? (
-              [<Menu.Item as={NavLink} activeClassName="active" exact to="/" key='landing'>Home</Menu.Item>,
+              [<Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/"
+                          key='landing'>Home</Menu.Item>,
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/submit" key='submit'>Submit</Menu.Item>,
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/feed" key='add'>Feed</Menu.Item>,
                 <Menu.Item as={NavLink} activeClassName="active" exact to="/map" key='list'>Map</Menu.Item>]
-          ) : ''}
-          {Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ? (
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/admins" key='admins'>Admins</Menu.Item>
           ) : ''}
           <Menu.Item position="right">
             {this.props.currentUser === '' ? (

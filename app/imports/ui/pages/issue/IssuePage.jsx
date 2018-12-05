@@ -5,7 +5,7 @@ import { Grid, Container, Responsive, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Issues } from '../../../api/IssuesCollection/IssuesCollection';
 import IssuePageDesktop from './IssuePageDesktop';
-import NotImplemented from '../../components/global/NotImplemented';
+import IssuePageMobile from './IssuePageMobile';
 import { IssueReplies } from '../../../api/IssueRepliesCollection/IssueRepliesCollection';
 
 class IssuePage extends React.Component {
@@ -18,8 +18,7 @@ class IssuePage extends React.Component {
         <Container>
           <Grid stackable>
             <Responsive {...Responsive.onlyMobile}>
-              <NotImplemented/>
-              <IssuePageDesktop issue={this.props.issue}/>
+              <IssuePageMobile issue={this.props.issue}/>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
               <IssuePageDesktop issue={this.props.issue} replies={this.props.replies}/>

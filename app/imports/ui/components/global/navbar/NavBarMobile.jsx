@@ -4,8 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Menu, Dropdown, Header, Sidebar, Icon } from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
-import { ROLE } from '../../../../api/Roles/Roles';
+import { navbarStyle } from '../Styles';
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
@@ -20,7 +19,7 @@ class NavBarMobile extends React.Component {
     const { visible } = this.state;
     return (
         <div>
-          <Menu attached="top" borderless inverted>
+          <Menu style={navbarStyle} attached="top" borderless inverted>
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
               <Header inverted as='h1'>ManoaFixIt</Header>
             </Menu.Item>
@@ -45,6 +44,7 @@ class NavBarMobile extends React.Component {
               icon='labeled'
               inverted
               onHide={this.handleSidebarHide}
+              style={navbarStyle}
               vertical
               visible={visible}
               width='thin'
@@ -61,9 +61,6 @@ class NavBarMobile extends React.Component {
                   <Menu.Item as={NavLink} onClick={this.handleSidebarHide} activeClassName="active" exact to="/signout"
                              key='signout'>Sign
                     Out</Menu.Item>]
-            ) : ''}
-            {Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ? (
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/admins" key='admins'>Admins</Menu.Item>
             ) : ''}
           </Sidebar>
         </div>

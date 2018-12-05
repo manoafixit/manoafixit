@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Segment, Menu, Icon, Message } from 'semantic-ui-react';
+import { Header, Segment, Menu, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -9,6 +9,7 @@ import Tags from '../global/issue/Tags';
 import Status from '../global/issue/Status';
 import { ROLE } from '../../../api/Roles/Roles';
 import AdminStatusChange from '../global/issue/AdminStatusChange';
+import Likes from '../global/issue/Likes';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class OriginalPost extends React.Component {
@@ -41,10 +42,10 @@ class OriginalPost extends React.Component {
               </Header>
             </Menu.Item>
             <Menu.Item position='right'>
-              <Icon name='like'/> {this.props.issue.likes}
+              <Likes issue={this.props.issue}/>
             </Menu.Item>
             <Menu.Item>
-              { (Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)
+              {(Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)
                   || Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
                   <AdminStatusChange issue={this.props.issue}/>
                   : <Status issue={this.props.issue}/>}
