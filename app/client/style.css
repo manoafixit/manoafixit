@@ -20,3 +20,8 @@
   background-size: cover;
   padding: 31vh 0px;
 }
+
+.ui.button.buttonLanding {
+  background-color: #073B17;
+  color: #fff;
+}

@@ -11,10 +11,10 @@ class SegmentOne extends React.Component {
   render() {
     return (
         <div className="landing-background">
-          <Grid textAlign='center' verticalalign='middle' container stackable>
+          <Grid textAlign='center' verticalAlign='center' container stackable>
 
             <Grid.Row>
-              <Grid.Column width={5} verticalalign='middle' textAlign='center'>
+              <Grid.Column width={5} veritcalAlign='center' textAlign='center'>
                 <div style={{ paddingTop: '100px' }}>
                   <Image size='large' src="/images/mfi-logo2.png"/>
                 </div>
@@ -38,7 +38,7 @@ class SegmentOne extends React.Component {
             ) : (
                 <Grid.Row>
                   <Grid.Column width={4} verticalAlign='top' textAlign='center'>
-                    <Button style={{backgroundColor: '#073B17', color: '#fff'}} as={NavLink} exact to="/submit">
+                    <Button as={NavLink} color='green' exact to="/submit">
                       Submit an Issue
                     </Button>
                   </Grid.Column>
