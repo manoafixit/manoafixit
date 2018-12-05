@@ -56,9 +56,18 @@ export const IssuesSchema = new SimpleSchema(
         type: String,
         label: 'Poster of the Issue',
       },
+      // likedBy: {
+      //   type: Object,
+      //   label: 'List of User IDs who liked the Issue',
+      //   optional: true,
+      // },
       likedBy: {
-        type: Object,
-        label: 'List of User IDs who liked the Issue',
+        type: Array,
+        label: 'Array of User IDS who liked the Issue',
+        optional: true,
+      },
+      'likedBy.$': {
+        type: String,
       },
     }, { tracker: Tracker },
 );
@@ -75,7 +84,7 @@ class IssuesCollection extends BaseCollection {
    * @returns { docID } The _id of the document we inserted.
    */
   insert(data, callback) {
-    const { title, description, tags, likes, status = 'Open', lat, long, owner, createdAt } = data;
+    const { title, description, tags, likes, status = 'Open', lat, long, owner, createdAt, likedBy } = data;
     const issueID = this.collection.insert({
       title,
       description,
@@ -86,6 +95,7 @@ class IssuesCollection extends BaseCollection {
       long,
       createdAt,
       owner,
+      likedBy,
     }, callback);
     return issueID;
   }
@@ -101,6 +111,7 @@ class IssuesCollection extends BaseCollection {
    */
   update(issueID, data, options, callback) {
     if (callback === undefined) {
+      // eslint-disable-next-line no-console
       console.log(`${this.collectionName}'s update() method must provide a callback`);
       return false;
     }
@@ -129,7 +140,53 @@ class IssuesCollection extends BaseCollection {
     }
     this.collection.update(issueID, { $set: updated }, setOptions, callback);
     return true;
+  }
 
+  increaseLikes(issueID, data, options, callback) {
+    if (callback === undefined) {
+      // eslint-disable-next-line no-console
+      console.log(`${this.collectionName}'s increaseLikes() method must provide a callback`);
+      return false;
+    }
+    let setOptions;
+    if (options === undefined) {
+      setOptions = { multi: false, upsert: false };
+    } else {
+      setOptions = options;
+    }
+    this.collection.update(
+        issueID,
+        {
+          $push: { likedBy: data },
+          $inc: { likes: 1 },
+        },
+        setOptions,
+        callback,
+    );
+    return true;
+  }
+
+  decreaseLikes(issueID, data, options, callback) {
+    if (callback === undefined) {
+      // eslint-disable-next-line no-console
+      console.log(`${this.collectionName}'s decreaseLikes() method must provide a callback`);
+      return false;
+    }
+    let setOptions;
+    if (options === undefined) {
+      setOptions = { multi: false, upsert: false };
+    } else {
+      setOptions = options;
+    }
+    this.collection.update(
+        issueID,
+        {
+          $pull: { likedBy: data },
+          $inc: { likes: -1 },
+        },
+        setOptions, callback,
+    );
+    return true;
   }
 }
 

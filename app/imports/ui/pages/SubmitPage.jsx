@@ -41,19 +41,6 @@ class SubmitPage extends React.Component {
             haveUserLocation: true,
           });
         },
-        //     () => {
-        //   fetch('https://ipapi.co/json')
-        //       .then(res => res.json())
-        //       .then(location => {
-        //         this.setState({
-        //           location: {
-        //             lat: location.latitude,
-        //             long: location.longitude,
-        //           },
-        //           haveUserLocation: true,
-        //         });
-        //       });
-        // });
         this.setState({ haveUserLocation: false }));
   }
 
@@ -71,7 +58,9 @@ class SubmitPage extends React.Component {
   submit(data) {
     const { title, description, tags, likes, status, lat, long, createdAt } = data;
     const owner = Meteor.user().username;
-    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner }, this.insertCallback);
+    const likedBy = [];
+    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy },
+        this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
