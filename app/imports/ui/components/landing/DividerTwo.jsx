@@ -2,11 +2,11 @@ import React from 'react';
 import { Grid, Header, Icon } from 'semantic-ui-react';
 
 /** A simple static component to render some text for the landing page. */
-class SegmentTwo extends React.Component {
+class DividerTwo extends React.Component {
   render() {
     return (
-        <div className="landing-background2">
-          <Grid textAlign='center' verticalalign='middle' container stackable>
+        <div className="divider-background">
+          <Grid textAlign='center' verticalAlign='middle' container stackable>
 
             <Grid.Row>
               <Grid.Column width={5} verticalAlign='top' textAlign='center'>
@@ -37,4 +37,4 @@ class SegmentTwo extends React.Component {
   }
 }
 
-export default SegmentTwo;
+export default DividerTwo;

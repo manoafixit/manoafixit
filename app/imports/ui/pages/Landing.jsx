@@ -1,4 +1,6 @@
 import React from 'react';
+import DividerOne from '../components/landing/DividerOne';
+import DividerTwo from '../components/landing/DividerTwo';
 import SegmentOne from '../components/landing/SegmentOne';
 import SegmentTwo from '../components/landing/SegmentTwo';
 import SegmentThree from '../components/landing/SegmentThree';
@@ -9,7 +11,9 @@ class Landing extends React.Component {
     return (
         <div>
           <SegmentOne/>
+          <DividerOne/>
           <SegmentTwo/>
+          <DividerTwo/>
           <SegmentThree/>
         </div>
     );
