@@ -12,6 +12,7 @@ import SubmitPage from '../pages/SubmitPage';
 import FeedPage from '../pages/feed/FeedPage';
 import IssuePage from '../pages/issue/IssuePage';
 import MapPage from '../pages/MapPage';
+import DashBoard from '../pages/dashboard/Dashboard';
 import AdminsPage from '../pages/admins/AdminsPage';
 // import AddAdminsPage from '../pages/admins/AddAdminsPage';
 import NotFound from '../pages/NotFound';
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/map" component={MapPage}/>
+              <ProtectedRoute path="/dashboard" component={DashBoard}/>
               <ProtectedRoute path="/submit" component={SubmitPage}/>
               <ProtectedRoute path="/feed" component={FeedPage}/>
               <ProtectedRoute path="/issue/:_id" component={IssuePage}/>
