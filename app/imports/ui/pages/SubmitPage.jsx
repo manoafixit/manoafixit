@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Grid, Header, Segment, Container } from 'semantic-ui-react';
+import { Grid, Header, Segment } from 'semantic-ui-react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {
   AutoForm,
@@ -91,13 +91,13 @@ class SubmitPage extends React.Component {
                   </AutoForm>
                 </div>
                 : <WarningModal/>}
-            <Segment marginBottom='5px'>
-              Note: Tracking the location of where an issue is submitted is less
-              accurate when submitting from a computer or laptop than submitting
-              from your phone or any device with a GPS.
+            <Segment style={{ marginBottom: '5px' }}>
+              <b>Note: Tracking the location of where an issue is submitted is less
+                accurate when submitting from a computer or laptop than submitting
+                from your phone or any device with a GPS.</b>
             </Segment>
-                <Grid.Row>
-                </Grid.Row>
+            <Grid.Row>
+            </Grid.Row>
           </Grid.Column>
         </Grid>
     );
