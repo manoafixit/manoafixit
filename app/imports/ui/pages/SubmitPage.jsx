@@ -72,6 +72,11 @@ class SubmitPage extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const wrapperStyle = {
+      paddingTop: '20px',
+      paddingBottom: '50px',
+    };
+
     return (
         <Grid container centered>
           <Grid.Column>
