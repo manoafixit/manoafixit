@@ -10,19 +10,35 @@ class Footer extends React.Component {
         <div className="footer-background">
           <footer>
             <div style={divStyle} className="ui center aligned container">
-              <Grid columns={8} divided centered>
-                <Grid.Row centered>
-                  FOLLOW US ON SOCIAL MEDIA
+              <Grid columns={8} centered divided stackable>
+                <Grid.Row centered verticalAlign='middle'>
+                  CHECK OUR GITHUB PAGES
+                  <Icon style={{paddingLeft: '10px'}} name='github' size='large'/>
                 </Grid.Row>
-                <Grid.Row>
+
+                <Grid.Row centered textAlign='center'>
                   <Grid.Column textAlign='center'>
-                    <Icon name='instagram' size='large'/>
+                    <a href='https://github.com/manoafixit/manoafixit'>
+                      ManoaFixIt
+                    </a>
                   </Grid.Column>
+
                   <Grid.Column textAlign='center'>
-                    <Icon name='twitter' size='large'/>
+                    <a href='https://github.com/Au-Adrian'>
+                      Adrian Au
+                    </a>
                   </Grid.Column>
+
                   <Grid.Column textAlign='center'>
-                    <Icon name='facebook official' size='large'/>
+                    <a href='https://github.com/gcalica'>
+                      Gian Calica
+                    </a>
+                  </Grid.Column>
+
+                  <Grid.Column textAlign='center'>
+                    <a href='https://github.com/gbfrancisco'>
+                      Graham Francisco
+                    </a>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>

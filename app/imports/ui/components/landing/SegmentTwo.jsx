@@ -10,23 +10,23 @@ class SegmentTwo extends React.Component {
 
             <Grid.Row>
               <Grid.Column width={5} verticalAlign='top' textAlign='center'>
-                <Icon size='huge' name="exclamation circle" inverted/>
-                <Header as='h1' inverted>Issues Feed</Header>
-                <Header as='h3' inverted>This app shows the list of issues reported by UHM students..
-                </Header>
-              </Grid.Column>
-
-              <Grid.Column width={5} verticalAlign='top' textAlign='center'>
                 <Icon size='huge' name="feed" inverted/>
-                <Header as='h1' inverted>Suggestions Feed</Header>
+                <Header as='h1' inverted>Submit Issues</Header>
                 <Header as='h3' inverted>This app shows the list of issues reported by UHM students.</Header>
               </Grid.Column>
 
               <Grid.Column width={5} verticalAlign='top' textAlign='center'>
+                <Icon size='huge' name="exclamation circle" inverted/>
+                <Header as='h1' inverted>Issues Feed</Header>
+                <Header as='h3' inverted>This app shows the list of issues reported by UHM students.
+                </Header>
+              </Grid.Column>
+
+              <Grid.Column width={5} verticalAlign='top' textAlign='center'>
                 <Icon size='huge' name="map marker alternate" inverted/>
-                <Header as='h1' inverted>Heat Map</Header>
+                <Header as='h1' inverted>Issues Map</Header>
                 <Header as='h3' inverted>It can also display a map of the campus that shows the reported issues
-                  based on urgency.
+                  indicated by markers.
                 </Header>
               </Grid.Column>
             </Grid.Row>
