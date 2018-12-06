@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
       if (this.state.value.length < 1) return this.resetSearchBar();
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      const issues = _.map(this.props.issues, issue => _.omit(issue, 'createdAt'));
+      const issues = _.map(this.props.issues, issue => _.omit(issue, ['createdAt', 'likedBy', 'tagColors']));
       this.setState({
         isLoading: false,
         results: _.filter(issues, issue => re.test(issue.title)),
