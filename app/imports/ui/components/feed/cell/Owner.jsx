@@ -7,6 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { Roles } from 'meteor/alanning:roles';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
+import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
 import { ROLE } from '../../../../api/Roles/Roles';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
@@ -31,6 +32,7 @@ class Owner extends React.Component {
     }).then((result) => {
       if (result.value) {
         Issues.remove(this.props.issue._id);
+        IssueReplies.removeIssues(this.props.issue._id);
         MySwal.fire({
           title: 'Deleted Issue!',
           type: 'success',
