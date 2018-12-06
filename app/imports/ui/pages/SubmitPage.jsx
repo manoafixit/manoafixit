@@ -91,6 +91,13 @@ class SubmitPage extends React.Component {
                   </AutoForm>
                 </div>
                 : <WarningModal/>}
+            <Segment style={{ marginBottom: '5px' }}>
+              <b>Note: Tracking the location of where an issue is submitted is less
+                accurate when submitting from a computer or laptop than submitting
+                from your phone or any device with a GPS.</b>
+            </Segment>
+            <Grid.Row>
+            </Grid.Row>
           </Grid.Column>
         </Grid>
     );
