@@ -30,15 +30,14 @@ export default class WarningModalDesktop extends Component {
                   <Header as='h2'> <Icon name='chrome'/> Google Chrome </Header>
                   <List bulleted>
                     <List.Item>
-                      Click on the <Icon name='crosshairs'/> icon in your browser,
-                      It is located to the right of the url address bar
+                      Click on the <Icon name='crosshairs'/> icon in your browser.
+                      This should be located to the right of the url address bar
                     </List.Item>
                     <List.Item>
-                      Click on where it says &lsquo;clear these settings for future visits&rsquo;
-                      It should be in blue text
+                      Click on the text that says &lsquo;clear these settings for future visits&rsquo;
                     </List.Item>
                     <List.Item>
-                      Refresh the page, and when our application asks for permission to use your location,
+                      Refresh the page. When you are asked for permission to use your location,
                       make sure you select &lsquo;Allow&rsquo;, so that you can begin using our app
                     </List.Item>
                   </List>
@@ -59,7 +58,8 @@ export default class WarningModalDesktop extends Component {
                             Click on &lsquo;Location&rsquo;
                           </List.Item>
                               <List.Item>
-                                Where it says  &lsquo;Manoafixit.meteorapp.com&rsquo; select allow
+                                In the section where it says  &lsquo;Manoafixit.meteorapp.com&rsquo;,
+                                you will need to select &lsquo;allow&rsquo;
                               </List.Item>
                                   <List.Item>
                                     Refresh the page, so you can begin using our app
@@ -70,15 +70,15 @@ export default class WarningModalDesktop extends Component {
                   <Header as='h2'> <Icon name='firefox'/> Mozilla Firefox </Header>
                   <List bulleted>
                     <List.Item>
-                      Click on the <Icon name='location arrow'/> icon, it is located
+                      Click on the <Icon name='location arrow'/> icon. This should be located
                       to the left of your url address bar
                     </List.Item>
                     <List.Item>
-                      Where it says &lsquo;Access your location&rsquo; and &lsquo;Blocked&rsquo;
+                      In the section where it says &lsquo;Access your location&rsquo; and &lsquo;Blocked&rsquo;
                       click on the <Icon name='x'/> icon
                     </List.Item>
                     <List.Item>
-                      Refresh the page, when our application asks for permission to use your location,
+                      Refresh the page. When you are asked for permission to use your location,
                       make sure you select &lsquo;Allow location access&rsquo; so that you can begin using our app
                     </List.Item>
                   </List>
