@@ -5,7 +5,8 @@ import { Grid, Icon } from 'semantic-ui-react';
 class FooterDesktop extends React.Component {
   render() {
     const divStyle = { paddingTop: '15px', color: 'white' };
-
+    const fontStyle = { color: '#fff' };
+    
     return (
         <div className="footer-background">
           <footer>
@@ -18,25 +19,25 @@ class FooterDesktop extends React.Component {
 
                 <Grid.Row centered textAlign='center'>
                   <Grid.Column textAlign='center'>
-                    <a href='https://github.com/manoafixit/manoafixit'>
+                    <a href='https://github.com/manoafixit/manoafixit' style={fontStyle}>
                       ManoaFixIt
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
-                    <a href='https://github.com/Au-Adrian'>
+                    <a href='https://github.com/Au-Adrian' style={fontStyle}>
                       Adrian Au
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
-                    <a href='https://github.com/gcalica'>
+                    <a href='https://github.com/gcalica' style={fontStyle}>
                       Gian Calica
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
-                    <a href='https://github.com/gbfrancisco'>
+                    <a href='https://github.com/gbfrancisco' style={fontStyle}>
                       Graham Francisco
                     </a>
                   </Grid.Column>

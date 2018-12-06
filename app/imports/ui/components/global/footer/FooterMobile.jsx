@@ -24,17 +24,17 @@ class FooterMobile extends React.Component {
                     </a>
                     <br/>
                     <br/>
-                    <a href='https://github.com/Au-Adrian'>
+                    <a href='https://github.com/Au-Adrian' style={fontStyle}>
                       Adrian Au
                     </a>
                     <br/>
                     <br/>
-                    <a href='https://github.com/gcalica'>
+                    <a href='https://github.com/gcalica' style={fontStyle}>
                       Gian Calica
                     </a>
                     <br/>
                     <br/>
-                    <a href='https://github.com/gbfrancisco'>
+                    <a href='https://github.com/gbfrancisco' style={fontStyle}>
                       Graham Francisco
                     </a>
                   </Grid.Column>
