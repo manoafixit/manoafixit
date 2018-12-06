@@ -21,7 +21,7 @@ class IssuePageDesktop extends React.Component {
         <div style={wrapperStyle}>
           <Container>
             <div style={issueWrapperStyle}>
-              <OriginalPost issue={this.props.issue} createdAt={date}/>
+              <OriginalPost issue={this.props.issue}/>
             </div>
             <ReplyBox issue={this.props.issue}/>
             <Replies issue={this.props.issue} replies={this.props.replies}/>

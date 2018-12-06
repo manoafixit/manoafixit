@@ -13,11 +13,6 @@ import Likes from '../global/issue/Likes';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class OriginalPost extends React.Component {
-  constructor(props) {
-    super(props);
-    this.deleteConfirm = this.deleteConfirm.bind(this);
-  }
-
   render() {
     const menuStyle = {
       border: 'none',
@@ -60,9 +55,6 @@ class OriginalPost extends React.Component {
               <Menu borderless attached='top' style={{ boxShadow: 'none' }}>
                 <Menu.Item position='right'>
                   <Link to={`/edit/${this.props.issue._id}`}>Edit</Link>
-                </Menu.Item>
-                <Menu.Item as='a' onClick={this.deleteConfirm} style={{ color: '#4183C4' }}>
-                  Delete
                 </Menu.Item>
               </Menu>
               : ''

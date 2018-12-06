@@ -24,9 +24,7 @@ class OriginalPostMobile extends React.Component {
                 <Menu.Item position='right'>
                   <Link to={`/edit/${this.props.issue._id}`}> <Button basic>Edit</Button> </Link>
                 </Menu.Item>
-                <Menu.Item>
-                  Delete
-                </Menu.Item>
+
               </Menu>
               : ''
           }

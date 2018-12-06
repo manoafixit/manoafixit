@@ -4,7 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import 'semantic-ui-css/semantic.css';
 import { Roles } from 'meteor/alanning:roles';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { ROLE } from '../../api/Roles/Roles';
 import NavBar from '../components/global/navbar/NavBar';
 import Footer from '../components/global/Footer';
 import Landing from '../pages/Landing';
