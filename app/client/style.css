@@ -9,6 +9,11 @@
   background-color: #041E0C;
 }
 
+.footer-background2 {
+  height: 225px;
+  background-color: #041E0C;
+}
+
 .landing-background {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background3.png') no-repeat center center fixed;
   background-size: cover;
