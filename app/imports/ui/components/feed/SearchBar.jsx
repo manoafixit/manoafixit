@@ -27,12 +27,10 @@ class SearchBar extends React.Component {
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
       const issues = _.map(this.props.issues, issue => _.omit(issue, 'createdAt'));
-      console.log(issues);
       this.setState({
         isLoading: false,
         results: _.filter(issues, issue => re.test(issue.title)),
       });
-      console.log(this.state.results);
     }, 300);
   }
 

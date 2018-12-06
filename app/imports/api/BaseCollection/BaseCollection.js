@@ -89,12 +89,9 @@ class BaseCollection {
    * @param { callback } callback - The Callback function that handles remove status.
    * @returns { boolean } true
    */
-  remove(selector, callback) {
-    if (callback === undefined) {
-      throw new Meteor.Error(`${this.collectionName}'s remove() method must provide a callback`);
-    }
+  remove(selector) {
     const doc = this.findOne(selector);
-    this.colection.remove(doc._id);
+    this.collection.remove({ _id: doc._id });
     return true;
   }
 
