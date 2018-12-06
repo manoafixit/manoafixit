@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Grid, Header, Segment } from 'semantic-ui-react';
+import { _ } from 'meteor/erasaur:meteor-lodash';
 import { Bert } from 'meteor/themeteorchef:bert';
 import {
   AutoForm,
@@ -54,12 +55,18 @@ class SubmitPage extends React.Component {
     }
   }
 
+  generateColors() {
+    const colors = ['olive', 'teal', 'purple', 'pink'];
+    return _.shuffle(colors);
+  }
+
   /** On submit, insert the data. */
   submit(data) {
     const { title, description, tags, likes, status, lat, long, createdAt } = data;
     const owner = Meteor.user().username;
+    const tagColors = this.generateColors();
     const likedBy = [];
-    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy },
+    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy, tagColors },
         this.insertCallback);
   }
 
@@ -87,6 +94,7 @@ class SubmitPage extends React.Component {
                       <HiddenField name='long' value={this.state.location.long}/>
                       <HiddenField name='createdAt' value={new Date()}/>
                       <HiddenField name='owner' value='fakevalue'/>
+                      <HiddenField name='tagColors'/>
                     </Segment>
                   </AutoForm>
                 </div>
