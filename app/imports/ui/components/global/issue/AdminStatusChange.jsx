@@ -51,7 +51,7 @@ class AdminStatusChange extends React.Component {
     const createdAt = new Date();
     const admin_status = true;
     let reply;
-
+    if (this.state.stateValue === value) return;
     switch (value) {
       case 1:
         Issues.update(issue_id, { status: `${STATUS.OPEN}` }, undefined, this.updateCallback);
