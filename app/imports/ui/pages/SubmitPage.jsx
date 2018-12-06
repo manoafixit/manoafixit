@@ -78,41 +78,43 @@ class SubmitPage extends React.Component {
     };
 
     return (
-        <Grid container centered>
-          <Grid.Column>
-            {this.state.haveUserLocation ?
-                <div>
-                  <Header as="h2" textAlign="center">Submit Issue</Header>
-                  <AutoForm ref={(ref) => {
-                    this.formRef = ref;
-                  }} schema={IssuesSchema} onSubmit={this.submit}>
-                    <Segment>
-                      <TextField name='title'/>
-                      <LongTextField name='description'/>
-                      <ListField name='tags'>
-                      </ListField>
-                      <SubmitField value='Submit'/>
-                      <ErrorsField/>
-                      <HiddenField name='likes'/>
-                      <HiddenField name='status'/>
-                      <HiddenField name='lat' value={this.state.location.lat}/>
-                      <HiddenField name='long' value={this.state.location.long}/>
-                      <HiddenField name='createdAt' value={new Date()}/>
-                      <HiddenField name='owner' value='fakevalue'/>
-                      <HiddenField name='tagColors'/>
-                    </Segment>
-                  </AutoForm>
-                </div>
-                : <WarningModal/>}
-            <Segment style={{ marginBottom: '5px' }}>
-              <b>Note: Tracking the location of where an issue is submitted is less
-                accurate when submitting from a computer or laptop than submitting
-                from your phone or any device with a GPS.</b>
-            </Segment>
-            <Grid.Row>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid>
+        <div style={wrapperStyle}>
+          <Grid container centered>
+            <Grid.Column>
+              {this.state.haveUserLocation ?
+                  <div>
+                    <Header as="h2" textAlign="center">Submit Issue</Header>
+                    <AutoForm ref={(ref) => {
+                      this.formRef = ref;
+                    }} schema={IssuesSchema} onSubmit={this.submit}>
+                      <Segment>
+                        <TextField name='title'/>
+                        <LongTextField name='description'/>
+                        <ListField name='tags'>
+                        </ListField>
+                        <SubmitField value='Submit'/>
+                        <ErrorsField/>
+                        <HiddenField name='likes'/>
+                        <HiddenField name='status'/>
+                        <HiddenField name='lat' value={this.state.location.lat}/>
+                        <HiddenField name='long' value={this.state.location.long}/>
+                        <HiddenField name='createdAt' value={new Date()}/>
+                        <HiddenField name='owner' value='fakevalue'/>
+                        <HiddenField name='tagColors'/>
+                      </Segment>
+                    </AutoForm>
+                  </div>
+                  : <WarningModal/>}
+              <Segment style={{ marginBottom: '5px' }}>
+                <b>Note: Tracking the location of where an issue is submitted is less
+                  accurate when submitting from a computer or laptop than submitting
+                  from your phone or any device with a GPS.</b>
+              </Segment>
+              <Grid.Row>
+              </Grid.Row>
+            </Grid.Column>
+          </Grid>
+        </div>
     );
   }
 }
