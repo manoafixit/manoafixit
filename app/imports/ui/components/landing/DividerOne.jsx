@@ -13,7 +13,7 @@ class DividerOne extends React.Component {
                 <Header as='h1' style={{ fontSize: '40px' }} inverted>Manoa Fix It!</Header>
                 <Header as='h2' style={{ fontSize: '20px' }} textAlign='center' inverted>Ever faced some staggering
                   issues around campus? Ever wanted to help solve such issues but hesitate at the last moment
-                  because it's too bothersome to contact the higher-ups about it? Well fear no longer! ManoaFixIt
+                  because it&apos;s too bothersome to contact the higher-ups about it? Well fear no longer! ManoaFixIt
                   is an application that makes it easier to report problems around campus. It includes...</Header>
               </Grid.Column>
             </Grid.Row>

@@ -13,32 +13,37 @@ class FooterDesktop extends React.Component {
             <div style={divStyle} className="ui center aligned container">
               <Grid columns={8} centered divided stackable>
                 <Grid.Row centered verticalAlign='middle'>
-                  CHECK OUR GITHUB PAGES
-                  <Icon style={{paddingLeft: '10px'}} name='github' size='large'/>
+                  <a href='https://manoafixit.github.io/' style={fontStyle}>
+                    CHECK OUR GITHUB PAGES
+                    <Icon style={{ paddingLeft: '10px' }} name='github alternate' size='large'/>
+                  </a>
                 </Grid.Row>
 
                 <Grid.Row centered textAlign='center'>
                   <Grid.Column textAlign='center'>
                     <a href='https://github.com/manoafixit/manoafixit' style={fontStyle}>
-                      ManoaFixIt
+                      ManoaFixIt Repo <Icon style={{ paddingLeft: '10px' }} name='github'/>
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
                     <a href='https://github.com/Au-Adrian' style={fontStyle}>
                       Adrian Au
+                      <Icon style={{ paddingLeft: '10px' }} name='github'/>
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
                     <a href='https://github.com/gcalica' style={fontStyle}>
                       Gian Calica
+                      <Icon style={{ paddingLeft: '10px' }} name='github'/>
                     </a>
                   </Grid.Column>
 
                   <Grid.Column textAlign='center'>
                     <a href='https://github.com/gbfrancisco' style={fontStyle}>
                       Graham Francisco
+                      <Icon style={{ paddingLeft: '10px' }} name='github'/>
                     </a>
                   </Grid.Column>
                 </Grid.Row>

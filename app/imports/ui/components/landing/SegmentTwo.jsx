@@ -28,7 +28,8 @@ class SegmentTwo extends React.Component {
                 <Image size='medium' src="/images/issue.png" centered rounded/>
                 <Header as='h1' inverted>Issue Page</Header>
                 <Header as='h3' inverted>By clicking on a certain issue on the feed, you will be redirected to a page
-                  containing the issue's location and description. People can also comment on the issue in this page.
+                  containing the issue&apos;s location and description. People can also comment on the issue in this
+                  page.
                 </Header>
               </Grid.Column>
             </Grid.Row>
