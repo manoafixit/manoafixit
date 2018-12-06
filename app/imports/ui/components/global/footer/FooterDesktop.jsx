@@ -6,7 +6,7 @@ class FooterDesktop extends React.Component {
   render() {
     const divStyle = { paddingTop: '15px', color: 'white' };
     const fontStyle = { color: '#fff' };
-    
+
     return (
         <div className="footer-background">
           <footer>
