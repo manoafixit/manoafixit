@@ -34,8 +34,8 @@ class FeedRowMobile extends React.Component {
               <Grid.Column>
                 <div style={issueInfoStyle}>
                   <TitleMobile issue={this.props.issue}/>
-                  <OwnerMobile issue={this.props.issue}/>
                   <DateMobile issue={this.props.issue}/>
+                  <OwnerMobile issue={this.props.issue}/>
                   <Tags issue={this.props.issue} size={'mini'}/>
                 </div>
               </Grid.Column>

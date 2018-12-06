@@ -56,17 +56,20 @@ export const IssuesSchema = new SimpleSchema(
         type: String,
         label: 'Poster of the Issue',
       },
-      // likedBy: {
-      //   type: Object,
-      //   label: 'List of User IDs who liked the Issue',
-      //   optional: true,
-      // },
       likedBy: {
         type: Array,
         label: 'Array of User IDS who liked the Issue',
         optional: true,
       },
       'likedBy.$': {
+        type: String,
+      },
+      tagColors: {
+        type: Array,
+        label: 'Array of the colors for the tags of an Issue',
+        defaultValue: [],
+      },
+      'tagColors.$': {
         type: String,
       },
     }, { tracker: Tracker },
@@ -84,7 +87,7 @@ class IssuesCollection extends BaseCollection {
    * @returns { docID } The _id of the document we inserted.
    */
   insert(data, callback) {
-    const { title, description, tags, likes, status = 'Open', lat, long, owner, createdAt, likedBy } = data;
+    const { title, description, tags, likes, status = 'Open', lat, long, owner, createdAt, likedBy, tagColors } = data;
     const issueID = this.collection.insert({
       title,
       description,
@@ -96,6 +99,7 @@ class IssuesCollection extends BaseCollection {
       createdAt,
       owner,
       likedBy,
+      tagColors,
     }, callback);
     return issueID;
   }
@@ -138,7 +142,7 @@ class IssuesCollection extends BaseCollection {
     if (status) {
       updated.status = status;
     }
-    this.collection.update(issueID, { $set: updated }, setOptions, callback);
+    this.collection.update({ _id: issueID }, { $set: updated }, setOptions, callback);
     return true;
   }
 

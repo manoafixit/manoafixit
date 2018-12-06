@@ -54,6 +54,14 @@ class IssueRepliesCollection extends BaseCollection {
     }, callback);
     return issueID;
   }
+
+  removeIssues(selector) {
+    const docs = this.collection.find({ issue_id: selector }).fetch();
+    docs.forEach((doc) => {
+      this.collection.remove({ _id: doc._id });
+    });
+    return true;
+  }
 }
 
 export const IssueReplies = new IssueRepliesCollection();

@@ -147,12 +147,13 @@ FeedPageDesktop.propTypes = {
 
 export default withTracker(() => {
   const sub = Meteor.subscribe('IssuesCollection');
+  const sub2 = Meteor.subscribe('IssueRepliesCollection');
   return {
     issues: Issues.getCollectionDocuments(),
     issuesNewest: Issues.getCollectionDocuments({}, { sort: { createdAt: -1 } }),
     issuesOldest: Issues.getCollectionDocuments({}, { sort: { createdAt: 1 } }),
     issuesMostLiked: Issues.getCollectionDocuments({}, { sort: { likes: -1 } }),
     issuesLeastLiked: Issues.getCollectionDocuments({}, { sort: { likes: 1 } }),
-    ready: sub.ready(),
+    ready: sub.ready() && sub2.ready(),
   };
 })(FeedPageDesktop);

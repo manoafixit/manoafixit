@@ -5,7 +5,12 @@
 }
 
 .footer-background {
-  height: 100px;
+  height: 125px;
+  background-color: #041E0C;
+}
+
+.footer-background2 {
+  height: 225px;
   background-color: #041E0C;
 }
 
@@ -16,7 +21,7 @@
 }
 
 .landing-background2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background2.png') no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background4.png') no-repeat center center fixed;
   background-size: cover;
   padding: 31vh 0px;
 }

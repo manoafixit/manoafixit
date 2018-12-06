@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Segment, Container, Header, Icon } from 'semantic-ui-react';
+import { Button, Modal, Segment, Container, Header, Icon, List } from 'semantic-ui-react';
 
 export default class WarningModalDesktop extends Component {
   state = {
@@ -28,15 +28,59 @@ export default class WarningModalDesktop extends Component {
               <Segment.Group raised>
                 <Segment>
                   <Header as='h2'> <Icon name='chrome'/> Google Chrome </Header>
-                  Instructions for Google Chrome here.
+                  <List bulleted>
+                    <List.Item>
+                      Click on the <Icon name='crosshairs'/> icon in your browser, which is located to the right of
+                      your URL address bar.
+                    </List.Item>
+                    <List.Item>
+                      Click on the text that says &lsquo;Clear these settings for future visits&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Refresh the page. When you are asked for permission to track your location again,
+                      make sure you select &lsquo;Allow&rsquo; this time.
+                    </List.Item>
+                  </List>
                 </Segment>
                 <Segment>
                   <Header as='h2'> <Icon name='safari'/> Safari </Header>
-                  Instructions for Safari here.
+                  <List bulleted>
+                    <List.Item>
+                      In the top panel, click on &lsquo;Safari&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Click on &lsquo;Preferences&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Click on &lsquo;Websites&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Click on &lsquo;Location&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Select &lsquo;Allow&rsquo; in the section where it says &lsquo;manoafixit.meteorapp.com&rsquo;.
+                    </List.Item>
+                    <List.Item>
+                      Refresh the page.
+                    </List.Item>
+                  </List>
                 </Segment>
                 <Segment>
                   <Header as='h2'> <Icon name='firefox'/> Mozilla Firefox </Header>
-                  Instructions for Mozilla FIrefox here.
+                  <List bulleted>
+                    <List.Item>
+                      Click on the <Icon name='location arrow'/> icon, which should be located to the left of your URL
+                      address bar.
+                    </List.Item>
+                    <List.Item>
+                      Click on the <Icon name='x'/> icon in the section where it says &lsquo;Access your
+                      location&rsquo; and &lsquo;Blocked&rsquo;
+                    </List.Item>
+                    <List.Item>
+                      Refresh the page. When you are asked for permission to track your location again,
+                      make sure you select &lsquo;Allow&rsquo; this time.
+                    </List.Item>
+                  </List>
                 </Segment>
                 <Segment>
                   <Header as='h4'> If you resetted your Location Tracking permission but the popup to allow

@@ -15,7 +15,7 @@ export default class MarkerLegendMobile extends React.Component {
 
     return (
         <div style={wrapperStyle}>
-          <Grid centered stretched>
+          <Grid centered container stretched>
             <Grid.Row>
               <Image alt='Marker for Open Issue' src='/images/mapmarkers/MarkerOpen.svg' style={imageStyle}/>
               {`${STATUS.OPEN} Issues`}
