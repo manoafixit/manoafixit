@@ -6,6 +6,7 @@ class FooterMobile extends React.Component {
   render() {
     const divStyle = { paddingTop: '25px', color: 'white' };
     const fontStyle = { color: '#fff' };
+    const iconStyle = { paddingLeft: '10px' };
 
     return (
         <div className="footer-background2">
@@ -13,29 +14,31 @@ class FooterMobile extends React.Component {
             <div style={divStyle} className="ui center aligned container">
               <Grid columns={8} centered divided stackable>
                 <Grid.Row centered verticalAlign='middle'>
-                  CHECK OUR GITHUB PAGES
-                  <Icon style={{paddingLeft: '10px'}} name='github' size='large'/>
+                  <a href='https://manoafixit.github.io/' style={fontStyle}>
+                    CHECK OUR GITHUB PAGES
+                    <Icon style={iconStyle} name='github alternate' size='large'/>
+                  </a>
                 </Grid.Row>
 
                 <Grid.Row centered textAlign='center'>
                   <Grid.Column textAlign='center' verticalAlign='top'>
                     <a href='https://github.com/manoafixit/manoafixit' style={fontStyle}>
-                      ManoaFixit
+                      ManoaFixit <Icon style={iconStyle} name='github'/>
                     </a>
                     <br/>
                     <br/>
                     <a href='https://github.com/Au-Adrian' style={fontStyle}>
-                      Adrian Au
+                      Adrian Au <Icon style={iconStyle} name='github'/>
                     </a>
                     <br/>
                     <br/>
                     <a href='https://github.com/gcalica' style={fontStyle}>
-                      Gian Calica
+                      Gian Calica <Icon style={iconStyle} name='github'/>
                     </a>
                     <br/>
                     <br/>
                     <a href='https://github.com/gbfrancisco' style={fontStyle}>
-                      Graham Francisco
+                      Graham Francisco <Icon style={iconStyle} name='github'/>
                     </a>
                   </Grid.Column>
                 </Grid.Row>
