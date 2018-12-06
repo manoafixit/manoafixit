@@ -1,17 +1,17 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Grid, Header, Menu } from 'semantic-ui-react';
+import { Grid, Header, Menu, Divider } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { ROLE } from '../../../api/Roles/Roles';
-import OriginalPostMobile from '../../components/issue/responsive/OriginalPostMobile';
 import ReplyBox from '../../components/issue/ReplyBox';
 import Replies from '../../components/issue/Replies';
 import Status from '../../components/global/issue/Status';
 import Likes from '../../components/global/issue/Likes';
 import AdminStatusChange from '../../components/global/issue/AdminStatusChange';
+import OriginalPostMobile from '../../components/issue/OriginalPostMobile';
 
 class IssuePageMobile extends React.Component {
   render() {
@@ -51,12 +51,14 @@ class IssuePageMobile extends React.Component {
 
           <Grid.Row>
             <div style={wordWrapperStyle}>
-              <Header attached='top'>
+              <Divider/>
+              <Header>
                 {this.props.issue.title}
                 <Header.Subheader>
                   {this.props.issue.owner} opened this issue on {date}
                 </Header.Subheader>
               </Header>
+              <Divider/>
             </div>
           </Grid.Row>
 

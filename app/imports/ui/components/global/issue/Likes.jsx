@@ -49,8 +49,8 @@ class Likes extends React.Component {
     return (
         <div>
           {
-            this.hasLiked() ? <Icon name='heart' link onClick={this.handleUnlikeIssue}/>
-                : <Icon name='heart outline' link onClick={this.handleLikeIssue}/>
+            this.hasLiked() ? <Icon name='heart' link onClick={this.handleUnlikeIssue} size='large'/>
+                : <Icon name='heart outline' link onClick={this.handleLikeIssue} size='large'/>
           }
           {this.props.issue.likes}
         </div>

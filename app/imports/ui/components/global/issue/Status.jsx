@@ -37,13 +37,16 @@ class Status extends React.Component {
     return (
         <Label
             color={labelColor()}
-            content={this.props.issue.status}/>
+            content={this.props.issue.status}
+            size={this.props.size}
+        />
     );
   }
 }
 
 Status.propTypes = {
   issue: PropTypes.object.isRequired,
+  size: PropTypes.string,
 };
 
 export default withRouter(Status);

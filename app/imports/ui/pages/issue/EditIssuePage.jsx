@@ -17,6 +17,13 @@ import { Issues, IssuesSchema } from '../../../api/IssuesCollection/IssuesCollec
 
 /** Renders the Page for editing a single document. */
 class EditIssuePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.formRef = null;
+  }
+
   insertCallback(error) {
     if (error) {
       Bert.alert({ type: 'danger', message: `Failed to edit issue: ${error.message}` });
@@ -26,13 +33,10 @@ class EditIssuePage extends React.Component {
     }
   }
 
-  issueID = () => this.props.id;
-
   /** On successful submit, insert the data. */
   submit(data) {
     const { title, description, tags } = data;
-    console.log(this.issueID);
-    Issues.update({ _id: this.issueID }, { title, description, tags }, undefined, this.insertCallback);
+    Issues.update(this.props.issue._id, { title, description, tags }, undefined, this.insertCallback);
   }
 
   render() {
