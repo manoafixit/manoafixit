@@ -65,34 +65,41 @@ class SubmitPage extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const wrapperStyle = {
+      paddingTop: '20px',
+      paddingBottom: '50px',
+    };
+
     return (
-        <Grid container centered>
-          <Grid.Column>
-            {this.state.haveUserLocation ?
-                <div>
-                  <Header as="h2" textAlign="center">Submit Issue</Header>
-                  <AutoForm ref={(ref) => {
-                    this.formRef = ref;
-                  }} schema={IssuesSchema} onSubmit={this.submit}>
-                    <Segment>
-                      <TextField name='title'/>
-                      <LongTextField name='description'/>
-                      <ListField name='tags'>
-                      </ListField>
-                      <SubmitField value='Submit'/>
-                      <ErrorsField/>
-                      <HiddenField name='likes'/>
-                      <HiddenField name='status'/>
-                      <HiddenField name='lat' value={this.state.location.lat}/>
-                      <HiddenField name='long' value={this.state.location.long}/>
-                      <HiddenField name='createdAt' value={new Date()}/>
-                      <HiddenField name='owner' value='fakevalue'/>
-                    </Segment>
-                  </AutoForm>
-                </div>
-                : <WarningModal/>}
-          </Grid.Column>
-        </Grid>
+        <div style={wrapperStyle}>
+          <Grid container centered>
+            <Grid.Column>
+              {this.state.haveUserLocation ?
+                  <div>
+                    <Header as="h2" textAlign="center">Submit Issue</Header>
+                    <AutoForm ref={(ref) => {
+                      this.formRef = ref;
+                    }} schema={IssuesSchema} onSubmit={this.submit}>
+                      <Segment>
+                        <TextField name='title'/>
+                        <LongTextField name='description'/>
+                        <ListField name='tags'>
+                        </ListField>
+                        <SubmitField value='Submit'/>
+                        <ErrorsField/>
+                        <HiddenField name='likes'/>
+                        <HiddenField name='status'/>
+                        <HiddenField name='lat' value={this.state.location.lat}/>
+                        <HiddenField name='long' value={this.state.location.long}/>
+                        <HiddenField name='createdAt' value={new Date()}/>
+                        <HiddenField name='owner' value='fakevalue'/>
+                      </Segment>
+                    </AutoForm>
+                  </div>
+                  : <WarningModal/>}
+            </Grid.Column>
+          </Grid>
+        </div>
     );
   }
 }
