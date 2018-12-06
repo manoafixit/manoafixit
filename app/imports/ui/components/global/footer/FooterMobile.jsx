@@ -23,7 +23,7 @@ class FooterMobile extends React.Component {
                 <Grid.Row centered textAlign='center'>
                   <Grid.Column textAlign='center' verticalAlign='top'>
                     <a href='https://github.com/manoafixit/manoafixit' style={fontStyle}>
-                      ManoaFixit <Icon style={iconStyle} name='github'/>
+                      ManoaFixit Repo <Icon style={iconStyle} name='github'/>
                     </a>
                     <br/>
                     <br/>
