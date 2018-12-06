@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Segment, Menu, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
@@ -16,7 +16,7 @@ class OriginalPost extends React.Component {
   render() {
     const date = format(this.props.issue.createdAt, 'MMMM D, YYYY, h:mm aa');
 
-    const headerStyle = {
+    const menuStyle = {
       border: 'none',
       boxShadow: 'none',
 
@@ -32,7 +32,7 @@ class OriginalPost extends React.Component {
 
     return (
         <div>
-          <Menu borderless style={headerStyle}>
+          <Menu borderless style={menuStyle}>
             <Menu.Item>
               <Header style={issueTitleStyle} attached='top'>
                 {this.props.issue.title}
@@ -49,6 +49,11 @@ class OriginalPost extends React.Component {
                   || Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
                   <AdminStatusChange issue={this.props.issue}/>
                   : <Status issue={this.props.issue}/>}
+            </Menu.Item>
+          </Menu>
+          <Menu style={menuStyle}>
+            <Menu.Item position='right'>
+              <Link to={`/edit/${this.props.issue._id}`}>Edit</Link>
             </Menu.Item>
           </Menu>
           <Segment attached>

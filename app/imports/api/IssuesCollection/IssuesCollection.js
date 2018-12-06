@@ -138,7 +138,7 @@ class IssuesCollection extends BaseCollection {
     if (status) {
       updated.status = status;
     }
-    this.collection.update(issueID, { $set: updated }, setOptions, callback);
+    this.collection.update({ _id: issueID }, { $set: updated }, setOptions, callback);
     return true;
   }
 
