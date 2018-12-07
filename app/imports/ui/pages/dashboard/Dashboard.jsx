@@ -3,7 +3,6 @@ import { ResponsiveBar } from '@nivo/bar';
 import { ResponsiveCalendar } from '@nivo/calendar';
 import { ResponsiveLine } from '@nivo/line';
 import { Header, Segment } from 'semantic-ui-react';
-import { Meteor } from 'meteor/meteor';
 import { fakeData, fakeData2, fakeData3 } from './TestData';
 
 class Dashboard extends React.Component {
