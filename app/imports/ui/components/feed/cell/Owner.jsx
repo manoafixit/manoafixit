@@ -32,7 +32,7 @@ class Owner extends React.Component {
     }).then((result) => {
       if (result.value) {
         Issues.remove(this.props.issue._id);
-        IssueReplies.removeIssues(this.props.issue._id);
+        IssueReplies.removeAllIssueReplies(this.props.issue._id);
         MySwal.fire({
           title: 'Deleted Issue!',
           type: 'success',

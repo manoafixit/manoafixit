@@ -13,6 +13,8 @@ import {
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import { IssueReplies, IssueRepliesSchema } from '../../../api/IssueRepliesCollection/IssueRepliesCollection';
 import { ROLE } from '../../../api/Roles/Roles';
 
@@ -45,6 +47,40 @@ class Reply extends React.Component {
     this.setState({ editing: !this.state.editing });
   }
 
+  handleDelete = (e) => {
+    e.preventDefault();
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      title: <p>Warning</p>,
+      text: 'Are you sure you want to delete this reply?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonColor: '#c60606',
+      cancelButtonText: 'Cancel',
+      focusCancel: true,
+      reverseButtons: true,
+      buttonsStyling: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+    }).then((result) => {
+      if (result.value) {
+        IssueReplies.removeReply(this.props.reply._id);
+        MySwal.fire({
+          title: 'Deleted Reply!',
+          type: 'success',
+        });
+      }
+      if (result.dismiss === Swal.DismissReason.cancel) {
+        MySwal.fire({
+          title: 'Cancelled Deletion!',
+          type: 'error',
+        });
+      }
+    });
+  }
+
   render() {
     const date = format(this.props.reply.createdAt, 'MMMM D, YYYY, h:mm aa');
 
@@ -62,11 +98,14 @@ class Reply extends React.Component {
             {
               (this.props.reply.owner === Meteor.user().username ||
                   Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
-                  <Menu.Item position='right' onClick={this.handleEdit} content='Edit'
-                             style={{ color: '#4183C4' }}/> : ''
+                  [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
+                              style={{ color: '#4183C4' }}/>,
+                    <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
+                               style={{ color: '#4183C4' }}/>]
+                  : ''
             }
-
           </Menu>
+
           {this.state.editing ?
               <AutoForm ref={(ref) => {
                 this.formRef = ref;
