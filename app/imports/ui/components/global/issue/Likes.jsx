@@ -28,10 +28,7 @@ class Likes extends React.Component {
 
   likedCallback(error) {
     if (error) {
-      Bert.alert({
-        type: 'danger', message: `Failed to Like the Issue: ${error.message}. Please screenshot 
-      this error and send to gcalica@hawaii.edu`
-      });
+      Bert.alert({ type: 'danger', message: `Failed to Like the Issue: ${error.message}.` });
     } else {
       Bert.alert({ type: 'success', message: 'Liked the Issue' });
     }
@@ -39,10 +36,7 @@ class Likes extends React.Component {
 
   unlikedCallback(error) {
     if (error) {
-      Bert.alert({
-        type: 'danger', message: `Failed to Unlike the Issue: ${error.message} Please screenshot 
-      this error and send to gcalica@hawaii.edu`
-      });
+      Bert.alert({ type: 'danger', message: `Failed to Unlike the Issue: ${error.message}` });
     } else {
       Bert.alert({ type: 'success', message: 'Unliked the Issue' });
     }
