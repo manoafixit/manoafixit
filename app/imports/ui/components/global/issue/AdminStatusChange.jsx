@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { format } from 'date-fns';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
 import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
-import { format } from "date-fns";
 
 class AdminStatusChange extends React.Component {
   constructor(props) {
