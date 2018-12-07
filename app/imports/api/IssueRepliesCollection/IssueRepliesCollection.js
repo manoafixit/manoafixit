@@ -56,11 +56,16 @@ class IssueRepliesCollection extends BaseCollection {
     return issueID;
   }
 
-  removeIssues(selector) {
+  removeAllIssueReplies(selector) {
     const docs = this.collection.find({ issue_id: selector }).fetch();
     docs.forEach((doc) => {
       this.collection.remove({ _id: doc._id });
     });
+    return true;
+  }
+
+  removeReply(replyID) {
+    this.collection.remove({ _id: replyID });
     return true;
   }
 
