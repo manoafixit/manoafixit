@@ -115,8 +115,9 @@ class SubmitPage extends React.Component {
     const owner = Meteor.user().username;
     const tagColors = this.generateColors();
     const likedBy = [];
-    const issueID = Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy,
-          tagColors }, this.insertCallback);
+    const issueID = Issues.insert({
+      title, description, tags, likes, status, lat, long, createdAt, owner, likedBy, tagColors,
+    }, this.insertCallback);
     this.setState({ issueID: issueID });
 
   }
