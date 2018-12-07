@@ -50,7 +50,9 @@ class OwnerMobile extends React.Component {
   render() {
     return (
         <Grid.Column>
-          {(this.props.issue.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+          {(this.props.issue.owner === Meteor.user().username ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
               <Button size='mini' onClick={this.deleteConfirm} content='Delete Issue'/> :
               <div>by: {this.props.issue.owner}</div>}
         </Grid.Column>

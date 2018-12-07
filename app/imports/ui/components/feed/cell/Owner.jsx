@@ -50,7 +50,9 @@ class Owner extends React.Component {
   render() {
     return (
         <Table.Cell>
-          {(this.props.issue.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+          {(this.props.issue.owner === Meteor.user().username ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
               <Button size='mini' onClick={this.deleteConfirm} content='Delete Issue'/> : this.props.issue.owner}
         </Table.Cell>
     );
