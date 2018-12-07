@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Redirect } from 'react-router-dom';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { _ } from 'meteor/erasaur:meteor-lodash';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -13,6 +14,8 @@ import {
   ErrorsField,
   HiddenField,
 } from 'uniforms-semantic/';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 import WarningModal from '../components/submit/WarningModal';
 
@@ -21,6 +24,8 @@ class SubmitPage extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.trackingError = this.trackingError.bind(this);
+    this.generateColors = this.generateColors.bind(this);
     this.formRef = null;
     this.state = {
       location: {
@@ -28,7 +33,38 @@ class SubmitPage extends React.Component {
         long: undefined,
       },
       haveUserLocation: false,
+      redirect: false,
+      issueID: '',
     };
+  }
+
+  trackingError(error) {
+    let output = '';
+
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        output = 'User denied the request for Geolocation.';
+        break;
+      case error.POSITION_UNAVAILABLE:
+        output = 'Location information is unavailable.';
+        break;
+      case error.TIMEOUT:
+        output = 'The request to get user location timed out.';
+        break;
+      default:
+        output = 'An unknown error occurred.';
+        break;
+    }
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      title: <p>Warning</p>,
+      text: `An error occurred: ${output}`,
+      type: 'error',
+      confirmButtonText: 'Okay',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+    });
   }
 
   componentDidMount() {
@@ -42,7 +78,13 @@ class SubmitPage extends React.Component {
             haveUserLocation: true,
           });
         },
-        this.setState({ haveUserLocation: false }));
+        this.setState({ haveUserLocation: false }),
+        this.trackingError,
+        {
+          maximumAge: 600000,
+          timeout: 5000,
+          enableHighAccuracy: true,
+        });
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -52,6 +94,9 @@ class SubmitPage extends React.Component {
     } else {
       Bert.alert({ type: 'success', message: 'Issue has been submitted' });
       this.formRef.reset();
+      setTimeout(() => {
+        this.setState({ redirect: true });
+      }, 2000);
     }
   }
 
@@ -66,8 +111,11 @@ class SubmitPage extends React.Component {
     const owner = Meteor.user().username;
     const tagColors = this.generateColors();
     const likedBy = [];
-    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy, tagColors },
-        this.insertCallback);
+    const issueID = Issues.insert({
+      title, description, tags, likes, status, lat, long, createdAt, owner, likedBy, tagColors,
+    }, this.insertCallback);
+    this.setState({ issueID: issueID });
+
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -76,6 +124,12 @@ class SubmitPage extends React.Component {
       paddingTop: '20px',
       paddingBottom: '50px',
     };
+
+    const { from } = { from: { pathname: `/issue/${this.state.issueID}` } };
+
+    if (this.state.redirect) {
+      return <Redirect to={from}/>;
+    }
 
     return (
         <div style={wrapperStyle}>

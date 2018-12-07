@@ -9,6 +9,7 @@ class SortBy extends React.Component {
     this.state = {
       sort: 1,
     };
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   handleSortChange = (e, { value }) => {

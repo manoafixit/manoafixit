@@ -12,6 +12,11 @@ import { ROLE } from '../../../../api/Roles/Roles';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class Owner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteConfirm = this.deleteConfirm.bind(this);
+  }
+
   deleteConfirm = (e) => {
     e.preventDefault();
     const MySwal = withReactContent(Swal);
@@ -32,7 +37,7 @@ class Owner extends React.Component {
     }).then((result) => {
       if (result.value) {
         Issues.remove(this.props.issue._id);
-        IssueReplies.removeIssues(this.props.issue._id);
+        IssueReplies.removeAllIssueReplies(this.props.issue._id);
         MySwal.fire({
           title: 'Deleted Issue!',
           type: 'success',
@@ -50,7 +55,9 @@ class Owner extends React.Component {
   render() {
     return (
         <Table.Cell>
-          {(this.props.issue.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+          {(this.props.issue.owner === Meteor.user().username ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
               <Button size='mini' onClick={this.deleteConfirm} content='Delete Issue'/> : this.props.issue.owner}
         </Table.Cell>
     );

@@ -15,6 +15,8 @@ class MapMarker extends React.Component {
     this.state = {
       iconUrl: '/images/mapmarkers/MarkerOpen.svg',
     };
+    this.isValid = this.isValid.bind(this);
+    this.chooseIcon = this.chooseIcon.bind(this);
   }
 
   /**
@@ -24,8 +26,6 @@ class MapMarker extends React.Component {
   isValid() {
     switch (this.props.issue.status) {
       case `${STATUS.RESOLVED}`:
-        return false;
-      case `${STATUS.REMOVED}`:
         return false;
       case `${STATUS.DUPLICATE}`:
         return false;

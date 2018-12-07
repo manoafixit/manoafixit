@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { format } from 'date-fns';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
 import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
@@ -14,6 +15,10 @@ class AdminStatusChange extends React.Component {
     this.state = {
       stateValue: 1,
     };
+    this.updateCallback = this.updateCallback.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.generateReply = this.generateReply.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
   }
 
   updateCallback(error) {
@@ -34,13 +39,13 @@ class AdminStatusChange extends React.Component {
 
   generateReply(status) {
     const owner = Meteor.user().username;
-    if (status === 'Duplicate') {
-      return `${owner} marked this Issue as ${status}`;
+    const date = new Date();
+    const formatted_date = format(date, 'MMMM D, YYYY h:mm aa');
+
+    if (status === STATUS.DUPLICATE) {
+      return `${owner} marked this Issue as ${status} on ${formatted_date}`;
     }
-    if (status === 'Removed') {
-      return `${owner} removed this Issue`;
-    }
-    return `${owner} changed the status of this Issue to ${status}`;
+    return `${owner} changed the status of this Issue to ${status} on ${formatted_date}`;
 
   }
 
@@ -78,11 +83,6 @@ class AdminStatusChange extends React.Component {
         reply = this.generateReply(`${STATUS.DUPLICATE}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
-      case 6:
-        Issues.update(issue_id, { status: `${STATUS.REMOVED}` }, undefined, this.updateCallback);
-        reply = this.generateReply(`${STATUS.REMOVED}`);
-        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
-        break;
       default:
         break;
     }
@@ -95,7 +95,6 @@ class AdminStatusChange extends React.Component {
       { key: 3, text: `${STATUS.ONGOING}`, value: 3 },
       { key: 4, text: `${STATUS.RESOLVED}`, value: 4 },
       { key: 5, text: `${STATUS.DUPLICATE}`, value: 5 },
-      { key: 6, text: `${STATUS.REMOVED}`, value: 6 },
     ];
 
     return (

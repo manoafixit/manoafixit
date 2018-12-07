@@ -10,6 +10,7 @@ import {
   ErrorsField,
   HiddenField,
 } from 'uniforms-semantic/';
+import { Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -22,6 +23,9 @@ class EditIssuePage extends React.Component {
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
+    this.state = {
+      redirect: false,
+    };
   }
 
   insertCallback(error) {
@@ -30,6 +34,9 @@ class EditIssuePage extends React.Component {
     } else {
       Bert.alert({ type: 'success', message: 'Successfully edited issue' });
       this.formRef.reset();
+      setTimeout(() => {
+        this.setState({ redirect: true });
+      }, 2000);
     }
   }
 
@@ -47,6 +54,12 @@ class EditIssuePage extends React.Component {
   renderPage() {
     // Dummy variable
     const fakeValue = 0;
+
+    const { from } = { from: { pathname: `/issue/${this.props.issue._id}` } };
+    if (this.state.redirect) {
+      return <Redirect to={from}/>;
+    }
+
     return (
         <Grid container centered>
           <Grid.Column>

@@ -8,7 +8,14 @@ import { navbarStyle } from '../Styles';
 
 /** The NavBarMobile appears at the top of every page. Rendered by the App Layout component. */
 class NavBarMobile extends React.Component {
-  state = { visible: false };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+    };
+    this.handleShowClick = this.handleShowClick.bind(this);
+    this.handleSidebarHide = this.handleSidebarHide.bind(this);
+  }
 
   /** handleHideClick = () => this.setState({ visible: false }) */
   handleShowClick = () => this.setState({ visible: true })

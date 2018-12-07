@@ -1,5 +1,6 @@
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
+import { Meteor } from 'meteor/meteor';
 import BaseCollection from '../BaseCollection/BaseCollection';
 
 export const IssueRepliesSchema = new SimpleSchema(
@@ -55,11 +56,36 @@ class IssueRepliesCollection extends BaseCollection {
     return issueID;
   }
 
-  removeIssues(selector) {
+  removeAllIssueReplies(selector) {
     const docs = this.collection.find({ issue_id: selector }).fetch();
     docs.forEach((doc) => {
       this.collection.remove({ _id: doc._id });
     });
+    return true;
+  }
+
+  removeReply(replyID) {
+    this.collection.remove({ _id: replyID });
+    return true;
+  }
+
+  update(issueID, data, options, callback) {
+    if (callback === undefined) {
+      throw new Meteor.Error(`${this.collectionName}'s update() method must provide a callback`);
+    }
+    let setOptions;
+    if (options === undefined) {
+      setOptions = { multi: false, upsert: false };
+    } else {
+      setOptions = options;
+    }
+
+    const { reply } = data;
+    const updated = {};
+    if (reply) {
+      updated.reply = reply;
+    }
+    this.collection.update({ _id: issueID }, { $set: updated }, setOptions, callback);
     return true;
   }
 }

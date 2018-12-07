@@ -19,7 +19,9 @@ class OriginalPostMobile extends React.Component {
   render() {
     return (
         <div>
-          {(this.props.issue.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+          {(this.props.issue.owner === Meteor.user().username ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
               <Menu borderless attached='top' style={{ boxShadow: 'none' }}>
                 <Menu.Item position='right'>
                   <Link to={`/edit/${this.props.issue._id}`}> <Button basic>Edit</Button> </Link>

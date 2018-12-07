@@ -12,6 +12,11 @@ import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueReplie
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class OwnerMobile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteConfirm = this.deleteConfirm.bind(this);
+  }
+
   deleteConfirm = (e) => {
     e.preventDefault();
     const MySwal = withReactContent(Swal);
@@ -50,7 +55,9 @@ class OwnerMobile extends React.Component {
   render() {
     return (
         <Grid.Column>
-          {(this.props.issue.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+          {(this.props.issue.owner === Meteor.user().username ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+              Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
               <Button size='mini' onClick={this.deleteConfirm} content='Delete Issue'/> :
               <div>by: {this.props.issue.owner}</div>}
         </Grid.Column>
