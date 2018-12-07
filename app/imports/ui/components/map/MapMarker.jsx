@@ -25,8 +25,6 @@ class MapMarker extends React.Component {
     switch (this.props.issue.status) {
       case `${STATUS.RESOLVED}`:
         return false;
-      case `${STATUS.REMOVED}`:
-        return false;
       case `${STATUS.DUPLICATE}`:
         return false;
       default:
