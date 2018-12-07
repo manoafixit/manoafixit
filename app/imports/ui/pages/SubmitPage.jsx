@@ -13,6 +13,8 @@ import {
   ErrorsField,
   HiddenField,
 } from 'uniforms-semantic/';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import { Issues, IssuesSchema } from '../../api/IssuesCollection/IssuesCollection';
 import WarningModal from '../components/submit/WarningModal';
 
@@ -31,6 +33,41 @@ class SubmitPage extends React.Component {
     };
   }
 
+  trackingError(error) {
+    let output = '';
+
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        output = 'User denied the request for Geolocation.';
+        break;
+      case error.POSITION_UNAVAILABLE:
+        output = 'Location information is unavailable.';
+        break;
+      case error.TIMEOUT:
+        output = 'The request to get user location timed out.';
+        break;
+      default:
+        output = 'An unknown error occurred.';
+        break;
+    }
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      title: <p>Warning</p>,
+      text: `An error occurred: ${output}`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonColor: '#c60606',
+      cancelButtonText: 'Cancel',
+      focusCancel: true,
+      reverseButtons: true,
+      buttonsStyling: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false,
+    });
+  }
+
   componentDidMount() {
     // eslint-disable-next-line no-undef
     navigator.geolocation.getCurrentPosition((position) => {
@@ -42,7 +79,13 @@ class SubmitPage extends React.Component {
             haveUserLocation: true,
           });
         },
-        this.setState({ haveUserLocation: false }));
+        this.setState({ haveUserLocation: false }),
+        this.trackingError,
+        {
+          maximumAge: 600000,
+          timeout: 5000,
+          enableHighAccuracy: true,
+        });
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
