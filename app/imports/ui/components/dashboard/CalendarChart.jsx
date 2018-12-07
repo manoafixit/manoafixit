@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResponsiveCalendar } from '@nivo/calendar';
+import PropTypes from 'prop-types';
 import { fakeData3 } from '../../pages/dashboard/TestData';
 
 export default class CalendarChart extends React.Component {
@@ -42,3 +43,7 @@ export default class CalendarChart extends React.Component {
     );
   }
 }
+
+CalendarChart.propTypes = {
+  data: PropTypes.array.isRequired,
+};
