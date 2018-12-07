@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Redirect } from 'react-router-dom';
 import { Grid, Header, Segment } from 'semantic-ui-react';
 import { _ } from 'meteor/erasaur:meteor-lodash';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -28,6 +29,8 @@ class SubmitPage extends React.Component {
         long: undefined,
       },
       haveUserLocation: false,
+      redirect: false,
+      issueID: '',
     };
   }
 
@@ -52,6 +55,9 @@ class SubmitPage extends React.Component {
     } else {
       Bert.alert({ type: 'success', message: 'Issue has been submitted' });
       this.formRef.reset();
+      setTimeout(() => {
+        this.setState({ redirect: true });
+      }, 2000);
     }
   }
 
@@ -66,12 +72,20 @@ class SubmitPage extends React.Component {
     const owner = Meteor.user().username;
     const tagColors = this.generateColors();
     const likedBy = [];
-    Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy, tagColors },
-        this.insertCallback);
+    const issueID = Issues.insert({ title, description, tags, likes, status, lat, long, createdAt, owner, likedBy,
+          tagColors }, this.insertCallback);
+    this.setState({ issueID: issueID });
+
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    const { from } = { from: { pathname: `/issue/${this.state.issueID}` } };
+
+    if (this.state.redirect) {
+      return <Redirect to={from}/>;
+    }
+
     return (
         <Grid container centered>
           <Grid.Column>
