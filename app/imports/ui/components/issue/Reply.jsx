@@ -25,6 +25,7 @@ class Reply extends React.Component {
     this.state = {
       editing: false,
     };
+    this.formRef = null;
     this.submit = this.submit.bind(this);
     this.updateCallback = this.updateCallback.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
