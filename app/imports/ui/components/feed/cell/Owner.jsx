@@ -12,6 +12,11 @@ import { ROLE } from '../../../../api/Roles/Roles';
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class Owner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteConfirm = this.deleteConfirm.bind(this);
+  }
+
   deleteConfirm = (e) => {
     e.preventDefault();
     const MySwal = withReactContent(Swal);

@@ -15,6 +15,8 @@ class MapMarker extends React.Component {
     this.state = {
       iconUrl: '/images/mapmarkers/MarkerOpen.svg',
     };
+    this.isValid = this.isValid.bind(this);
+    this.chooseIcon = this.chooseIcon.bind(this);
   }
 
   /**

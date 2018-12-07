@@ -19,6 +19,10 @@ class FeedPageMobile extends React.Component {
       sort: 1,
       filter: 0,
     };
+    this.onFilterOptionChange = this.onFilterOptionChange.bind(this);
+    this.filterBy = this.filterBy.bind(this);
+    this.onSortOptionChange = this.onSortOptionChange.bind(this);
+    this.sortBy = this.sortBy.bind(this);
   }
 
   onSortOptionChange = (value) => {

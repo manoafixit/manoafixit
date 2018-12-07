@@ -27,6 +27,8 @@ class Reply extends React.Component {
     };
     this.submit = this.submit.bind(this);
     this.updateCallback = this.updateCallback.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   updateCallback(error) {

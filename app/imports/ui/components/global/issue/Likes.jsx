@@ -8,6 +8,15 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 
 class Likes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.hasLiked = this.hasLiked.bind(this);
+    this.likedCallback = this.likedCallback.bind(this);
+    this.unlikedCallback = this.unlikedCallback.bind(this);
+    this.handleLikeIssue = this.handleLikeIssue.bind(this);
+    this.handleUnlikeIssue = this.handleUnlikeIssue.bind(this);
+  }
+
   // Check if the user has already liked this issue
   hasLiked() {
     const userID = Meteor.userId();
@@ -19,8 +28,10 @@ class Likes extends React.Component {
 
   likedCallback(error) {
     if (error) {
-      Bert.alert({ type: 'danger', message: `Failed to Like the Issue: ${error.message}. Please screenshot 
-      this error and send to gcalica@hawaii.edu` });
+      Bert.alert({
+        type: 'danger', message: `Failed to Like the Issue: ${error.message}. Please screenshot 
+      this error and send to gcalica@hawaii.edu`
+      });
     } else {
       Bert.alert({ type: 'success', message: 'Liked the Issue' });
     }
@@ -28,8 +39,10 @@ class Likes extends React.Component {
 
   unlikedCallback(error) {
     if (error) {
-      Bert.alert({ type: 'danger', message: `Failed to Unlike the Issue: ${error.message} Please screenshot 
-      this error and send to gcalica@hawaii.edu` });
+      Bert.alert({
+        type: 'danger', message: `Failed to Unlike the Issue: ${error.message} Please screenshot 
+      this error and send to gcalica@hawaii.edu`
+      });
     } else {
       Bert.alert({ type: 'success', message: 'Unliked the Issue' });
     }

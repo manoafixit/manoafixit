@@ -12,6 +12,11 @@ import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueReplie
 
 /** Renders a table containing all of the Contacts documents. Use <Contact> to render each row. */
 class OwnerMobile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.deleteConfirm = this.deleteConfirm.bind(this);
+  }
+
   deleteConfirm = (e) => {
     e.preventDefault();
     const MySwal = withReactContent(Swal);

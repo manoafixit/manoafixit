@@ -24,6 +24,8 @@ class SubmitPage extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.trackingError = this.trackingError.bind(this);
+    this.generateColors = this.generateColors.bind(this);
     this.formRef = null;
     this.state = {
       location: {

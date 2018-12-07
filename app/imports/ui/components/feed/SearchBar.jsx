@@ -12,6 +12,9 @@ class SearchBar extends React.Component {
       results: [],
       value: '',
     };
+    this.resetSearchBar = this.resetSearchBar.bind(this);
+    this.handleResultSelect = this.handleResultSelect.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   resetSearchBar = () => this.setState({ isLoading: false, results: [], value: '' })

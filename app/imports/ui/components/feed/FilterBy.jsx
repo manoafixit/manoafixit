@@ -10,6 +10,7 @@ class FilterBy extends React.Component {
     this.state = {
       filter: 0,
     };
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   handleFilterChange = (e, { value }) => {
