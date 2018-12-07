@@ -97,7 +97,7 @@ export default class Signin extends React.Component {
             </Grid.Column>
             <Grid.Row>
             <Header as="h3" textAlign="center" style={headerStyle}>
-              Why Manoafixit?
+              Help Fix Manoa.
             </Header>
             </Grid.Row>
           </Grid>
