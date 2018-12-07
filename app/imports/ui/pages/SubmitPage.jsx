@@ -128,6 +128,7 @@ class SubmitPage extends React.Component {
       paddingTop: '20px',
       paddingBottom: '50px',
     };
+
     const { from } = { from: { pathname: `/issue/${this.state.issueID}` } };
 
     if (this.state.redirect) {
