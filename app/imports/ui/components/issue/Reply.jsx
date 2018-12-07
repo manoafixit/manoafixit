@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Menu } from 'semantic-ui-react';
+import { Segment, Menu, Responsive } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -91,20 +91,28 @@ class Reply extends React.Component {
 
     return (
         <div style={segmentStyle}>
-          <Menu borderless attached='top'>
-            <Menu.Item>
+          <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+            <Menu borderless attached='top'>
+              <Menu.Item>
+                <b>{this.props.reply.owner} commented on {date}</b>
+              </Menu.Item>
+              {
+                (this.props.reply.owner === Meteor.user().username ||
+                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+                    [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
+                                style={{ color: '#4183C4' }}/>,
+                      <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
+                                 style={{ color: '#4183C4' }}/>]
+                    : ''
+              }
+            </Menu>
+          </Responsive>
+
+          <Responsive {...Responsive.onlyMobile}>
+            <Segment attached='top'>
               <b>{this.props.reply.owner} commented on {date}</b>
-            </Menu.Item>
-            {
-              (this.props.reply.owner === Meteor.user().username ||
-                  Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
-                  [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
-                              style={{ color: '#4183C4' }}/>,
-                    <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
-                               style={{ color: '#4183C4' }}/>]
-                  : ''
-            }
-          </Menu>
+            </Segment>
+          </Responsive>
 
           {this.state.editing ?
               <AutoForm ref={(ref) => {
@@ -125,6 +133,21 @@ class Reply extends React.Component {
                 {this.props.reply.reply}
               </Segment>
           }
+
+          <Responsive {...Responsive.onlyMobile}>
+            <Menu borderless attached='bottom'>
+              {
+                (this.props.reply.owner === Meteor.user().username ||
+                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+                    [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
+                                style={{ color: '#4183C4' }}/>,
+                      <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
+                                 style={{ color: '#4183C4' }}/>]
+                    : ''
+              }
+            </Menu>
+          </Responsive>
+
         </div>
     );
   }
