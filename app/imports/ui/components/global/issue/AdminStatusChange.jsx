@@ -38,11 +38,8 @@ class AdminStatusChange extends React.Component {
     const date = new Date();
     const formatted_date = format(date, 'MMMM D, YYYY h:mm aa');
 
-    if (status === 'Duplicate') {
+    if (status === STATUS.DUPLICATE) {
       return `${owner} marked this Issue as ${status} on ${formatted_date}`;
-    }
-    if (status === 'Removed') {
-      return `${owner} removed this Issue on ${formatted_date}`;
     }
     return `${owner} changed the status of this Issue to ${status} on ${formatted_date}`;
 
@@ -82,11 +79,6 @@ class AdminStatusChange extends React.Component {
         reply = this.generateReply(`${STATUS.DUPLICATE}`);
         IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
         break;
-      case 6:
-        Issues.update(issue_id, { status: `${STATUS.REMOVED}` }, undefined, this.updateCallback);
-        reply = this.generateReply(`${STATUS.REMOVED}`);
-        IssueReplies.insert({ issue_id, reply, createdAt, owner, admin_status }, this.insertCallback);
-        break;
       default:
         break;
     }
@@ -99,7 +91,6 @@ class AdminStatusChange extends React.Component {
       { key: 3, text: `${STATUS.ONGOING}`, value: 3 },
       { key: 4, text: `${STATUS.RESOLVED}`, value: 4 },
       { key: 5, text: `${STATUS.DUPLICATE}`, value: 5 },
-      { key: 6, text: `${STATUS.REMOVED}`, value: 6 },
     ];
 
     return (

@@ -37,7 +37,7 @@ export const IssuesSchema = new SimpleSchema(
         type: String,
         label: 'Issue Status',
         allowedValues: [`${STATUS.OPEN}`, `${STATUS.ACKNOWLEDGED}`, `${STATUS.ONGOING}`, `${STATUS.RESOLVED}`,
-          `${STATUS.DUPLICATE}`, `${STATUS.REMOVED}`],
+          `${STATUS.DUPLICATE}`],
         defaultValue: 'Open',
       },
       lat: {
