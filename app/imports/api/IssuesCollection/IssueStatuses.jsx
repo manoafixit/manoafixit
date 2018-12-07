@@ -4,5 +4,4 @@ export const STATUS = {
   ONGOING: 'Ongoing',
   RESOLVED: 'Resolved',
   DUPLICATE: 'Duplicate',
-  REMOVED: 'Removed',
 };
