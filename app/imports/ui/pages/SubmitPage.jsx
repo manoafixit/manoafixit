@@ -24,6 +24,8 @@ class SubmitPage extends React.Component {
     super(props);
     this.submit = this.submit.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
+    this.trackingError = this.trackingError.bind(this);
+    this.generateColors = this.generateColors.bind(this);
     this.formRef = null;
     this.state = {
       location: {
@@ -57,14 +59,8 @@ class SubmitPage extends React.Component {
     MySwal.fire({
       title: <p>Warning</p>,
       text: `An error occurred: ${output}`,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonColor: '#c60606',
-      cancelButtonText: 'Cancel',
-      focusCancel: true,
-      reverseButtons: true,
-      buttonsStyling: true,
+      type: 'error',
+      confirmButtonText: 'Okay',
       allowOutsideClick: false,
       allowEscapeKey: false,
       allowEnterKey: false,

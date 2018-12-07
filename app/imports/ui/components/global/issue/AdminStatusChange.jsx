@@ -15,6 +15,10 @@ class AdminStatusChange extends React.Component {
     this.state = {
       stateValue: 1,
     };
+    this.updateCallback = this.updateCallback.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.generateReply = this.generateReply.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
   }
 
   updateCallback(error) {

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { Button, Modal, Segment, Header, Icon, List } from 'semantic-ui-react';
 
 export default class WarningModalDesktop extends Component {
-  state = {
-    open: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: true,
+    };
+    this.close = this.close.bind(this);
   }
 
   close = () => this.setState({ open: false })

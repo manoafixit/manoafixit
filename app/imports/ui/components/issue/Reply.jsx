@@ -25,8 +25,11 @@ class Reply extends React.Component {
     this.state = {
       editing: false,
     };
+    this.formRef = null;
     this.submit = this.submit.bind(this);
     this.updateCallback = this.updateCallback.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   updateCallback(error) {
@@ -98,7 +101,8 @@ class Reply extends React.Component {
               </Menu.Item>
               {
                 (this.props.reply.owner === Meteor.user().username ||
-                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+                    Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
                     [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
                                 style={{ color: '#4183C4' }}/>,
                       <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
@@ -138,7 +142,8 @@ class Reply extends React.Component {
             <Menu borderless attached='bottom'>
               {
                 (this.props.reply.owner === Meteor.user().username ||
-                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN)) ?
+                    Roles.userIsInRole(Meteor.userId(), ROLE.SUPERADMIN) ||
+                    Roles.userIsInRole(Meteor.userId(), ROLE.ADMIN)) ?
                     [<Menu.Item key='editReply' position='right' onClick={this.handleEdit} content='Edit'
                                 style={{ color: '#4183C4' }}/>,
                       <Menu.Item key='deleteReply' onClick={this.handleDelete} content='Delete'
