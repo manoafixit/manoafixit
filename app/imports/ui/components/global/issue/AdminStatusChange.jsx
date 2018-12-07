@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { Issues } from '../../../../api/IssuesCollection/IssuesCollection';
 import { IssueReplies } from '../../../../api/IssueRepliesCollection/IssueRepliesCollection';
 import { STATUS } from '../../../../api/IssuesCollection/IssueStatuses';
+import { format } from "date-fns";
 
 class AdminStatusChange extends React.Component {
   constructor(props) {
@@ -34,13 +35,16 @@ class AdminStatusChange extends React.Component {
 
   generateReply(status) {
     const owner = Meteor.user().username;
+    const date = new Date();
+    const formatted_date = format(date, 'MMMM D, YYYY h:mm aa');
+
     if (status === 'Duplicate') {
-      return `${owner} marked this Issue as ${status}`;
+      return `${owner} marked this Issue as ${status} on ${formatted_date}`;
     }
     if (status === 'Removed') {
-      return `${owner} removed this Issue`;
+      return `${owner} removed this Issue on ${formatted_date}`;
     }
-    return `${owner} changed the status of this Issue to ${status}`;
+    return `${owner} changed the status of this Issue to ${status} on ${formatted_date}`;
 
   }
 
